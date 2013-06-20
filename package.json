@@ -1,0 +1,20 @@
+{
+  "name": "facade",
+  "version": "0.0.1",
+  "description": "Providing common fields for analytics integrations",
+  "keywords": [],
+  "author": "Segment.io <friends@segment.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/segmentio/facade.git"
+  },
+  "dependencies": {
+    "clone": "segmentio/clone",
+    "is-email": "0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "lib/index"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "facade",
+  "repo": "segmentio/facade",
+  "description": "Providing common fields for analytics integrations",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "segmentio/clone": "*",
+    "segmentio/is-email": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": [
+    "lib/index.js",
+    "lib/alias.js",
+    "lib/identify.js",
+    "lib/track.js"
+  ]
+}
