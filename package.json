@@ -1,5 +1,5 @@
 {
-  "name": "facade",
+  "name": "segmentio-facade",
   "version": "0.0.1",
   "description": "Providing common fields for analytics integrations",
   "keywords": [],
