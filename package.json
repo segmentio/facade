@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "clone": "segmentio/clone",
+    "inherit": "segmentio/inherit",
     "is-email": "0.1.0"
   },
   "devDependencies": {
