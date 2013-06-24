@@ -6,7 +6,8 @@
   "keywords": [],
   "dependencies": {
     "segmentio/clone": "*",
-    "segmentio/is-email": "*"
+    "segmentio/is-email": "*",
+    "segmentio/new-date": "*"
   },
   "development": {},
   "license": "MIT",

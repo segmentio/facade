@@ -12,7 +12,8 @@
     "clone": "segmentio/clone",
     "inherit": "segmentio/inherit",
     "is-email": "0.1.0",
-    "morph": "calvinfo/morph"
+    "morph": "calvinfo/morph",
+    "new-date": "0.2.0"
   },
   "devDependencies": {
     "mocha": "*",
