@@ -11,7 +11,8 @@
   "dependencies": {
     "clone": "segmentio/clone",
     "inherit": "segmentio/inherit",
-    "is-email": "0.1.0"
+    "is-email": "0.1.0",
+    "morph": "calvinfo/morph"
   },
   "devDependencies": {
     "mocha": "*",
