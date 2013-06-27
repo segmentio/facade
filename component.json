@@ -5,7 +5,9 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "segmentio/clone": "*",
+    "component/clone": "*",
+    "component/inherit": "*",
+    "component/user-agent-parser": "*",
     "segmentio/is-email": "*",
     "segmentio/new-date": "*"
   },

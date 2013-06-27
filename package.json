@@ -9,11 +9,13 @@
     "url": "git://github.com/segmentio/facade.git"
   },
   "dependencies": {
-    "clone": "segmentio/clone",
-    "inherit": "segmentio/inherit",
+    "clone-component": "*",
+    "inherit-component": "*",
     "is-email": "0.1.0",
     "morph": "calvinfo/morph",
-    "new-date": "0.1.1"
+    "new-date": "0.1.1",
+    "require-component": "~0.1.0",
+    "user-parser-js": "component/user-agent-parser"
   },
   "devDependencies": {
     "mocha": "*",
