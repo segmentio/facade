@@ -17,6 +17,8 @@
   "scripts": [
     "lib/index.js",
     "lib/alias.js",
+    "lib/disabled-integration.js",
+    "lig/group.js",
     "lib/identify.js",
     "lib/track.js"
   ]
