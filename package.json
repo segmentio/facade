@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "should": "*"
+    "expect.js": "~0.2.0"
   },
   "main": "lib/index"
 }
