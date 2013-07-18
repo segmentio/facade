@@ -97,7 +97,13 @@ describe('Facade', function () {
       expect(facade.options('HelpScout')).to.be(undefined);
     });
 
-    it('should get integration specific options', function () {
+    it('should get options for a disabled by default integration that is enabled', function () {
+      var options = { HubSpot : { setting : 'x' }}
+        , facade  = new Facade({ options : options });
+
+      expect(facade.options('HubSpot')).to.eql({ setting : 'x' });
+      expect(facade.options('Customer.io')).to.eql({});
+      expect(facade.options('Salesforce')).to.be(undefined);
     });
   });
 
