@@ -116,13 +116,44 @@ describe('Facade', function () {
   });
 
   describe('.channel()', function () {
+    it('should return the channel', function () {
+      var channel = 'english'
+        , facade  = new Facade({ channel : channel });
+      expect(facade.channel()).to.eql(channel);
+    });
   });
 
 
   describe('.timestamp()', function () {
+    it('should return the current timestamp if none is supplied', function () {
+      var facade = new Facade({});
+      expect(facade.timestamp()).to.not.be(undefined);
+    });
+
+    it('should return the specificed timestamp', function (done) {
+      var timestamp = new Date();
+
+      setTimeout(function () {
+        var facade = new Facade({ timestamp : timestamp });
+        expect(facade.timestamp()).to.eql(timestamp);
+        expect(new Date()).not.to.eql(timestamp);
+        done();
+      }, 10);
+    });
   });
 
 
   describe('.ip()', function () {
+    it('should return the ip in options', function () {
+      var ip     = '4.8.15.16'
+        , facade = new Facade({ options : { ip : ip }});
+      expect(facade.ip()).to.eql(ip);
+    });
+
+    it('should return the ip in context', function () {
+      var ip     = '4.8.15.16'
+        , facade = new Facade({ context : { ip : ip }});
+      expect(facade.ip()).to.eql(ip);
+    });
   });
 });
