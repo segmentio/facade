@@ -20,7 +20,7 @@ describe('Track', function () {
   var track = new Track(args);
 
   describe('.action()', function () {
-    it('should have the proper .action()', function () {
+    it('should have the right action', function () {
       expect(track.action()).to.eql('track');
     });
   });

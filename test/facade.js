@@ -1,5 +1,5 @@
 
-var Facade = require('../lib/Facade')
+var Facade = require('..')
   , expect = require('expect.js');
 
 
