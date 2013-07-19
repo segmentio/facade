@@ -20,7 +20,7 @@ describe('Facade', function () {
     var facade = new Facade(obj);
 
     it('should proxy a single field', function () {
-      facade.members = Facade.proxy('members');
+      facade.members = Facade.field('members');
       expect(facade.members()).to.eql(obj.members);
       expect(facade.proxy('members')).to.eql(facade.members());
     });
