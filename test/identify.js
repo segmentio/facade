@@ -27,10 +27,23 @@ describe('Identify', function () {
 
 
   describe('.sessionId()', function () {
+    it('should proxy the sessionId', function () {
+      expect(identify.sessionId()).to.eql(obj.sessionId);
+    });
   });
 
 
   describe('.traits()', function () {
+    it('should proxy the traits', function () {
+      var traits   = { a : 'b', c : [1,2,3] }
+        , identify = new Identify({ traits : traits });
+      expect(identify.traits()).to.eql(traits);
+    });
+
+    it('should return an empty object if no traits are given', function () {
+      var identify = new Identify(obj);
+      expect(identify.traits()).to.eql({});
+    });
   });
 
 
