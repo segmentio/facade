@@ -113,6 +113,18 @@ describe('Facade', function () {
 
 
   describe('.userAgent()', function () {
+    it('should return a full user agent', function () {
+      var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36'
+        , facade = new Facade({ options : { userAgent : ua }});
+
+      expect(facade.userAgent()).to.not.be(undefined);
+      expect(facade.userAgent().full).to.eql(ua);
+    });
+
+    it('should return nothing when a userAgent is omitted', function () {
+      var facade = new Facade({});
+      expect(facade.userAgent()).to.be(undefined);
+    });
   });
 
   describe('.channel()', function () {
