@@ -13,7 +13,10 @@ describe('Track', function () {
       username : 'calvinfo'
     },
     options : {
-      query : 'segmentio'
+      query  : 'segmentio',
+      traits : {
+        x : 'y'
+      }
     }
   };
 
@@ -76,6 +79,17 @@ describe('Track', function () {
   describe('.email()', function () {
     it('should proxy the email', function () {
       expect(track.email()).to.eql(args.userId);
+    });
+  });
+
+  describe('.traits()', function () {
+    it('should proxy the traits', function () {
+      expect(track.traits()).to.eql(args.options.traits);
+    });
+
+    it('should return an empty object with no traits', function () {
+      var track = new Track({});
+      expect(track.traits()).to.eql({});
     });
   });
 });
