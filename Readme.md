@@ -40,9 +40,21 @@
 
 ### .email()
 
+### .identify()
+
 
 
 ## Identify
+
+### .userId()
+
+### .sessionId()
+
+### .traits()
+
+### .email()
+
+### .username()
 
 
 
