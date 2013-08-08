@@ -1,9 +1,59 @@
 
 # facade
 
-  Providing common fields for analytics integrations
+  Providing common fields for analytics integrations. Wraps the Segment.io api for use on the server or client.
 
-## License 
+
+## Facade
+
+### .proxy(field)
+
+### .field(field)
+
+### .json()
+
+### .options(integration)
+
+### .enabled(integration)
+
+### .channel()
+
+### .timestamp()
+
+### .userAgent()
+
+
+
+## Track
+
+### .event()
+
+### .userId()
+
+### .sessionId()
+
+### .properties()
+
+### .referrer()
+
+### .username()
+
+### .email()
+
+
+
+## Identify
+
+
+
+## Alias
+
+#### .from()
+
+#### .to()
+
+
+## License
 
 (The MIT License)
 
