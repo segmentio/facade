@@ -5,10 +5,11 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
+    "CamShaft/require-component" : "*",
     "component/clone": "*",
     "component/inherit": "*",
-    "nbubna/Case": "*",
     "component/user-agent-parser": "*",
+    "nbubna/Case": "*",
     "segmentio/is-email": "*",
     "segmentio/new-date": "*"
   },
