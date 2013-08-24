@@ -12,7 +12,6 @@
     "clone-component": "*",
     "inherit-component": "*",
     "is-email": "0.1.0",
-    "morph": "calvinfo/morph",
     "new-date": "0.1.1",
     "require-component": "~0.1.0",
     "user-parser-js": "component/user-agent-parser",
