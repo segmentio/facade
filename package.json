@@ -15,7 +15,8 @@
     "morph": "calvinfo/morph",
     "new-date": "0.1.1",
     "require-component": "~0.1.0",
-    "user-parser-js": "component/user-agent-parser"
+    "user-parser-js": "component/user-agent-parser",
+    "obj-case": "0.0.1"
   },
   "devDependencies": {
     "mocha": "*",

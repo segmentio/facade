@@ -79,7 +79,7 @@ describe('Facade', function () {
 
     it('should not get options for disabled by default integrations', function () {
       var facade = new Facade({});
-      expect(facade.options('HubSpot')).to.be(undefined);
+      expect(facade.options('Salesforce')).to.be(undefined);
       expect(facade.options('Customer.io')).to.eql({});
     });
 
