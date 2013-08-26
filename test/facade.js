@@ -127,6 +127,25 @@ describe('Facade', function () {
     });
   });
 
+
+  describe('.active()', function () {
+    it('should be active by default', function () {
+      var facade = new Facade({});
+      expect(facade.active()).to.be(true);
+    });
+
+    it('should be active if enabled', function () {
+      var facade = new Facade({ options : { active : true }});
+      expect(facade.active()).to.be(true);
+    });
+
+    it('should not be active if disabled', function () {
+      var facade = new Facade({ options : { active : false }});
+      expect(facade.active()).to.be(false);
+    });
+  });
+
+
   describe('.channel()', function () {
     it('should return the channel', function () {
       var channel = 'english'
