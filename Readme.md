@@ -22,6 +22,12 @@
 
 ### .userAgent()
 
+### .active()
+
+  Decides whether a call should be used to update the user who the call is for. Defaults to `true`, taken from `options.active`.
+
+  Any active call will update the user's last seen fields.
+
 
 
 ## Track
