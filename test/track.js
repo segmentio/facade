@@ -62,6 +62,14 @@ describe('Track', function () {
     it('should proxy the username', function () {
       expect(track.username()).to.eql(args.properties.username);
     });
+
+    it('should proxy the username from the userId', function () {
+      expect(new Track({ userId : 'aaa' }).username()).to.eql('aaa');
+    });
+
+    it('should proxy the username from the sessionId', function () {
+      expect(new Track({ sessionId : 'bbb' }).username()).to.eql('bbb');
+    });
   });
 
   describe('.query()', function () {
