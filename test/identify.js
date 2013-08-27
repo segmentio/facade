@@ -147,6 +147,24 @@ describe('Identify', function () {
   });
 
 
+  describe('.username()', function () {
+    it('should pull from a passed in username', function () {
+      var identify = new Identify({ traits : { username : 'calvinfo' }});
+      expect(identify.username()).to.eql('calvinfo');
+    });
+
+    it('should pull from a passed in userId', function () {
+      var identify = new Identify({ userId : 'calvinfo' });
+      expect(identify.username()).to.eql('calvinfo');
+    });
+
+    it('should pull from a passed in sessionId', function () {
+      var identify = new Identify({ sessionId : 'abc' });
+      expect(identify.username()).to.eql('abc');
+    });
+  });
+
+
   describe('.website()', function () {
   });
 
