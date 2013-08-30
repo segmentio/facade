@@ -8,19 +8,108 @@
 
 ### .proxy(field)
 
+  Proxies a field which is stored in the object.
+
+  ```javascript
+  track.proxy('traits') // { email : 'calvin@segment.io }
+  track.proxy('traits.email') // 'calvin@segment.io'
+  ```
+
+  As an added bonus, it will even pull out top level proxies that are attached to the facade
+
+  ```javascript
+  var track = new Track({ context : { setting : 'x' }});
+  track.proxy('options.setting'); // 'x'
+
+  var identify = new Identify({ traits : { address : { state : 'CA' }}});
+  // using the top level proxy
+  track.proxy('address.state'); // 'CA';
+  // through the traits
+  track.proxy('traits.address.state');
+  ```
+
+  Since developers might be working in many languages, with different conventions for things like snake_case vs camelCase, .proxy will take care of that for you!
+
+  ```javascript
+  facade = new Facade({ SOME : { reallyGreat : { other_field : 'x' }}});
+  facade.proxy('some.reallyGreat.otherField'); // 'x'
+  ```
+
 ### .field(field)
+
+  Returns just the top level field of an object. You should generally be able to use .proxy() instead.
+
+  ```javascript
+  track.field('event')  // 'Loaded a page'
+  track.field('userId') // 'calvin@segment.io'
+  ```
 
 ### .json()
 
-### .options(integration)
+  Returns the full json of whatever was passed into the facade
+
+  ```javascript
+  (new Facade({ x : 'y; })).json() // { x : 'y' }
+  ```
+
+### .options([integration])
+
+  Returns the options passed in to the facade. If you pass in an integration name, it will return the options only for that integration. If the integration isn't enabled, you won't get anything back for it
+
+  ```javascript
+  facade = new Facade({ options : { 'Segment.io' : { good : true }}});
+  facade.options(); // { 'Segment.io' : { good : true }}
+  facade.options('Segment.io') // { good : true }
+  facade.options('Customer.io') // {}
+
+  // Salesforce is disabled by default
+  facade.options('Salesforce') // undefined;
+  ```
 
 ### .enabled(integration)
 
+  Returns whether the integration name is enabled:
+
+  ```javascript
+  facade = new Facade();
+  facade.enabled('Salesforce'); // false (off by default)
+  facade.enabled('Customer.io'); // true
+  ```
+
 ### .channel()
+
+  Returns the channel for where the call came from, `client` or `server`
+
+  If your integration uses browser javascript, you'll want to check all incoming facade messages to see whether to use them.
+
+  ```javascript
+  facade.channel(); // 'server'
+  ```
 
 ### .timestamp()
 
+  Returns the timestamp when the call was made
+
+  ```javascript
+  facade.timestamp(); // Thu Aug 29 2013 17:53:03 GMT-0700 (PDT)
+  ```
+
 ### .userAgent()
+
+  Returns the user agent for the call if passed into the `options.userAgent` field.
+
+  The user agent will be parsed by [component/user-agent-parser](https://github.com/component/user-agent-parser) and will store the full user agent under `facade.userAgent().full`;
+
+  ```javascript
+  facade.userAgent();
+  /*
+  {
+    browser : 'chrome',
+    os : 'Mac OS X',
+    full: 'Mozilla/5.0 (Macintosh; Intel Mac O...
+  }
+  */
+  ```
 
 ### .active()
 
@@ -29,47 +118,76 @@
   Any active call will update the user's last seen fields.
 
 
-
 ## Track
 
 ### .event()
 
+  return the tracked event
+
 ### .userId()
+
+  return the user's id for the track call
 
 ### .sessionId()
 
+  return the session id for the track call
+
 ### .properties()
+
+  return the event properties
 
 ### .referrer()
 
+  return the referrer as taken from the properties
+
 ### .username()
+
+  return the username from traits or the userid
 
 ### .email()
 
+  return the email from the traits
+
 ### .identify()
 
+  convert the track call into an identify call to feed its traits into services which use super properties
 
+  ```javascript
+  var identify = track.identify();
+  identify.firstName(); // 'Bill',  pulled from options.traits
+  ```
 
 ## Identify
 
 ### .userId()
 
+  return the user's id
+
 ### .sessionId()
+
+  return the session id
 
 ### .traits()
 
+  return the passed in traits
+
 ### .email()
+
+  return the email from traits and user id
 
 ### .username()
 
-
+  return the username from the traits and user id
 
 ## Alias
 
 #### .from()
 
+  returns the user id to alias from
+
 #### .to()
 
+  returns the user id to alias to
 
 ## License
 

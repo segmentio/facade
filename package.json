@@ -1,6 +1,6 @@
 {
   "name": "segmentio-facade",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Providing common fields for analytics integrations",
   "keywords": [],
   "author": "Segment.io <friends@segment.io>",
@@ -9,12 +9,12 @@
     "url": "git://github.com/segmentio/facade.git"
   },
   "dependencies": {
-    "clone-component": "*",
-    "inherit-component": "*",
+    "clone-component": "0.1.0",
+    "inherit-component": "0.0.2",
     "is-email": "0.1.0",
     "new-date": "0.1.1",
-    "require-component": "~0.1.0",
-    "user-parser-js": "component/user-agent-parser",
+    "require-component": "0.1.0",
+    "user-parser-js": "component/user-agent-parser#3c858ac",
     "obj-case": "0.0.1"
   },
   "devDependencies": {
