@@ -109,6 +109,41 @@ describe('Facade', function () {
 
 
   describe('.enabled()', function () {
+    it('should be enabled by default', function () {
+      var facade = new Facade({});
+      expect(facade.enabled('Customer.io')).to.be(true);
+    });
+
+    it('should not be enabled if all == false', function () {
+      var facade = new Facade({ options : { all : false }});
+      expect(facade.enabled('Customer.io')).to.be(false);
+    });
+
+    it('should be able to override all == false', function () {
+      var options = { all : false, 'Customer.io' : { x : 1 }}
+        , facade = new Facade({ options : options });
+      expect(facade.enabled('Customer.io')).to.be(true);
+    });
+
+    it('should override all == true', function () {
+      var options = { all : true, 'Customer.io' : false }
+        , facade = new Facade({ options : options });
+      expect(facade.enabled('Customer.io')).to.be(false);
+    });
+
+    it('should only use disabled integrations when explicitly enabled', function () {
+      var facade = new Facade({});
+      expect(facade.enabled('Salesforce')).to.be(false);
+      facade = new Facade({ options : { Salesforce : { x : 1 }}});
+      expect(facade.enabled('Salesforce')).to.be(true);
+    });
+
+    it('should fall back to old providers api', function () {
+      var providers = { 'Customer.io' : false, Salesforce : true }
+        , facade = new Facade({ options : { providers : providers }});
+      expect(facade.enabled('Customer.io')).to.be(false);
+      expect(facade.enabled('Salesforce')).to.be(true);
+    });
   });
 
 

@@ -118,7 +118,6 @@ describe('Identify', function () {
       , lastName  = name.split(' ')[1];
 
     it('should pull from a passed in firstName', function () {
-      debugger;
       var identify = new Identify({ traits : { firstName : firstName }});
       expect(identify.firstName()).to.eql(firstName);
     });
@@ -166,13 +165,25 @@ describe('Identify', function () {
 
 
   describe('.website()', function () {
+    it('should pull from a passed in website', function () {
+      var identify = new Identify({ traits : { website : 'http://calv.info' }});
+      expect(identify.website()).to.eql('http://calv.info');
+    });
   });
 
 
   describe('.phone()', function () {
+    it('should pull from a passed in phone', function () {
+      var identify = new Identify({ traits : { phone : '555-555-5555' }});
+      expect(identify.phone()).to.eql('555-555-5555');
+    });
   });
 
 
   describe('.address()', function () {
+    it('should pull from a passed in address', function () {
+      var identify = new Identify({ traits : { address : '461 2nd St.' }});
+      expect(identify.address()).to.eql('461 2nd St.');
+    });
   });
 });
