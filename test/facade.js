@@ -131,6 +131,13 @@ describe('Facade', function () {
       expect(facade.enabled('Customer.io')).to.be(false);
     });
 
+    it('should use the providers.all', function () {
+      var options = { providers : { all : false, 'Customer.io' : true }}
+        , facade  = new Facade({ options : options });
+      expect(facade.enabled('Customer.io')).to.be(true);
+      expect(facade.enabled('Google Analytics')).to.be(false);
+    });
+
     it('should only use disabled integrations when explicitly enabled', function () {
       var facade = new Facade({});
       expect(facade.enabled('Salesforce')).to.be(false);
