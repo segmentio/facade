@@ -213,6 +213,11 @@ describe('Facade', function () {
         done();
       }, 10);
     });
+
+    it('should cast timestamps to dates', function () {
+      var facade = new Facade({ timestamp: '5/12/2015' });
+      expect(facade.timestamp()).to.eql(new Date('5/12/2015'));
+    });
   });
 
 
