@@ -143,6 +143,11 @@ describe('Identify', function () {
       var identify = new Identify({ traits : { name : name }});
       expect(identify.lastName()).to.eql(lastName);
     });
+
+    it('should split and trim the full lastName properly', function () {
+      var identify = new Identify({ traits: { name: 'Freddie  Mercury III' }});
+      expect(identify.lastName()).to.eql('Mercury III');
+    });
   });
 
 
