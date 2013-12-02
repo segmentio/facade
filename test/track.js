@@ -15,7 +15,7 @@ describe('Track', function () {
     options : {
       query  : 'segmentio',
       traits : {
-        x : 'y'
+        someTrait: 'y'
       }
     }
   };
@@ -98,6 +98,15 @@ describe('Track', function () {
     it('should return an empty object with no traits', function () {
       var track = new Track({});
       expect(track.traits()).to.eql({});
+    });
+  });
+
+  describe('.identify()', function () {
+    it('should convert track to identify calls', function () {
+      var track = new Track(args);
+      var identify = track.identify();
+
+      expect(identify.traits()).to.eql({ someTrait: 'y' });
     });
   });
 });
