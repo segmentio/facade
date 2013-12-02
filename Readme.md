@@ -1,4 +1,3 @@
-
 # facade
 
   Providing common fields for analytics integrations. Wraps the Segment.io api for use on the server or client.
@@ -49,7 +48,7 @@
   Returns the full json of whatever was passed into the facade
 
   ```javascript
-  (new Facade({ x : 'y; })).json() // { x : 'y' }
+  (new Facade({ x : 'y'; })).json() // { x : 'y' }
   ```
 
 ### .options([integration])
