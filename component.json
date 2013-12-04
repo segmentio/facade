@@ -20,7 +20,6 @@
   "scripts": [
     "lib/index.js",
     "lib/alias.js",
-    "lib/disabled-integration.js",
     "lib/group.js",
     "lib/identify.js",
     "lib/track.js"
