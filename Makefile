@@ -7,9 +7,13 @@ build: components $(SRC)
 components: component.json
 	@component install --dev
 
-test:
+test: node_modules
 	@./node_modules/.bin/mocha \
 		--reporter spec
+
+node_modules:
+	@npm install
+	@touch node_modules
 
 test-browser: build
 	@open test/index.html
