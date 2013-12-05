@@ -1,5 +1,5 @@
 {
-  "name": "segmentio-facade",
+  "name": "facade",
   "repo": "segmentio/facade",
   "description": "Providing common fields for analytics integrations",
   "version": "0.2.0",
@@ -12,16 +12,22 @@
     "component/user-agent-parser": "*",
     "segmentio/is-email": "0.1.1",
     "segmentio/new-date": "0.1.1",
-    "segmentio/obj-case": "0.0.2"
+    "segmentio/obj-case": "0.0.3"
   },
-  "development": {},
+  "development": {
+    "visionmedia/mocha-matrix": "*",
+    "visionmedia/mocha": "*",
+    "component/assert": "*"
+  },
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": [
     "lib/index.js",
     "lib/alias.js",
+    "lib/facade.js",
     "lib/group.js",
     "lib/identify.js",
+    "lib/is-enabled.js",
     "lib/track.js"
   ]
 }

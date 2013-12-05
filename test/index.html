@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf8'>
+    <title>facade</title>
+    <link rel='stylesheet' href='../build/build.css'>
+    <script src='../build/build.js'></script>
+    <script>require('mocha')</script>
+    <script>mocha.setup({ ui: 'bdd', reporter: require('mocha-matrix') })</script>
+  </head>
+  <body>
+    <div id='mocha'></div>
+    <script>
+      describe('facade', function(){
+        var facade = require('facade');
+        var assert = require('assert');
+
+        it('should be a function', function(){
+          assert('function' == typeof facade);
+        })
+      })
+    </script>
+    <script>mocha.run()</script>
+  </body>
+</html>

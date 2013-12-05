@@ -11,7 +11,10 @@ test:
 	@./node_modules/.bin/mocha \
 		--reporter spec
 
+test-browser: build
+	@open test/index.html
+
 clean:
 	rm -rf components build
 
-.PHONY: test clean
+.PHONY: test clean test-browser
