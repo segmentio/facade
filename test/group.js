@@ -1,0 +1,49 @@
+
+var Group = require('..').Group;
+var expect = require('expect.js');
+
+describe('Group', function(){
+
+  var obj = {
+    groupId: '123'
+  };
+
+  var group = new Group(obj);
+
+  describe('.groupId()', function(){
+    it('should proxy the group id', function(){
+      expect(group.groupId()).to.eql(obj.groupId);
+    })
+  })
+
+  describe('.properties()', function(){
+    it('should proxy properties', function(){
+      var obj = {};
+      var g = new Group({ properties: obj });
+      expect(g.properties()).to.eql(obj);
+    })
+  })
+
+  describe('.created()', function(){
+    var at = new Date;
+
+    it('should proxy created', function(){
+      var opts = { properties: { created: at } };
+      var g = new Group(opts);
+      expect(g.created()).to.eql(at);
+    })
+
+    it('should proxy createdAt', function(){
+      var opts = { properties: { createdAt: at } };
+      var g = new Group(opts);
+      expect(g.created()).to.eql(at);
+    })
+
+    it('should turn strings into dates', function(){
+      var str = '2013-07-18T23:58:38.555Z';
+      var g = new Group({ properties: { created: str } });
+      expect(g.created()).to.eql(new Date(str));
+    })
+  })
+
+})
