@@ -20,11 +20,11 @@ describe('Page', function(){
     })
   })
 
-  describe('.traits()', function(){
-    it('should proxy traits', function(){
+  describe('.properties()', function(){
+    it('should proxy properties', function(){
       var obj = {};
-      var p = new Page({ traits: obj });
-      expect(p.traits()).to.eql(obj);
+      var p = new Page({ properties: obj });
+      expect(p.properties()).to.eql(obj);
     })
   })
 
