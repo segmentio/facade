@@ -26,6 +26,7 @@
     "lib/alias.js",
     "lib/facade.js",
     "lib/group.js",
+    "lib/page.js",
     "lib/identify.js",
     "lib/is-enabled.js",
     "lib/track.js"
