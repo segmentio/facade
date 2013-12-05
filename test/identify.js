@@ -89,6 +89,35 @@ describe('Identify', function () {
     });
   });
 
+  describe('.companyCreated()', function(){
+    var traits = { company: {} };
+
+    it('should proxy from company.createdAt', function(){
+      var date = traits.company.createdAt = new Date;
+      var identify = new Identify({ traits: traits });
+      expect(identify.companyCreated()).to.eql(date);
+    })
+
+    it('should proxy from company.created', function(){
+      var date = traits.company.created = new Date;
+      var identify = new Identify({ traits: traits });
+      expect(identify.companyCreated()).to.eql(date);
+    })
+
+    it('should turn unix timestamps into dates', function(){
+      traits.company.created = 1374193002;
+      var identify = new Identify({ traits: traits });
+      expect(identify.companyCreated()).to.eql(new Date(1374193002000));
+    })
+
+    it('should turn strings into dates', function(){
+      var str = '2013-07-18T23:58:38.555Z';
+      traits.company.created = str;
+      var identify = new Identify({ traits: traits })
+      expect(identify.companyCreated()).to.eql(new Date(str));
+    })
+  })
+
 
   describe('.name()', function () {
     var name      = 'Freddie Mercury'
