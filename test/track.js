@@ -82,6 +82,16 @@ describe('Track', function () {
     it('should proxy the revenue', function () {
       expect(track.revenue()).to.eql(50);
     });
+
+    it('should proxy value', function(){
+      var track = new Track({ properties: { value: '$50' } });
+      expect(track.revenue()).to.eql(50);
+    })
+
+    it('should prefer revenue', function(){
+      var track = new Track({ properties: { revenue: '$5', value: '$6' } });
+      expect(track.revenue()).to.eql(5);
+    })
   });
 
   describe('.email()', function () {
