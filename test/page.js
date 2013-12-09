@@ -26,6 +26,20 @@ describe('Page', function(){
       var p = new Page({ properties: obj });
       expect(p.properties()).to.eql(obj);
     })
+
+    it('should mixin category and name', function(){
+      var page = new Page({
+        properties: { prop: true },
+        category: 'category',
+        name: 'name',
+      });
+
+      expect(page.properties()).to.eql({
+        category: 'category',
+        name: 'name',
+        prop: true
+      });
+    })
   })
 
   describe('.name()', function(){
