@@ -48,4 +48,15 @@ describe('Page', function(){
     })
   })
 
+  describe('.event()', function(){
+    it('should concat name if given', function(){
+      var page = new Page({});
+      expect(page.event('baz')).to.eql('Viewed baz Page');
+    })
+
+    it('should return "Loaded a Page" if name is omitted', function(){
+      expect(new Page({}).event()).to.eql('Loaded a Page');
+    })
+  })
+
 })
