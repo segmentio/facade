@@ -1,5 +1,6 @@
 
 var Page = require('..').Page;
+var Track = require('..').Track;
 var expect = require('expect.js');
 
 describe('Page', function(){
@@ -56,6 +57,24 @@ describe('Page', function(){
 
     it('should return "Loaded a Page" if name is omitted', function(){
       expect(new Page({}).event()).to.eql('Loaded a Page');
+    })
+  })
+
+  describe('.track()', function(){
+    it('should convert the page to track with event', function(){
+      var page = new Page({
+        properties: { prop: true },
+        category: 'category',
+        name: 'name'
+      });
+
+      expect(page.track('event')).to.be.a(Track);
+      expect(page.track('event').event()).to.eql('event');
+      expect(page.track('event').properties()).to.eql({
+        category: 'category',
+        name: 'name',
+        prop: true
+      });
     })
   })
 
