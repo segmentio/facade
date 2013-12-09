@@ -41,6 +41,11 @@ describe('Group', function(){
       var g = new Group({ properties: { created: str } });
       expect(g.created()).to.eql(new Date(str));
     })
+
+    it('should return undefined if date was not found', function(){
+      var group = new Group({ properties: {} });
+      expect(group.created()).to.eql(undefined);
+    })
   });
 
 
