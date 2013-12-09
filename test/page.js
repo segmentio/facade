@@ -83,4 +83,23 @@ describe('Page', function(){
     })
   })
 
+  describe('.fullName()', function(){
+    it('should return only name if category is omitted', function(){
+      var page = new Page({
+        name: 'baz'
+      });
+
+      expect(page.fullName()).to.eql('baz');
+    })
+
+    it('should return the category + name if available', function(){
+      var page = new Page({
+        category: 'cat',
+        name: 'baz'
+      });
+
+      expect(page.fullName()).to.eql('cat baz');
+    })
+  })
+
 })
