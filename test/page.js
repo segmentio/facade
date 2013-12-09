@@ -28,6 +28,11 @@ describe('Page', function(){
       expect(p.properties()).to.eql(obj);
     })
 
+    it('should default to an empty object if properties is undefined', function(){
+      var page = new Page({});
+      expect(page.properties()).to.eql({});
+    })
+
     it('should mixin category and name', function(){
       var page = new Page({
         properties: { prop: true },
