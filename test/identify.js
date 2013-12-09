@@ -220,4 +220,11 @@ describe('Identify', function () {
       expect(identify.address()).to.eql('461 2nd St.');
     });
   });
+
+  describe('.avatar()', function(){
+    it('should pull from passed in avatar', function(){
+      var identify = new Identify({ traits: { avatar: '//avatars/avatar.jpg' } });
+      expect(identify.avatar()).to.eql('//avatars/avatar.jpg');
+    })
+  })
 });
