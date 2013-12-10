@@ -108,6 +108,28 @@ describe('Track', function () {
     });
   });
 
+  describe('.cents()', function(){
+    it('should return revenue * 100 if available', function(){
+      var track = new Track({ properties: { revenue: 9.99 } });
+      expect(track.cents()).to.eql(999);
+    })
+
+    it('should return value if revenue is unavailable', function(){
+      var track = new Track({ properties: { value: 9 } });
+      expect(track.cents()).to.eql(9);
+    })
+
+    it('should prefer revenue', function(){
+      var track = new Track({
+        properties: {
+          revenue: 9.99,
+          value: 9
+        }
+      });
+      expect(track.cents()).to.eql(999);
+    })
+  })
+
   describe('.identify()', function () {
     it('should convert track to identify calls', function () {
       var track = new Track(args);
