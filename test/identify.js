@@ -41,9 +41,14 @@ describe('Identify', function () {
     });
 
     it('should return an empty object if no traits are given', function () {
-      var identify = new Identify(obj);
+      var identify = new Identify({});
       expect(identify.traits()).to.eql({});
     });
+
+    it('should mixin id if available', function(){
+      var identify = new Identify(obj);
+      expect(identify.traits()).to.eql({ id: '123' });
+    })
   });
 
 

@@ -135,7 +135,10 @@ describe('Track', function () {
       var track = new Track(args);
       var identify = track.identify();
 
-      expect(identify.traits()).to.eql({ someTrait: 'y' });
+      expect(identify.traits()).to.eql({
+        id: 'calvin@segment.io',
+        someTrait: 'y'
+      });
     });
   });
 });
