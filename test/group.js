@@ -71,6 +71,10 @@ describe('Group', function(){
     it('should proxy traits', function(){
       expect(group.traits()).to.eql(obj.traits);
     })
+
+    it('should return an empty object if traits is undefined', function(){
+      expect(new Group({}).traits()).to.eql({});
+    })
   })
 
   describe('.properties()', function(){
