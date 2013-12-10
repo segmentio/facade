@@ -50,6 +50,14 @@ describe('Track', function () {
     it('should proxy the properties', function () {
       expect(track.properties()).to.eql(args.properties);
     });
+
+    it('should respect aliases', function(){
+      expect(track.properties({ revenue: 'amount' })).to.eql({
+        referrer: 'http://segment.io',
+        username: 'calvinfo',
+        amount: '$50'
+      });
+    })
   });
 
   describe('.referrer()', function () {
