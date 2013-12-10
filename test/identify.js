@@ -49,6 +49,11 @@ describe('Identify', function () {
       var identify = new Identify(obj);
       expect(identify.traits()).to.eql({ id: '123' });
     })
+
+    it('should respect aliases', function(){
+      var identify = new Identify({ traits: { a: 'b', c: 'c' } });
+      expect(identify.traits({ a: 'b' })).to.eql({ b: 'b', c: 'c' });
+    })
   });
 
 
