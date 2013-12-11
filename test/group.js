@@ -69,11 +69,16 @@ describe('Group', function(){
 
   describe('.traits()', function(){
     it('should proxy traits', function(){
-      expect(group.traits()).to.eql(obj.traits);
+      expect(group.traits()).to.eql({ trait: true, id: '1' });
     })
 
     it('should return an empty object if traits is undefined', function(){
       expect(new Group({}).traits()).to.eql({});
+    })
+
+    it('should respect aliases', function(){
+      var group = new Group({ traits: { a: 1, b: 2 } });
+      expect(group.traits({ a: 1 })).to.eql({ 1: 1, b: 2 });
     })
   })
 
