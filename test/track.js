@@ -55,7 +55,7 @@ describe('Track', function () {
       expect(track.properties({ revenue: 'amount' })).to.eql({
         referrer: 'http://segment.io',
         username: 'calvinfo',
-        amount: '$50'
+        amount: 50
       });
     })
   });
