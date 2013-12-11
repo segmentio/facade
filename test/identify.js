@@ -195,18 +195,36 @@ describe('Identify', function () {
       var identify = new Identify({ traits : { username : 'calvinfo' }});
       expect(identify.username()).to.eql('calvinfo');
     });
-
-    it('should pull from a passed in userId', function () {
-      var identify = new Identify({ userId : 'calvinfo' });
-      expect(identify.username()).to.eql('calvinfo');
-    });
-
-    it('should pull from a passed in sessionId', function () {
-      var identify = new Identify({ sessionId : 'abc' });
-      expect(identify.username()).to.eql('abc');
-    });
   });
 
+  describe('.uid()', function(){
+    it('should pull the userId', function(){
+      var identify = new Identify({ userId: 'id' });
+      expect(identify.uid()).to.eql('id');
+    })
+
+    it('should pull the username', function(){
+      var identify = new Identify({ traits: { username: 'username' } });
+      expect(identify.uid()).to.eql('username');
+    })
+
+    it('should pull the email', function(){
+      var identify = new Identify({ traits: { email: 'email@example.com' } });
+      expect(identify.uid()).to.eql('email@example.com');
+    })
+
+    it('should prefer userId', function(){
+      var identify = new Identify({
+        userId: 'id',
+        traits: {
+          username: 'user',
+          email: 'email'
+        }
+      });
+
+      expect(identify.uid()).to.eql('id');
+    })
+  })
 
   describe('.website()', function () {
     it('should pull from a passed in website', function () {
