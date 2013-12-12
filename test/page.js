@@ -74,7 +74,9 @@ describe('Page', function(){
       });
 
       expect(page.track('event')).to.be.a(Track);
-      expect(page.track('event').event()).to.eql('event');
+      expect(page.track().event()).to.eql('Loaded a Page');
+      expect(page.track('name').event()).to.eql('Viewed name Page');
+      expect(page.track('category').event()).to.eql('Viewed category Page');
       expect(page.track('event').properties()).to.eql({
         category: 'category',
         name: 'name',
