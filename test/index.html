@@ -10,16 +10,15 @@
   </head>
   <body>
     <div id='mocha'></div>
-    <script>
-      describe('facade', function(){
-        var facade = require('facade');
-        var assert = require('assert');
-
-        it('should be a function', function(){
-          assert('function' == typeof facade);
-        })
-      })
-    </script>
+    <script>require.alias('facade/lib/index.js', '../');</script>
+    <script>require.alias('facade/lib/index.js', '..');</script>
+    <script src='alias.js'></script>
+    <script src='facade.js'></script>
+    <script src='group.js'></script>
+    <script src='identify.js'></script>
+    <script src='page.js'></script>
+    <script src='page.js'></script>
+    <script src='track.js'></script>
     <script>mocha.run()</script>
   </body>
 </html>

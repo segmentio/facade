@@ -17,7 +17,8 @@
   "development": {
     "visionmedia/mocha-matrix": "*",
     "visionmedia/mocha": "*",
-    "component/assert": "*"
+    "component/assert": "*",
+    "yields/expect.js": "*"
   },
   "license": "MIT",
   "main": "lib/index.js",
