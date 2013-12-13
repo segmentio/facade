@@ -51,8 +51,12 @@ describe('Identify', function () {
     })
 
     it('should respect aliases', function(){
-      var identify = new Identify({ traits: { a: 'b', c: 'c' } });
-      expect(identify.traits({ a: 'b' })).to.eql({ b: 'b', c: 'c' });
+      var identify = new Identify({ traits: { a: 'b', c: 'c', email: 'a@b.com' } });
+      expect(identify.traits({ a: 'b', email: '$email' })).to.eql({
+        $email: 'a@b.com',
+        b: 'b',
+        c: 'c'
+      });
     })
   });
 
