@@ -58,6 +58,13 @@ describe('Track', function () {
         amount: 50
       });
     })
+
+    it('should traverse isodate', function(){
+      var date = new Date(Date.UTC(2013, 9, 5));
+      var track = new Track({ properties: { date: '2013-10-05T00:00:00.000Z' } });
+      var time = track.properties().date.getTime();
+      expect(time).to.equal(date.getTime());
+    })
   });
 
   describe('.referrer()', function () {

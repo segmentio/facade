@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "CamShaft/require-component" : "0.1.0",
+    "segmentio/isodate-traverse": "0.1.0",
     "component/clone": "0.1.0",
     "component/inherit": "0.0.2",
     "component/trim": "0.0.1",
