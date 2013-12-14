@@ -2,7 +2,7 @@
   "name": "segmentio-facade",
   "repo": "segmentio/facade",
   "description": "Providing common fields for analytics integrations",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "keywords": [],
   "dependencies": {
     "CamShaft/require-component" : "0.1.0",
