@@ -168,13 +168,33 @@ describe('Identify', function () {
     });
   });
 
-
   describe('.website()', function () {
     it('should pull from a passed in website', function () {
       var identify = new Identify({ traits : { website : 'http://calv.info' }});
       expect(identify.website()).to.eql('http://calv.info');
     });
   });
+
+  describe('.description()', function(){
+    it('should pull from description', function(){
+      var identify = new Identify({ traits: { description: 'baz' } });
+      expect(identify.description()).to.eql('baz');
+    })
+
+    it('should pull from background', function(){
+      var identify = new Identify({ traits: { background: 'baz' } });
+      expect(identify.description()).to.eql('baz');
+    })
+
+    it('should prefer description', function(){
+      var identify = new Identify({ traits: {
+        background: 'baz',
+        description: 'foo'
+      }});
+
+      expect(identify.description()).to.eql('foo');
+    })
+  })
 
 
   describe('.phone()', function () {
