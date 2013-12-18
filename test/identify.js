@@ -41,9 +41,23 @@ describe('Identify', function () {
     });
 
     it('should return an empty object if no traits are given', function () {
-      var identify = new Identify(obj);
+      var identify = new Identify({});
       expect(identify.traits()).to.eql({});
     });
+
+    it('should mixin id if available', function(){
+      var identify = new Identify(obj);
+      expect(identify.traits()).to.eql({ id: '123' });
+    })
+
+    it('should respect aliases', function(){
+      var identify = new Identify({ traits: { a: 'b', c: 'c', email: 'a@b.com' } });
+      expect(identify.traits({ a: 'b', email: '$email' })).to.eql({
+        $email: 'a@b.com',
+        b: 'b',
+        c: 'c'
+      });
+    })
   });
 
 
@@ -88,6 +102,35 @@ describe('Identify', function () {
       expect(identify.created()).to.eql(new Date('2013-07-18T23:58:38.555Z'));
     });
   });
+
+  describe('.companyCreated()', function(){
+    var traits = { company: {} };
+
+    it('should proxy from company.createdAt', function(){
+      var date = traits.company.createdAt = new Date;
+      var identify = new Identify({ traits: traits });
+      expect(identify.companyCreated()).to.eql(date);
+    })
+
+    it('should proxy from company.created', function(){
+      var date = traits.company.created = new Date;
+      var identify = new Identify({ traits: traits });
+      expect(identify.companyCreated()).to.eql(date);
+    })
+
+    it('should turn unix timestamps into dates', function(){
+      traits.company.created = 1374193002;
+      var identify = new Identify({ traits: traits });
+      expect(identify.companyCreated()).to.eql(new Date(1374193002000));
+    })
+
+    it('should turn strings into dates', function(){
+      var str = '2013-07-18T23:58:38.555Z';
+      traits.company.created = str;
+      var identify = new Identify({ traits: traits })
+      expect(identify.companyCreated()).to.eql(new Date(str));
+    })
+  })
 
 
   describe('.name()', function () {
@@ -156,17 +199,36 @@ describe('Identify', function () {
       var identify = new Identify({ traits : { username : 'calvinfo' }});
       expect(identify.username()).to.eql('calvinfo');
     });
-
-    it('should pull from a passed in userId', function () {
-      var identify = new Identify({ userId : 'calvinfo' });
-      expect(identify.username()).to.eql('calvinfo');
-    });
-
-    it('should pull from a passed in sessionId', function () {
-      var identify = new Identify({ sessionId : 'abc' });
-      expect(identify.username()).to.eql('abc');
-    });
   });
+
+  describe('.uid()', function(){
+    it('should pull the userId', function(){
+      var identify = new Identify({ userId: 'id' });
+      expect(identify.uid()).to.eql('id');
+    })
+
+    it('should pull the username', function(){
+      var identify = new Identify({ traits: { username: 'username' } });
+      expect(identify.uid()).to.eql('username');
+    })
+
+    it('should pull the email', function(){
+      var identify = new Identify({ traits: { email: 'email@example.com' } });
+      expect(identify.uid()).to.eql('email@example.com');
+    })
+
+    it('should prefer userId', function(){
+      var identify = new Identify({
+        userId: 'id',
+        traits: {
+          username: 'user',
+          email: 'email'
+        }
+      });
+
+      expect(identify.uid()).to.eql('id');
+    })
+  })
 
   describe('.website()', function () {
     it('should pull from a passed in website', function () {
@@ -211,4 +273,11 @@ describe('Identify', function () {
       expect(identify.address()).to.eql('461 2nd St.');
     });
   });
+
+  describe('.avatar()', function(){
+    it('should pull from passed in avatar', function(){
+      var identify = new Identify({ traits: { avatar: '//avatars/avatar.jpg' } });
+      expect(identify.avatar()).to.eql('//avatars/avatar.jpg');
+    })
+  })
 });
