@@ -13,7 +13,7 @@
     "component/user-agent-parser": "*",
     "segmentio/is-email": "0.1.1",
     "segmentio/new-date": "0.1.1",
-    "segmentio/obj-case": "0.0.3"
+    "segmentio/obj-case": "0.0.4"
   },
   "development": {
     "visionmedia/mocha-matrix": "*",
