@@ -16,7 +16,7 @@
     "require-component": "0.1.0",
     "isodate-traverse": "0.1.0",
     "trim": "0.0.1",
-    "obj-case": "0.0.1"
+    "obj-case": "0.0.5"
   },
   "devDependencies": {
     "mocha": "*",
