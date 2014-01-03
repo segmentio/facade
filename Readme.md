@@ -2,6 +2,7 @@
 
   Providing common fields for analytics integrations. Wraps the Segment.io api for use on the server or client.
 
+  [![Build Status](https://travis-ci.org/segmentio/facade.png?branch=master)](https://travis-ci.org/segmentio/facade)
 
 ## Facade
 
