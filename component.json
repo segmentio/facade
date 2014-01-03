@@ -1,28 +1,36 @@
 {
-  "name": "segmentio-facade",
+  "name": "facade",
   "repo": "segmentio/facade",
   "description": "Providing common fields for analytics integrations",
-  "version": "0.1.3",
+  "version": "0.2.1",
   "keywords": [],
   "dependencies": {
     "CamShaft/require-component" : "0.1.0",
+    "segmentio/isodate-traverse": "0.1.0",
     "component/clone": "0.1.0",
     "component/inherit": "0.0.2",
     "component/trim": "0.0.1",
     "component/user-agent-parser": "*",
     "segmentio/is-email": "0.1.1",
     "segmentio/new-date": "0.1.1",
-    "segmentio/obj-case": "0.0.1"
+    "segmentio/obj-case": "0.0.5"
   },
-  "development": {},
+  "development": {
+    "visionmedia/mocha-matrix": "*",
+    "visionmedia/mocha": "*",
+    "component/assert": "*",
+    "yields/expect.js": "*"
+  },
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": [
     "lib/index.js",
     "lib/alias.js",
-    "lib/disabled-integration.js",
-    "lig/group.js",
+    "lib/facade.js",
+    "lib/group.js",
+    "lib/page.js",
     "lib/identify.js",
+    "lib/is-enabled.js",
     "lib/track.js"
   ]
 }

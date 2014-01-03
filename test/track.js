@@ -50,6 +50,21 @@ describe('Track', function () {
     it('should proxy the properties', function () {
       expect(track.properties()).to.eql(args.properties);
     });
+
+    it('should respect aliases', function(){
+      expect(track.properties({ revenue: 'amount' })).to.eql({
+        referrer: 'http://segment.io',
+        username: 'calvinfo',
+        amount: 50
+      });
+    })
+
+    it('should traverse isodate', function(){
+      var date = new Date(Date.UTC(2013, 9, 5));
+      var track = new Track({ properties: { date: '2013-10-05T00:00:00.000Z' } });
+      var time = track.properties().date.getTime();
+      expect(time).to.equal(date.getTime());
+    })
   });
 
   describe('.referrer()', function () {
@@ -84,6 +99,13 @@ describe('Track', function () {
     });
   });
 
+  describe('.value()', function(){
+    it('should proxy value', function(){
+      var track = new Track({ properties: { value: 90 } });
+      expect(track.value()).to.eql(90);
+    })
+  })
+
   describe('.email()', function () {
     it('should proxy the email', function () {
       expect(track.email()).to.eql(args.userId);
@@ -101,12 +123,37 @@ describe('Track', function () {
     });
   });
 
+  describe('.cents()', function(){
+    it('should return revenue * 100 if available', function(){
+      var track = new Track({ properties: { revenue: 9.99 } });
+      expect(track.cents()).to.eql(999);
+    })
+
+    it('should return value if revenue is unavailable', function(){
+      var track = new Track({ properties: { value: 9 } });
+      expect(track.cents()).to.eql(9);
+    })
+
+    it('should prefer revenue', function(){
+      var track = new Track({
+        properties: {
+          revenue: 9.99,
+          value: 9
+        }
+      });
+      expect(track.cents()).to.eql(999);
+    })
+  })
+
   describe('.identify()', function () {
     it('should convert track to identify calls', function () {
       var track = new Track(args);
       var identify = track.identify();
 
-      expect(identify.traits()).to.eql({ someTrait: 'y' });
+      expect(identify.traits()).to.eql({
+        id: 'calvin@segment.io',
+        someTrait: 'y'
+      });
     });
   });
 });
