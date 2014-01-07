@@ -6,13 +6,12 @@
   "keywords": [],
   "dependencies": {
     "CamShaft/require-component" : "0.1.0",
-    "segmentio/isodate-traverse": "0.1.0",
-    "component/clone": "0.1.0",
+    "segmentio/isodate-traverse": "0.2.0",
+    "component/clone": "0.1.1",
     "component/inherit": "0.0.2",
     "component/trim": "0.0.1",
-    "component/user-agent-parser": "*",
     "segmentio/is-email": "0.1.1",
-    "segmentio/new-date": "0.1.1",
+    "segmentio/new-date": "0.3.0",
     "segmentio/obj-case": "0.0.5"
   },
   "development": {
