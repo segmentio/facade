@@ -152,6 +152,25 @@ describe('Identify', function () {
       });
       expect(identify.name()).to.eql(firstName + ' ' + lastName);
     });
+
+    it('should not throw on a non-string', function () {
+      var identify = new Identify({
+        traits: {
+          name: {}
+        }
+      });
+      expect(identify.name()).to.eql(undefined);
+    });
+
+    it('should not throw on a non-string pair', function () {
+      var identify = new Identify({
+        traits: {
+          firstName: {},
+          lastName: {}
+        }
+      });
+      expect(identify.name()).to.eql(undefined);
+    });
   });
 
 
@@ -168,6 +187,15 @@ describe('Identify', function () {
     it('should pull from a passed in name', function () {
       var identify = new Identify({ traits : { name : name }});
       expect(identify.firstName()).to.eql(firstName);
+    });
+
+    it('should not fail on a non-string', function () {
+      var identify = new Identify({
+        traits: {
+          firstName: {}
+        }
+      });
+      expect(identify.firstName()).to.eql(undefined);
     });
   });
 
@@ -190,6 +218,15 @@ describe('Identify', function () {
     it('should split and trim the full lastName properly', function () {
       var identify = new Identify({ traits: { name: 'Freddie  Mercury III' }});
       expect(identify.lastName()).to.eql('Mercury III');
+    });
+
+    it('should not fail on a non-string', function () {
+      var identify = new Identify({
+        traits: {
+          lastName: {}
+        }
+      });
+      expect(identify.lastName()).to.eql(undefined);
     });
   });
 
