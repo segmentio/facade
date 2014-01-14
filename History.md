@@ -1,4 +1,10 @@
 
+0.2.3 / 2014-01-14 
+==================
+
+ * use obj-case in options()
+ * add fix for non-string name fields
+
 0.2.2 / 2014-01-07
 ==================
 
