@@ -105,6 +105,13 @@ describe('Facade', function () {
       expect(facade.options('Customer.io')).to.eql({});
       expect(facade.options('Salesforce')).to.be(undefined);
     });
+
+    it('should use obj-case', function(){
+      var opts = { Intercom: { x: 'y' } };
+      var facade = new Facade({ options: opts });
+      expect(facade.options('intercom')).to.eql({ x: 'y' });
+      expect(facade.options('Intercom')).to.eql({ x: 'y' });
+    });
   });
 
 
