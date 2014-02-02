@@ -1,4 +1,10 @@
 
+0.2.6 / 2014-02-02
+==================
+
+ * add defaults to .currency() and .quantity()
+ * add transactionId
+
 0.2.5 / 2014-02-02
 ==================
 
