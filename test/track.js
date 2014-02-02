@@ -10,7 +10,7 @@ describe('Track', function () {
     properties : {
       revenue  : '$50',
       referrer : 'http://segment.io',
-      username : 'calvinfo'
+      username : 'calvinfo',
     },
     options : {
       query  : 'segmentio',
@@ -45,6 +45,30 @@ describe('Track', function () {
       expect(track.event()).to.eql(args.event);
     });
   });
+
+  describe('.quantity()', function(){
+    it('should return the quantity', function(){
+      var track = new Track({ properties: { quantity: 2 } });
+      expect(track.quantity()).to.eql(2);
+    })
+
+    it('should default quantity to 1', function(){
+      var track = new Track({});
+      expect(track.quantity()).to.eql(1);
+    })
+  })
+
+  describe('.currency()', function(){
+    it('should return the currency code', function(){
+      var track = new Track({ properties: { currency: 'EUR' } });
+      expect(track.currency()).to.eql('EUR');
+    })
+
+    it('should default currency to `USD`', function(){
+      var track = new Track({});
+      expect(track.currency()).to.eql('USD');
+    })
+  })
 
   describe('.properties()', function () {
     it('should proxy the properties', function () {
