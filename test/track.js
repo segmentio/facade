@@ -70,6 +70,107 @@ describe('Track', function () {
     })
   })
 
+  describe('.subtotal()', function(){
+    it('should get subtotal', function(){
+      var track = new Track({ properties: { subtotal: 10 }});
+      expect(track.subtotal()).to.eql(10);
+    })
+
+    it('should compute subtotal from total', function(){
+      var track = new Track({ properties: { total: 10, tax: 2, shipping: 2 } });
+      expect(track.subtotal()).to.eql(6);
+    })
+  })
+
+  describe('.category()', function(){
+    it('should proxy category', function(){
+      var track = new Track({ properties: { category: 'category' } });
+      expect(track.category()).to.eql('category');
+    })
+  })
+
+  describe('.state()', function(){
+    it('should proxy state', function(){
+      var track = new Track({ properties: { state: 'state' } });
+      expect(track.state()).to.eql('state');
+    })
+  })
+
+  describe('.city()', function(){
+    it('should proxy city', function(){
+      var track = new Track({ properties: { city: 'city' } });
+      expect(track.city()).to.eql('city');
+    })
+  })
+
+  describe('.zip()', function(){
+    it('should proxy zip', function(){
+      var track = new Track({ properties: { zip: 'zip' } });
+      expect(track.zip()).to.eql('zip');
+    })
+  })
+
+  describe('.tax()', function(){
+    it('should proxy tax', function(){
+      var track = new Track({ properties: { tax: 'tax' } });
+      expect(track.tax()).to.eql('tax');
+    })
+  })
+
+  describe('.name()', function(){
+    it('should proxy name', function(){
+      var track = new Track({ properties: { name: 'name' } });
+      expect(track.name()).to.eql('name');
+    })
+  })
+
+  describe('.price()', function(){
+    it('should proxy price', function(){
+      var track = new Track({ properties: { price: 'price' } });
+      expect(track.price()).to.eql('price');
+    })
+  })
+
+  describe('.total()', function(){
+    it('should proxy total', function(){
+      var track = new Track({ properties: { total: 'total' } });
+      expect(track.total()).to.eql('total');
+    })
+  })
+
+  describe('.coupon()', function(){
+    it('should proxy coupon', function(){
+      var track = new Track({ properties: { coupon: 'coupon' } });
+      expect(track.coupon()).to.eql('coupon');
+    })
+  })
+
+  describe('.shipping()', function(){
+    it('should proxy shipping', function(){
+      var track = new Track({ properties: { shipping: 'shipping' } });
+      expect(track.shipping()).to.eql('shipping');
+    })
+  })
+
+  describe('.products()', function(){
+    it('should proxy products', function(){
+      var track = new Track({ properties: { products: 'products' } });
+      expect(track.products()).to.eql('products');
+    })
+
+    it('should return array', function(){
+      var track = new Track({});
+      expect(track.products()).to.be.an('array');
+    })
+  })
+
+  describe('.transactionId()', function(){
+    it('should proxy transactionId', function(){
+      var track = new Track({ properties: { transactionId: 'transactionId' } });
+      expect(track.transactionId()).to.eql('transactionId');
+    })
+  })
+
   describe('.properties()', function () {
     it('should proxy the properties', function () {
       expect(track.properties()).to.eql(args.properties);
