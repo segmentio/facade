@@ -124,6 +124,13 @@ describe('Track', function () {
     })
   })
 
+  describe('.country()', function(){
+    it('should proxy country', function(){
+      var track = new Track({ properties: { country: 'country' } });
+      expect(track.country()).to.eql('country');
+    })
+  })
+
   describe('.price()', function(){
     it('should proxy price', function(){
       var track = new Track({ properties: { price: 'price' } });
