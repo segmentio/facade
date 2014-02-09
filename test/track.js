@@ -171,10 +171,10 @@ describe('Track', function () {
     })
   })
 
-  describe('.transactionId()', function(){
-    it('should proxy transactionId', function(){
-      var track = new Track({ properties: { transactionId: 'transactionId' } });
-      expect(track.transactionId()).to.eql('transactionId');
+  describe('.orderId()', function(){
+    it('should proxy orderId', function(){
+      var track = new Track({ properties: { orderId: 'orderId' } });
+      expect(track.orderId()).to.eql('orderId');
     })
   })
 
