@@ -1,6 +1,6 @@
 {
   "name": "segmentio-facade",
-  "version": "0.2.3",
+  "version": "0.2.8",
   "description": "Providing common fields for analytics integrations",
   "keywords": [],
   "author": "Segment.io <friends@segment.io>",
@@ -14,9 +14,9 @@
     "is-email": "0.1.0",
     "new-date": "0.1.1",
     "require-component": "0.1.0",
-    "isodate-traverse": "0.1.0",
+    "isodate-traverse": "~0.3.0",
     "trim": "0.0.1",
-    "obj-case": "0.0.5"
+    "obj-case": "0.0.6"
   },
   "devDependencies": {
     "mocha": "*",

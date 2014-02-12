@@ -2,7 +2,7 @@
   "name": "facade",
   "repo": "segmentio/facade",
   "description": "Providing common fields for analytics integrations",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "keywords": [],
   "dependencies": {
     "CamShaft/require-component" : "0.1.0",
@@ -12,7 +12,7 @@
     "component/trim": "0.0.1",
     "segmentio/is-email": "0.1.1",
     "segmentio/new-date": "0.3.0",
-    "segmentio/obj-case": "0.0.5"
+    "segmentio/obj-case": "0.0.6"
   },
   "development": {
     "visionmedia/mocha-matrix": "*",
