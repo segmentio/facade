@@ -176,6 +176,11 @@ describe('Track', function () {
       var track = new Track({ properties: { orderId: 'orderId' } });
       expect(track.orderId()).to.eql('orderId');
     })
+
+    it('should proxy `id`', function(){
+      var track = new Track({ properties: { id: 'id' } });
+      expect(track.orderId()).to.eql('id');
+    })
   })
 
   describe('.properties()', function () {
