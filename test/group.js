@@ -4,7 +4,7 @@ var expect = require('expect.js');
 
 describe('Group', function(){
 
-  var obj = { userId: '1', groupId: '1', traits: { trait: true } };
+  var obj = { userId: '1', sessionId: '2', groupId: '1', traits: { trait: true } };
   var group = new Group(obj);
 
   describe('.groupId()', function(){
@@ -20,6 +20,18 @@ describe('Group', function(){
       expect(g.properties()).to.eql(obj);
     })
   })
+
+  describe('.userId()', function () {
+    it('should proxy the userId', function () {
+      expect(group.userId()).to.eql(obj.userId);
+    });
+  });
+
+  describe('.sessionId()', function () {
+    it('should proxy the sessionId', function () {
+      expect(group.sessionId()).to.eql(obj.sessionId);
+    });
+  });
 
   describe('.created()', function(){
     var at = new Date;

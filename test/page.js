@@ -10,6 +10,8 @@ describe('Page', function(){
 
   beforeEach(function(){
     obj = {};
+    obj.userId = 2;
+    obj.sessionId = 3;
     obj.category = 'docs';
     obj.name = 'docs';
     page = new Page(obj);
@@ -20,6 +22,18 @@ describe('Page', function(){
       expect(page.category()).to.eql('docs');
     })
   })
+
+  describe('.userId()', function () {
+    it('should proxy the userId', function () {
+      expect(page.userId()).to.eql(obj.userId);
+    });
+  });
+
+  describe('.sessionId()', function () {
+    it('should proxy the sessionId', function () {
+      expect(page.sessionId()).to.eql(obj.sessionId);
+    });
+  });
 
   describe('.properties()', function(){
     it('should proxy properties', function(){
