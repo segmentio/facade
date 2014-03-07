@@ -18,6 +18,11 @@ describe('Alias', function () {
       var alias = new Alias({ from : 'x' });
       expect(alias.from()).to.eql('x');
     });
+
+    it('should proxy .previousId', function(){
+      var alias = new Alias({ previousId: 'x' });
+      expect(alias.from()).to.eql('x');
+    })
   });
 
   describe('.to()', function () {
@@ -25,6 +30,11 @@ describe('Alias', function () {
       var alias = new Alias({ to : 'x' });
       expect(alias.to()).to.eql('x');
     });
+
+    it('should proxy .userId', function(){
+      var alias = new Alias({ userId: 'x' });
+      expect(alias.to()).to.eql('x');
+    })
   });
 
 });

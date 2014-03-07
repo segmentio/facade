@@ -85,16 +85,28 @@ describe('Facade', function () {
 
     it('should get options for a specifically enabled integration', function () {
       var options = { all : false, 'Customer.io' : true }
-        , facade  = new Facade({ options : options });
+      var facade  = new Facade({ options : options });
+
+      // sanity check.
       expect(facade.options('Customer.io')).to.eql({});
       expect(facade.options('HelpScout')).to.be(undefined);
       expect(facade.options('HubSpot')).to.be(undefined);
 
+      // flat
       options = { all : false, 'Customer.io' : { setting : true }};
       facade = new Facade({ options : options });
-
       expect(facade.options('Customer.io')).to.eql({ setting : true });
       expect(facade.options('HelpScout')).to.be(undefined);
+
+      // .integrations
+      options = { HubSpot: { x: 1 } };
+      facade = new Facade({ integrations: options });
+      expect(facade.options('hub_spot')).to.eql({ x: 1 });
+
+      // options.providers
+      options = { providers: { HubSpot: { x: 1 } } };
+      facade = new Facade({ options: options });
+      expect(facade.options('hub_spot')).to.eql({ x: 1 });
     });
 
     it('should get options for a disabled by default integration that is enabled', function () {
