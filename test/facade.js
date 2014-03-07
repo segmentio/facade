@@ -211,6 +211,17 @@ describe('Facade', function () {
     });
   });
 
+  describe('.userAgent()', function(){
+    it('should return the userAgent in options', function(){
+      var facade = new Facade({ options: { userAgent: 'safari' } });
+      expect(facade.userAgent()).to.eql('safari');
+    })
+
+    it('should return the userAgent in context', function(){
+      var facade = new Facade({ context: { userAgent: 'safari' } });
+      expect(facade.userAgent()).to.eql('safari');
+    })
+  })
 
   describe('.ip()', function () {
     it('should return the ip in options', function () {
