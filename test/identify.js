@@ -30,6 +30,12 @@ describe('Identify', function () {
     it('should proxy the sessionId', function () {
       expect(identify.sessionId()).to.eql(obj.sessionId);
     });
+
+    it('should proxy .anonymousId', function(){
+      var obj = { anonymousId: 'id' };
+      var identify = new Identify(obj);
+      expect(identify.anonymousId()).to.eql(obj.anonymousId);
+    })
   });
 
 
