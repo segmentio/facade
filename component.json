@@ -30,6 +30,7 @@
     "lib/page.js",
     "lib/identify.js",
     "lib/is-enabled.js",
-    "lib/track.js"
+    "lib/track.js",
+    "lib/screen.js"
   ]
 }
