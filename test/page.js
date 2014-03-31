@@ -116,6 +116,15 @@ describe('Page', function(){
 
       expect(page.fullName()).to.eql('cat baz');
     })
+
+    it('should return the url when category and name are omitted', function(){
+      var page = new Page({
+        properties: {
+          path: '/foobar'
+        }
+      });
+      expect(page.fullName()).to.eql('/foobar');
+    })
   })
 
 })
