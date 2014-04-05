@@ -14,7 +14,11 @@ describe('Facade', function () {
         'Jemaine' : 'Rock and roll',
         'Murray'  : 'Band manager'
       },
-      band : { meeting : { present : true }}
+      band : { meeting : { present : true }},
+      dates: {
+        start: '2014-01-01',
+        end: '2014-02-01'
+      }
     };
 
     var facade = new Facade(obj);
@@ -42,6 +46,12 @@ describe('Facade', function () {
       expect(facade.proxy('virtual.result')).to.eql(true);
       facade.test = Facade.proxy('virtual.result');
       expect(facade.test()).to.eql(true);
+    });
+
+    it('should convert dates', function () {
+      var dates = facade.proxy('dates');
+      expect(dates.start).to.eql(new Date('2014-01-01'));
+      expect(dates.end).to.eql(new Date('2014-02-01'));
     });
   });
 
