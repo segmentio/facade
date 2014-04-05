@@ -11,6 +11,7 @@ describe('Track', function () {
       revenue  : '$50',
       referrer : 'http://segment.io',
       username : 'calvinfo',
+      email    : 'test@segment.io'
     },
     options : {
       query  : 'segmentio',
@@ -191,6 +192,7 @@ describe('Track', function () {
     it('should respect aliases', function(){
       expect(track.properties({ revenue: 'amount' })).to.eql({
         referrer: 'http://segment.io',
+        email: 'test@segment.io',
         username: 'calvinfo',
         amount: 50
       });
@@ -244,8 +246,13 @@ describe('Track', function () {
   })
 
   describe('.email()', function () {
-    it('should proxy the email', function () {
-      expect(track.email()).to.eql(args.userId);
+    it('should proxy the email from properties.email', function(){
+      expect(track.email()).to.eql(args.properties.email);
+    })
+
+    it('should proxy the email from .userId', function () {
+      var track = new Track({ userId: 'test@segment.io' });
+      expect(track.email()).to.eql('test@segment.io');
     });
   });
 
