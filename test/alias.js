@@ -1,20 +1,21 @@
-var expect = require('expect.js')
-  , Facade = require('../')
-  , Alias = Facade.Alias;
+var expect = require('expect.js');
+var Facade = require('../');
+var Alias = Facade.Alias;
 
+describe('Alias', function(){
+  describe('.type()', function(){
+    var alias = new Alias({});
+    it('should have the proper .type()', function(){
+      expect(alias.type()).to.eql('alias');
+    });
 
-describe('Alias', function () {
-
-  describe('.action()', function () {
-    it('should have the right action', function () {
-      var alias = new Alias({});
-      expect(alias.action()).to.eql('alias');
+    it('should equal .action()', function(){
+      expect(alias.type()).to.eql(alias.action());
     });
   });
 
-
-  describe('.from()', function () {
-    it('should proxy .from', function () {
+  describe('.from()', function(){
+    it('should proxy .from', function(){
       var alias = new Alias({ from : 'x' });
       expect(alias.from()).to.eql('x');
     });
@@ -25,8 +26,8 @@ describe('Alias', function () {
     })
   });
 
-  describe('.to()', function () {
-    it('should proxy .to', function () {
+  describe('.to()', function(){
+    it('should proxy .to', function(){
       var alias = new Alias({ to : 'x' });
       expect(alias.to()).to.eql('x');
     });
@@ -36,5 +37,4 @@ describe('Alias', function () {
       expect(alias.to()).to.eql('x');
     })
   });
-
 });

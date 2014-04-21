@@ -1,8 +1,7 @@
-var Track  = require('..').Track
-  , expect = require('expect.js');
+var Track = require('..').Track;
+var expect = require('expect.js');
 
-
-describe('Track', function () {
+describe('Track', function(){
 
   var args = {
     userId     : 'calvin@segment.io',
@@ -23,26 +22,30 @@ describe('Track', function () {
 
   var track = new Track(args);
 
-  describe('.action()', function () {
-    it('should have the right action', function () {
-      expect(track.action()).to.eql('track');
+  describe('.type()', function(){
+    it('should have the proper .type()', function(){
+      expect(track.type()).to.eql('track');
+    });
+
+    it('should equal .action()', function(){
+      expect(track.type()).to.eql(track.action());
     });
   });
 
-  describe('.userId()', function () {
-    it('should proxy the userId', function () {
+  describe('.userId()', function(){
+    it('should proxy the userId', function(){
       expect(track.userId()).to.eql(args.userId);
     });
   });
 
-  describe('.sessionId()', function () {
-    it('should proxy the sessionId', function () {
+  describe('.sessionId()', function(){
+    it('should proxy the sessionId', function(){
       expect(track.sessionId()).to.eql(args.sessionId);
     });
   });
 
-  describe('.event()', function () {
-    it('should proxy the event', function () {
+  describe('.event()', function(){
+    it('should proxy the event', function(){
       expect(track.event()).to.eql(args.event);
     });
   });
@@ -184,8 +187,8 @@ describe('Track', function () {
     })
   })
 
-  describe('.properties()', function () {
-    it('should proxy the properties', function () {
+  describe('.properties()', function(){
+    it('should proxy the properties', function(){
       expect(track.properties()).to.eql(args.properties);
     });
 
@@ -206,34 +209,34 @@ describe('Track', function () {
     })
   });
 
-  describe('.referrer()', function () {
-    it('should proxy the referrer', function () {
+  describe('.referrer()', function(){
+    it('should proxy the referrer', function(){
       expect(track.referrer()).to.eql(args.properties.referrer);
     });
   });
 
-  describe('.username()', function () {
-    it('should proxy the username', function () {
+  describe('.username()', function(){
+    it('should proxy the username', function(){
       expect(track.username()).to.eql(args.properties.username);
     });
 
-    it('should proxy the username from the userId', function () {
+    it('should proxy the username from the userId', function(){
       expect(new Track({ userId : 'aaa' }).username()).to.eql('aaa');
     });
 
-    it('should proxy the username from the sessionId', function () {
+    it('should proxy the username from the sessionId', function(){
       expect(new Track({ sessionId : 'bbb' }).username()).to.eql('bbb');
     });
   });
 
-  describe('.query()', function () {
-    it('should proxy the query', function () {
+  describe('.query()', function(){
+    it('should proxy the query', function(){
       expect(track.query()).to.eql(args.options.query);
     });
   });
 
-  describe('.revenue()', function () {
-    it('should proxy the revenue', function () {
+  describe('.revenue()', function(){
+    it('should proxy the revenue', function(){
       expect(track.revenue()).to.eql(50);
     });
   });
@@ -245,23 +248,23 @@ describe('Track', function () {
     })
   })
 
-  describe('.email()', function () {
+  describe('.email()', function(){
     it('should proxy the email from properties.email', function(){
       expect(track.email()).to.eql(args.properties.email);
     })
 
-    it('should proxy the email from .userId', function () {
+    it('should proxy the email from .userId', function(){
       var track = new Track({ userId: 'test@segment.io' });
       expect(track.email()).to.eql('test@segment.io');
     });
   });
 
-  describe('.traits()', function () {
-    it('should proxy the traits', function () {
+  describe('.traits()', function(){
+    it('should proxy the traits', function(){
       expect(track.traits()).to.eql(args.options.traits);
     });
 
-    it('should return an empty object with no traits', function () {
+    it('should return an empty object with no traits', function(){
       var track = new Track({});
       expect(track.traits()).to.eql({});
     });
@@ -289,8 +292,8 @@ describe('Track', function () {
     })
   })
 
-  describe('.identify()', function () {
-    it('should convert track to identify calls', function () {
+  describe('.identify()', function(){
+    it('should convert track to identify calls', function(){
       var track = new Track(args);
       var identify = track.identify();
 
