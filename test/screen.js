@@ -17,20 +17,30 @@ describe('Screen', function(){
     screen = new Screen(obj);
   })
 
+  describe('.type()', function(){
+    it('should have the proper .type()', function(){
+      expect(screen.type()).to.eql('screen');
+    });
+
+    it('should equal .action()', function(){
+      expect(screen.type()).to.eql(screen.action());
+    });
+  });
+
   describe('.category()', function(){
     it('should proxy category', function(){
       expect(screen.category()).to.eql('songs');
     })
   })
 
-  describe('.userId()', function () {
-    it('should proxy the userId', function () {
+  describe('.userId()', function(){
+    it('should proxy the userId', function(){
       expect(screen.userId()).to.eql(obj.userId);
     });
   });
 
-  describe('.sessionId()', function () {
-    it('should proxy the sessionId', function () {
+  describe('.sessionId()', function(){
+    it('should proxy the sessionId', function(){
       expect(screen.sessionId()).to.eql(obj.sessionId);
     });
   });
@@ -117,5 +127,4 @@ describe('Screen', function(){
       expect(screen.fullName()).to.eql('cat baz');
     })
   })
-
 })

@@ -3,9 +3,25 @@ var Group = require('..').Group;
 var expect = require('expect.js');
 
 describe('Group', function(){
-
-  var obj = { userId: '1', sessionId: '2', groupId: '1', traits: { trait: true } };
+  var obj = {
+    userId: '1',
+    sessionId: '2',
+    groupId: '1',
+    traits: {
+      trait: true
+    }
+  };
   var group = new Group(obj);
+
+  describe('.type()', function(){
+    it('should have the proper .type()', function(){
+      expect(group.type()).to.be('group');
+    });
+
+    it('should equal .action()', function(){
+      expect(group.type()).to.eql(group.action());
+    });
+  });
 
   describe('.groupId()', function(){
     it('should proxy the group id', function(){
@@ -60,11 +76,14 @@ describe('Group', function(){
     })
   });
 
-
-  describe('.action()', function(){
+  describe('.type()', function(){
     it('should return "group"', function(){
-      expect(group.action()).to.be('group');
+      expect(group.type()).to.be('group');
     })
+
+    it('should respond to .action()', function(){
+      expect(group.action()).to.be('group');
+    });
   })
 
   describe('.groupId()', function(){
@@ -104,5 +123,4 @@ describe('Group', function(){
       expect(group.properties()).to.eql({ prop: true });
     })
   })
-
 })

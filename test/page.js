@@ -17,20 +17,30 @@ describe('Page', function(){
     page = new Page(obj);
   })
 
+  describe('.type()', function(){
+    it('should have the proper .type()', function(){
+      expect(page.type()).to.eql('page');
+    });
+
+    it('should equal .action()', function(){
+      expect(page.type()).to.eql(page.action());
+    });
+  });
+
   describe('.category()', function(){
     it('should proxy category', function(){
       expect(page.category()).to.eql('docs');
     })
   })
 
-  describe('.userId()', function () {
-    it('should proxy the userId', function () {
+  describe('.userId()', function(){
+    it('should proxy the userId', function(){
       expect(page.userId()).to.eql(obj.userId);
     });
   });
 
-  describe('.sessionId()', function () {
-    it('should proxy the sessionId', function () {
+  describe('.sessionId()', function(){
+    it('should proxy the sessionId', function(){
       expect(page.sessionId()).to.eql(obj.sessionId);
     });
   });
