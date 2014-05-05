@@ -243,4 +243,31 @@ describe('Facade', function (){
       expect(facade.ip()).to.eql(ip);
     });
   });
+
+  describe('.library()', function(){
+    it('should return unknown if library is not present', function(){
+      expect(new Facade({}).library()).to.eql({
+        name: 'unknown',
+        version: null
+      });
+    });
+
+    it('should detect a library that is a string', function(){
+      expect(new Facade({
+        options: { library: 'analytics-node' }
+      }).library()).to.eql({
+        name: 'analytics-node',
+        version: null
+      });
+    });
+
+    it('should detect a library that is an object', function(){
+      expect(new Facade({
+        options: { library: { name: 'analytics-node', version: 1.0 }}
+      }).library()).to.eql({
+        name: 'analytics-node',
+        version: 1.0
+      });
+    });
+  });
 });
