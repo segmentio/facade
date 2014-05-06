@@ -58,71 +58,72 @@ describe('Facade', function (){
     });
   });
 
-  describe('.options()', function(){
+  describe('.context()', function(){
     it('should pull from "context" for backwards compatibility', function(){
-      var context = { a : 'b' };
-      var facade = new Facade({ context : context });
-      expect(facade.options()).to.eql(context);
-    });
-
-    it('should pull from "options"', function(){
       var options = { a : 'b' };
       var facade = new Facade({ options : options });
+      expect(facade.context()).to.eql(options);
       expect(facade.options()).to.eql(options);
     });
 
-    it('should not get options when all integrations are disabled', function(){
-      var options = { all : false };
-      var facade = new Facade({ options : options });
-      expect(facade.options('Customer.io')).to.be(undefined);
+    it('should pull from "context"', function(){
+      var context = { a : 'b' };
+      var facade = new Facade({ context : context });
+      expect(facade.context()).to.eql(context);
     });
 
-    it('should not get options for disabled by default integrations', function(){
+    it('should not get context when all integrations are disabled', function(){
+      var context = { all : false };
+      var facade = new Facade({ context : context });
+      expect(facade.context('Customer.io')).to.be(undefined);
+    });
+
+    it('should not get context for disabled by default integrations', function(){
       var facade = new Facade({});
-      expect(facade.options('Salesforce')).to.be(undefined);
-      expect(facade.options('Customer.io')).to.eql({});
+      expect(facade.context('Salesforce')).to.be(undefined);
+      expect(facade.context('Customer.io')).to.eql({});
     });
 
-    it('should get options for a specifically enabled integration', function(){
-      var options = { all : false, 'Customer.io' : true };
-      var facade = new Facade({ options : options });
+    it('should get context for a specifically enabled integration', function(){
+      var context = { all : false, 'Customer.io' : true };
+      var facade = new Facade({ context : context });
 
       // sanity check.
-      expect(facade.options('Customer.io')).to.eql({});
-      expect(facade.options('HelpScout')).to.be(undefined);
-      expect(facade.options('HubSpot')).to.be(undefined);
+      expect(facade.context('Customer.io')).to.eql({});
+      expect(facade.context('HelpScout')).to.be(undefined);
+      expect(facade.context('HubSpot')).to.be(undefined);
 
       // flat
-      options = { all : false, 'Customer.io' : { setting : true }};
-      facade = new Facade({ options : options });
-      expect(facade.options('Customer.io')).to.eql({ setting : true });
-      expect(facade.options('HelpScout')).to.be(undefined);
+      context = { all : false, 'Customer.io' : { setting : true }};
+      facade = new Facade({ context : context });
+      expect(facade.context('Customer.io')).to.eql({ setting : true });
+      expect(facade.context('HelpScout')).to.be(undefined);
 
       // .integrations
-      options = { HubSpot: { x: 1 } };
-      facade = new Facade({ integrations: options });
-      expect(facade.options('hub_spot')).to.eql({ x: 1 });
+      context = { HubSpot: { x: 1 } };
+      facade = new Facade({ integrations: context });
+      expect(facade.context('hub_spot')).to.eql({ x: 1 });
 
-      // options.providers
-      options = { providers: { HubSpot: { x: 1 } } };
-      facade = new Facade({ options: options });
-      expect(facade.options('hub_spot')).to.eql({ x: 1 });
+      // context.providers
+      context = { providers: { HubSpot: { x: 1 } } };
+      facade = new Facade({ context: context });
+      expect(facade.context('hub_spot')).to.eql({ x: 1 });
     });
 
-    it('should get options for a disabled by default integration that is enabled', function(){
-      var options = { HubSpot : { setting : 'x' }};
-      var facade = new Facade({ options : options });
+    it('should get context for a disabled by default integration that is enabled', function(){
+      var context = { HubSpot : { setting : 'x' }};
+      var facade = new Facade({ context : context });
 
-      expect(facade.options('HubSpot')).to.eql({ setting : 'x' });
-      expect(facade.options('Customer.io')).to.eql({});
-      expect(facade.options('Salesforce')).to.be(undefined);
+      expect(facade.context('HubSpot')).to.eql({ setting : 'x' });
+      expect(facade.context('Customer.io')).to.eql({});
+      expect(facade.context('Salesforce')).to.be(undefined);
     });
 
     it('should use obj-case', function(){
       var opts = { Intercom: { x: 'y' } };
-      var facade = new Facade({ options: opts });
-      expect(facade.options('intercom')).to.eql({ x: 'y' });
-      expect(facade.options('Intercom')).to.eql({ x: 'y' });
+      var facade = new Facade({ context: opts });
+      expect(facade.context('intercom')).to.eql({ x: 'y' });
+      expect(facade.context('Intercom')).to.eql({ x: 'y' });
     });
   });
 
@@ -133,25 +134,25 @@ describe('Facade', function (){
     });
 
     it('should not be enabled if all == false', function(){
-      var facade = new Facade({ options : { all : false }});
+      var facade = new Facade({ context : { all : false }});
       expect(facade.enabled('Customer.io')).to.be(false);
     });
 
     it('should be able to override all == false', function(){
-      var options = { all : false, 'Customer.io' : { x : 1 }};
-      var facade = new Facade({ options : options });
+      var context = { all : false, 'Customer.io' : { x : 1 }};
+      var facade = new Facade({ context : context });
       expect(facade.enabled('Customer.io')).to.be(true);
     });
 
     it('should override all == true', function(){
-      var options = { all : true, 'Customer.io' : false };
-      var facade = new Facade({ options : options });
+      var context = { all : true, 'Customer.io' : false };
+      var facade = new Facade({ context : context });
       expect(facade.enabled('Customer.io')).to.be(false);
     });
 
     it('should use the providers.all', function(){
-      var options = { providers : { all : false, 'Customer.io' : true }};
-      var facade  = new Facade({ options : options });
+      var context = { providers : { all : false, 'Customer.io' : true }};
+      var facade  = new Facade({ context : context });
       expect(facade.enabled('Customer.io')).to.be(true);
       expect(facade.enabled('Google Analytics')).to.be(false);
     });
@@ -159,13 +160,13 @@ describe('Facade', function (){
     it('should only use disabled integrations when explicitly enabled', function(){
       var facade = new Facade({});
       expect(facade.enabled('Salesforce')).to.be(false);
-      facade = new Facade({ options : { Salesforce : { x : 1 }}});
+      facade = new Facade({ context : { Salesforce : { x : 1 }}});
       expect(facade.enabled('Salesforce')).to.be(true);
     });
 
     it('should fall back to old providers api', function(){
       var providers = { 'Customer.io' : false, Salesforce : true };
-      var facade = new Facade({ options : { providers : providers }});
+      var facade = new Facade({ context : { providers : providers }});
       expect(facade.enabled('Customer.io')).to.be(false);
       expect(facade.enabled('Salesforce')).to.be(true);
     });
@@ -178,12 +179,12 @@ describe('Facade', function (){
     });
 
     it('should be active if enabled', function(){
-      var facade = new Facade({ options : { active : true }});
+      var facade = new Facade({ context : { active : true }});
       expect(facade.active()).to.be(true);
     });
 
     it('should not be active if disabled', function(){
-      var facade = new Facade({ options : { active : false }});
+      var facade = new Facade({ context : { active : false }});
       expect(facade.active()).to.be(false);
     });
   });
@@ -219,8 +220,8 @@ describe('Facade', function (){
   });
 
   describe('.userAgent()', function(){
-    it('should return the userAgent in options', function(){
-      var facade = new Facade({ options: { userAgent: 'safari' } });
+    it('should return the userAgent in context', function(){
+      var facade = new Facade({ context: { userAgent: 'safari' } });
       expect(facade.userAgent()).to.eql('safari');
     })
 
@@ -231,9 +232,9 @@ describe('Facade', function (){
   })
 
   describe('.ip()', function(){
-    it('should return the ip in options', function(){
+    it('should return the ip in context', function(){
       var ip = '4.8.15.16';
-      var facade = new Facade({ options : { ip : ip }});
+      var facade = new Facade({ context : { ip : ip }});
       expect(facade.ip()).to.eql(ip);
     });
 
