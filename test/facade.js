@@ -170,6 +170,18 @@ describe('Facade', function (){
       expect(facade.enabled('Customer.io')).to.be(false);
       expect(facade.enabled('Salesforce')).to.be(true);
     });
+
+    it('should pull from .integrations', function(){
+      var integrations = { 'Customer.io': false, Salesforce: true };
+      var facade = new Facade({ integrations: integrations });
+      expect(facade.enabled('Customer.io')).to.be(false);
+      expect(facade.enabled('Salesforce')).to.be(true);
+    });
+
+    it('should pull from .integrations.all', function(){
+      var facade = new Facade({ integrations: { all: false }});
+      expect(facade.enabled('Customer.io')).to.be(false);
+    });
   });
 
   describe('.active()', function(){
