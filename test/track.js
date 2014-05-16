@@ -239,6 +239,11 @@ describe('Track', function(){
     it('should proxy the revenue', function(){
       expect(track.revenue()).to.eql(50);
     });
+
+    it('should fallback to total', function(){
+      var track = new Track({ properties: { total: '$75' } });
+      expect(track.revenue()).to.eql(75);
+    });
   });
 
   describe('.value()', function(){
