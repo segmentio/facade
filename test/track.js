@@ -147,16 +147,6 @@ describe('Track', function(){
       var track = new Track({ properties: { total: 'total' } });
       expect(track.total()).to.eql('total');
     })
-
-    it('should fallback to revenue', function(){
-      var track = new Track({ properties: { revenue: '$30' } });
-      expect(track.total()).to.eql(30);
-    })
-
-    it('should return string if it can\'t figure out a good parse', function(){
-      var track = new Track({ properties: { revenue: '$hello' } });
-      expect(track.total()).to.eql('$hello');
-    })
   })
 
   describe('.coupon()', function(){
@@ -250,8 +240,10 @@ describe('Track', function(){
       expect(track.revenue()).to.eql(50);
     });
 
-    it('should fallback to total', function(){
-      var track = new Track({ properties: { total: '$75' } });
+    it('should fallback to total, only during "completed order" event', function(){
+      var track = new Track({ properties: { total: 75 } });
+      expect(track.revenue()).to.eql(undefined);
+      var track = new Track({ properties: { total: 75 }, event: 'completed order' });
       expect(track.revenue()).to.eql(75);
     });
 
