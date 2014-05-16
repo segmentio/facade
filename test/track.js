@@ -240,17 +240,27 @@ describe('Track', function(){
       expect(track.revenue()).to.eql(50);
     });
 
+    it('should return a number', function(){
+      var track = new Track({ properties: { revenue: 10 } });
+      expect(track.revenue()).to.eql(10);
+    })
+
+    it('should intelligently convert strings to numbers if possible', function(){
+      var track = new Track({ properties: { revenue: '$10' } });
+      expect(track.revenue()).to.eql(10);
+    })
+
+    it('should return undefined for unknown format', function(){
+      var track = new Track({ properties: { revenue: '$hello' } });
+      expect(track.revenue()).to.eql(undefined);
+    })
+    
     it('should fallback to total, only during "completed order" event', function(){
       var track = new Track({ properties: { total: 75 } });
       expect(track.revenue()).to.eql(undefined);
       var track = new Track({ properties: { total: 75 }, event: 'completed order' });
       expect(track.revenue()).to.eql(75);
     });
-
-    it('should return string if it can\'t figure out a good parse', function(){
-      var track = new Track({ properties: { total: '$hello' } });
-      expect(track.total()).to.eql('$hello');
-    })
   });
 
   describe('.value()', function(){
