@@ -147,6 +147,21 @@ describe('Track', function(){
       var track = new Track({ properties: { total: 'total' } });
       expect(track.total()).to.eql('total');
     })
+
+    it('should remove `$` prefix', function(){
+      var track = new Track({ properties: { total: '$29.99' }});
+      expect(track.total()).to.eql(29.99);
+    })
+
+    it('should fallback to revenue', function(){
+      var track = new Track({ properties: { revenue: 99 }});
+      expect(track.total()).to.eql(99);
+    })
+
+    it('should remove `$` prefix', function(){
+      var track = new Track({ properties: { revenue: '$99' }});
+      expect(track.total()).to.eql(99);
+    })
   })
 
   describe('.coupon()', function(){
@@ -255,10 +270,8 @@ describe('Track', function(){
       expect(track.revenue()).to.eql(undefined);
     })
     
-    it('should fallback to total, only during "completed order" event', function(){
+    it('should fallback to total', function(){
       var track = new Track({ properties: { total: 75 } });
-      expect(track.revenue()).to.eql(undefined);
-      var track = new Track({ properties: { total: 75 }, event: 'completed order' });
       expect(track.revenue()).to.eql(75);
     });
   });
