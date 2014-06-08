@@ -56,6 +56,11 @@ describe('Facade', function (){
       var facade = new Facade(obj);
       expect(facade.json()).to.eql(obj);
     });
+
+    it('should add .type', function(){
+      var track = new Facade.Track({});
+      expect(track.json().type).to.eql('track');
+    });
   });
 
   describe('.context()', function(){
