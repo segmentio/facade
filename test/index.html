@@ -3,23 +3,13 @@
   <head>
     <meta charset='utf8'>
     <title>facade</title>
-    <link rel='stylesheet' href='../build/build.css'>
-    <script src='../build/build.js'></script>
-    <script>require('mocha')</script>
-    <script>mocha.setup({ ui: 'bdd', reporter: require('mocha-matrix') })</script>
+    <link rel='stylesheet' href='https://rawgit.com/visionmedia/mocha/master/mocha.css'>
+    <script src="https://rawgit.com/visionmedia/mocha/master/mocha.js"></script>
   </head>
   <body>
     <div id='mocha'></div>
-    <script>require.alias('facade/lib/index.js', '../');</script>
-    <script>require.alias('facade/lib/index.js', '..');</script>
-    <script src='alias.js'></script>
-    <script src='facade.js'></script>
-    <script src='group.js'></script>
-    <script src='identify.js'></script>
-    <script src='page.js'></script>
-    <script src='page.js'></script>
-    <script src='track.js'></script>
-    <script src='screen.js'></script>
+    <script>mocha.setup({ ui: 'bdd' });</script>
+    <script src="../build/build.js"></script>
     <script>mocha.run()</script>
   </body>
 </html>

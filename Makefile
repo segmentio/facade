@@ -1,14 +1,11 @@
 
 SRC= $(wildcard lib/*.js)
 
-build: components $(SRC)
-	@component build --dev
+build: $(SRC)
+	@duo -d test/index.js build/build.js
 
 clean:
 	rm -rf components build
-
-components: component.json
-	@component install --dev
 
 node_modules: package.json
 	@npm install

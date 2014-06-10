@@ -1,6 +1,6 @@
 
-var Page = require('..').Page;
-var Track = require('..').Track;
+var Page = require('../lib').Page;
+var Track = require('../lib').Track;
 var expect = require('expect.js');
 
 describe('Page', function(){
