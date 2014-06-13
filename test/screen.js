@@ -1,6 +1,6 @@
 
-var Screen = require('..').Screen;
-var Track = require('..').Track;
+var Screen = require('../lib').Screen;
+var Track = require('../lib').Track;
 var expect = require('expect.js');
 
 describe('Screen', function(){

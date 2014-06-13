@@ -1,5 +1,5 @@
 
-var Identify = require('../').Identify;
+var Identify = require('../lib').Identify;
 var expect = require('expect.js');
 
 describe('Identify', function(){

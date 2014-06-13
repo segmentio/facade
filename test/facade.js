@@ -1,4 +1,4 @@
-var Facade = require('..');
+var Facade = require('../lib');
 var expect = require('expect.js');
 
 describe('Facade', function (){

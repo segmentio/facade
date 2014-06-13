@@ -5,14 +5,13 @@
   "version": "0.3.10",
   "keywords": [],
   "dependencies": {
-    "CamShaft/require-component" : "0.1.0",
-    "segmentio/isodate-traverse": "0.3.0",
-    "component/clone": "0.1.1",
-    "component/inherit": "0.0.2",
-    "component/trim": "0.0.1",
-    "segmentio/is-email": "0.1.1",
-    "segmentio/new-date": "0.3.0",
-    "segmentio/obj-case": "0.0.6"
+    "segmentio/isodate-traverse": "0.x",
+    "component/clone": "0.x",
+    "component/inherit": "0.x",
+    "component/trim": "0.x",
+    "segmentio/is-email": "0.x",
+    "segmentio/new-date": "0.x",
+    "segmentio/obj-case": "0.x"
   },
   "development": {
     "visionmedia/mocha-matrix": "*",

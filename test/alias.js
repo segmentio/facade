@@ -1,5 +1,5 @@
 var expect = require('expect.js');
-var Facade = require('../');
+var Facade = require('../lib');
 var Alias = Facade.Alias;
 
 describe('Alias', function(){

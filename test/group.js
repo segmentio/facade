@@ -1,5 +1,5 @@
 
-var Group = require('..').Group;
+var Group = require('../lib').Group;
 var expect = require('expect.js');
 
 describe('Group', function(){

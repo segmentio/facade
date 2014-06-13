@@ -1,4 +1,4 @@
-var Track = require('..').Track;
+var Track = require('../lib').Track;
 var expect = require('expect.js');
 
 describe('Track', function(){
@@ -254,7 +254,7 @@ describe('Track', function(){
       var track = new Track({ properties: { revenue: '$hello' } });
       expect(track.revenue()).to.eql(undefined);
     })
-    
+
     it('should fallback to total, only during "completed order" event', function(){
       var track = new Track({ properties: { total: 75 } });
       expect(track.revenue()).to.eql(undefined);
