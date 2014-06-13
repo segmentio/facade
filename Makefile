@@ -2,7 +2,7 @@
 SRC= $(wildcard lib/*.js)
 
 build: $(SRC)
-	@duo -d test/index.js build/build.js
+	@./node_modules/.bin/duo -d test/index.js build/build.js
 
 clean:
 	rm -rf components build
