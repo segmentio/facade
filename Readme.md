@@ -181,13 +181,13 @@
 
 ## Alias
 
-#### .from()
+#### .previousId()
 
-  returns the user id to alias from
+  returns the previous user id to alias from
 
-#### .to()
+#### .userId()
 
-  returns the user id to alias to
+  returns the current user id to alias to
 
 ## License
 
