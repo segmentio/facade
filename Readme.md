@@ -117,6 +117,9 @@
 
   Any active call will update the user's last seen fields.
 
+### .groupId()
+
+  Proxies the group id via `context.groupId`.
 
 ## Track
 
