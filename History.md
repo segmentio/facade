@@ -1,4 +1,12 @@
 
+1.1.0 / 2014-06-17
+==================
+
+ * component bump
+ * Merge pull request #42 from segmentio/groupId
+ * adding grouoId to context.groupId to support account level settings
+ * Update Readme.md
+
 1.0.1 / 2014-06-12
 ==================
 
