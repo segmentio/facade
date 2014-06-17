@@ -206,6 +206,14 @@ describe('Facade', function (){
     });
   });
 
+  describe('.groupId()', function(){
+    it('should proxy the groupId', function(){
+      var groupId = 'groupId';
+      var facade = new Facade({ context: { groupId: groupId } });
+      expect(facade.groupId()).to.eql(groupId);
+    });
+  });
+
   describe('.channel()', function(){
     it('should return the channel', function(){
       var channel = 'english';
