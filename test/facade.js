@@ -225,6 +225,22 @@ describe('Facade', function (){
       var facade = new Facade({});
       expect(facade.traits()).to.eql({});
     });
+
+    it('should mixin id if available', function(){
+      var id = 123;
+      var facade = new Facade({ userId: id });
+      debugger;
+      expect(facade.traits()).to.eql({ id: id });
+    });
+
+    it('should respect aliases', function(){
+      var facade = new Facade({ context: { traits: { a: 'b', c: 'c', email: 'a@b.com' } }});
+      expect(facade.traits({ a: 'b', email: '$email' })).to.eql({
+        $email: 'a@b.com',
+        b: 'b',
+        c: 'c'
+      });
+    });
   });
 
   describe('.channel()', function(){
