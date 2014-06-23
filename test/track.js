@@ -281,17 +281,6 @@ describe('Track', function(){
     });
   });
 
-  describe('.traits()', function(){
-    it('should proxy the traits', function(){
-      expect(track.traits()).to.eql(args.options.traits);
-    });
-
-    it('should return an empty object with no traits', function(){
-      var track = new Track({});
-      expect(track.traits()).to.eql({});
-    });
-  });
-
   describe('.cents()', function(){
     it('should return revenue * 100 if available', function(){
       var track = new Track({ properties: { revenue: 9.99 } });

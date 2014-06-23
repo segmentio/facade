@@ -214,6 +214,34 @@ describe('Facade', function (){
     });
   });
 
+  describe('.traits()', function(){
+    it('should proxy the traits', function(){
+      var traits = { someVal: 1 };
+      var facade = new Facade({ context: { traits: traits }});
+      expect(facade.traits()).to.eql(traits);
+    });
+
+    it('should return an empty object with no traits', function(){
+      var facade = new Facade({});
+      expect(facade.traits()).to.eql({});
+    });
+
+    it('should mixin id if available', function(){
+      var id = 123;
+      var facade = new Facade({ userId: id });
+      expect(facade.traits()).to.eql({ id: id });
+    });
+
+    it('should respect aliases', function(){
+      var facade = new Facade({ context: { traits: { a: 'b', c: 'c', email: 'a@b.com' } }});
+      expect(facade.traits({ a: 'b', email: '$email' })).to.eql({
+        $email: 'a@b.com',
+        b: 'b',
+        c: 'c'
+      });
+    });
+  });
+
   describe('.channel()', function(){
     it('should return the channel', function(){
       var channel = 'english';
