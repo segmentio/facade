@@ -1,4 +1,14 @@
 
+1.2.0 / 2014-06-23
+==================
+
+ * component bump
+ * Merge pull request #44 from segmentio/move/global-traits
+ * remvoing debugger hahah
+ * mirroring  aliasing and id between track.traits and facade.traits
+ * moving track.traits to be global
+ * updating docs
+
 1.1.0 / 2014-06-17
 ==================
 
