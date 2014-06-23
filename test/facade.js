@@ -229,7 +229,6 @@ describe('Facade', function (){
     it('should mixin id if available', function(){
       var id = 123;
       var facade = new Facade({ userId: id });
-      debugger;
       expect(facade.traits()).to.eql({ id: id });
     });
 
