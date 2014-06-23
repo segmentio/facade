@@ -214,6 +214,19 @@ describe('Facade', function (){
     });
   });
 
+  describe('.traits()', function(){
+    it('should proxy the traits', function(){
+      var traits = { someVal: 1 };
+      var facade = new Facade({ context: { traits: traits }});
+      expect(facade.traits()).to.eql(traits);
+    });
+
+    it('should return an empty object with no traits', function(){
+      var facade = new Facade({});
+      expect(facade.traits()).to.eql({});
+    });
+  });
+
   describe('.channel()', function(){
     it('should return the channel', function(){
       var channel = 'english';
