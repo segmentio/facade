@@ -19,9 +19,12 @@
     "obj-case": "0.0.7"
   },
   "devDependencies": {
-    "duo": "^0.1.0",
+    "duo": "0.1.0",
+    "duo-test": "0.x",
     "expect.js": "~0.2.0",
-    "mocha": "*"
+    "mocha": "*",
+    "mocha-phantomjs": "^3.5.0",
+    "phantomjs": "^1.9.7-14"
   },
   "main": "lib/index"
 }
