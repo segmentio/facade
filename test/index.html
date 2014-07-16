@@ -9,7 +9,16 @@
   <body>
     <div id='mocha'></div>
     <script>mocha.setup({ ui: 'bdd' });</script>
-    <script src="../build/build.js"></script>
-    <script>mocha.run()</script>
+    <script src="/saucelabs.js"></script>
+    <script src="/build/build.js"></script>
+    <script>
+      if (window.mochaPhantomJS) {
+        mochaPhantomJS.run();
+      } else if (window.saucelabs) {
+        saucelabs(mocha.run());
+      } else {
+        mocha.run();
+      }
+    </script>
   </body>
 </html>

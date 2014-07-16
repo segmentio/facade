@@ -1,8 +1,11 @@
 
+BROWSER= firefox,chrome,safari,ie
+DUO= node_modules/.bin/duo
+DUO-TEST= node_modules/.bin/duo-test
 SRC= $(wildcard lib/*.js)
 
 build: $(SRC)
-	@./node_modules/.bin/duo -d test/index.js build/build.js
+	@$(DUO) --development test/index.js build/build.js
 
 clean:
 	rm -rf components build
@@ -15,6 +18,12 @@ test: node_modules
 		--reporter spec
 
 test-browser: build
-	@open test/index.html
+	@$(DUO-TEST) browser /test --commands make
+
+test-phantom: build
+	@$(DUO-TEST) phantomjs /test
+
+test-sauce: build
+	@$(DUO-TEST) saucelabs /test -b $(BROWSER)
 
 .PHONY: clean test test-browser
