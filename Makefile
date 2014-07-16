@@ -24,6 +24,6 @@ test-phantom: build
 	@$(DUO-TEST) phantomjs /test
 
 test-sauce: build
-	@$(DUO-TEST) saucelabs /test -b $(BROWSER)
+	@$(DUO-TEST) saucelabs /test -n facade -b $(BROWSER)
 
 .PHONY: clean test test-browser
