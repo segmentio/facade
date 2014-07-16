@@ -270,6 +270,12 @@ describe('Facade', function (){
       var facade = new Facade({ timestamp: '5/12/2015' });
       expect(facade.timestamp()).to.eql(new Date('5/12/2015'));
     });
+
+    it('should cast ms to date', function(){
+      var d = new Date().getTime();
+      var facade = new Facade({ timestamp: d });
+      expect(facade.timestamp().getTime()).to.eql(d);
+    });
   });
 
   describe('.userAgent()', function(){
