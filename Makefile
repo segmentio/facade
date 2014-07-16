@@ -1,5 +1,5 @@
 
-BROWSER= firefox,chrome,safari,ie
+BROWSER= firefox
 DUO= node_modules/.bin/duo
 DUO-TEST= node_modules/.bin/duo-test
 SRC= $(wildcard lib/*.js)
