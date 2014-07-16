@@ -1,4 +1,13 @@
 
+1.2.1 / 2014-07-16
+==================
+
+ * .timestamp(): add .getTime() test
+ * test-sauce: add tests name
+ * test-sauce: test only on firefox
+ * use new-date, to fix incorrect date in firefox
+ * use duo-test
+
 1.2.0 / 2014-06-23
 ==================
 
