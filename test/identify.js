@@ -62,6 +62,20 @@ describe('Identify', function(){
         c: 'c'
       });
     })
+
+    it('should respect aliases which are a 1-1 mapping', function(){
+      var identify = new Identify({
+        traits: {
+          firstName: 'firstName',
+          lastName: 'lastName'
+        }
+      });
+      expect(identify.traits({ name: 'name' })).to.eql({
+        name: 'firstName lastName',
+        firstName: 'firstName',
+        lastName: 'lastName'
+      });
+    })
   });
 
 
