@@ -1,4 +1,10 @@
 
+1.2.2 / 2014-07-23
+==================
+
+ * adding benchmarks, moving traverse
+ * updating 1-1 mapping for aliased .traits()
+
 1.2.1 / 2014-07-16
 ==================
 
