@@ -22,6 +22,7 @@
     "duo": "0.1.0",
     "duo-test": "0.x",
     "expect.js": "~0.2.0",
+    "matcha": "^0.5.0",
     "mocha": "*",
     "mocha-phantomjs": "^3.5.0",
     "phantomjs": "^1.9.7-14"

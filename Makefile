@@ -16,6 +16,7 @@ node_modules: package.json
 test: node_modules
 	@./node_modules/.bin/mocha \
 		--reporter spec
+	@./node_modules/.bin/matcha bench.js
 
 test-browser: build
 	@$(DUO-TEST) browser /test --commands make
