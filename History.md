@@ -1,4 +1,10 @@
 
+1.3.0 / 2014-08-07
+==================
+
+ * tests: add more alias tests
+ * Marketo is no longer disabled by default
+
 1.2.2 / 2014-07-23
 ==================
 
