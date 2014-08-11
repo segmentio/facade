@@ -165,14 +165,24 @@ describe('Track', function(){
 
   describe('.products()', function(){
     it('should proxy products', function(){
-      var track = new Track({ properties: { products: 'products' } });
-      expect(track.products()).to.eql('products');
+      var track = new Track({ properties: { products: [{}] } });
+      expect(track.products()).to.eql([{}]);
     })
 
     it('should return array', function(){
       var track = new Track({});
       expect(track.products()).to.be.an('array');
     })
+
+    it('should always return an array', function(){
+      var track = new Track({ properties: { products: 'products' }});
+      expect(track.products()).to.eql([]);
+    });
+
+    it('should lookup products properly', function(){
+      var track = new Track({ properties: { Products: [{}] }});
+      expect(track.products()).to.eql([{}]);
+    });
   })
 
   describe('.orderId()', function(){
