@@ -12,11 +12,12 @@
     "clone-component": "0.1.0",
     "inherit-component": "0.0.2",
     "is-email": "0.1.0",
-    "new-date": "0.1.1",
-    "require-component": "0.1.0",
     "isodate-traverse": "~0.3.0",
+    "new-date": "0.1.1",
+    "obj-case": "0.0.7",
+    "require-component": "0.1.0",
     "trim": "0.0.1",
-    "obj-case": "0.0.7"
+    "type-component": "0.0.1"
   },
   "devDependencies": {
     "duo": "0.6.x",
