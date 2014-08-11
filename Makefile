@@ -13,6 +13,9 @@ clean:
 node_modules: package.json
 	@npm install
 
+bench:
+	@./node_modules/.bin/matcha bench.js
+
 test: test-node test-phantom
 
 test-node:
@@ -27,4 +30,4 @@ test-phantom: build
 test-sauce: build
 	@$(DUO-TEST) saucelabs /test -n facade -b $(BROWSER)
 
-.PHONY: clean test test-browser test-phantom test-sauce
+.PHONY: clean test test-browser bench test-phantom test-sauce
