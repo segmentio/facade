@@ -8,6 +8,7 @@
     "segmentio/isodate-traverse": "0.x",
     "component/clone": "0.x",
     "component/inherit": "0.x",
+    "component/type": "1.x",
     "component/trim": "0.x",
     "segmentio/is-email": "0.x",
     "segmentio/new-date": "0.x",

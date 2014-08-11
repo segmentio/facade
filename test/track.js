@@ -84,6 +84,16 @@ describe('Track', function(){
       var track = new Track({ properties: { total: 10, tax: 2, shipping: 2 } });
       expect(track.subtotal()).to.eql(6);
     })
+
+    it('should lookup .tax, .shipping and .total properly', function(){
+      var track = new Track({ properties: { Total: 10, Tax: 2, Shipping: 2 }});
+      expect(track.subtotal()).to.eql(6);
+    });
+
+    it('should lookup .subtotal properly', function(){
+      var track = new Track({ properties: { Subtotal: 10 }});
+      expect(track.subtotal()).to.eql(10);
+    });
   })
 
   describe('.category()', function(){
@@ -165,14 +175,24 @@ describe('Track', function(){
 
   describe('.products()', function(){
     it('should proxy products', function(){
-      var track = new Track({ properties: { products: 'products' } });
-      expect(track.products()).to.eql('products');
+      var track = new Track({ properties: { products: [{}] } });
+      expect(track.products()).to.eql([{}]);
     })
 
     it('should return array', function(){
       var track = new Track({});
       expect(track.products()).to.be.an('array');
     })
+
+    it('should always return an array', function(){
+      var track = new Track({ properties: { products: 'products' }});
+      expect(track.products()).to.eql([]);
+    });
+
+    it('should lookup products properly', function(){
+      var track = new Track({ properties: { Products: [{}] }});
+      expect(track.products()).to.eql([{}]);
+    });
   })
 
   describe('.orderId()', function(){
