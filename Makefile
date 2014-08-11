@@ -13,10 +13,10 @@ clean:
 node_modules: package.json
 	@npm install
 
-test: node_modules
-	@./node_modules/.bin/mocha \
-		--reporter spec
-	@./node_modules/.bin/matcha bench.js
+test: test-node test-phantom
+
+test-node:
+	@./node_modules/.bin/mocha -R spec
 
 test-browser: build
 	@$(DUO-TEST) browser /test --commands make
@@ -27,4 +27,4 @@ test-phantom: build
 test-sauce: build
 	@$(DUO-TEST) saucelabs /test -n facade -b $(BROWSER)
 
-.PHONY: clean test test-browser
+.PHONY: clean test test-browser test-phantom test-sauce
