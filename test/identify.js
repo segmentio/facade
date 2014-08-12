@@ -320,6 +320,28 @@ describe('Identify', function(){
       var identify = new Identify({ traits : { website : 'http://calv.info' }});
       expect(identify.website()).to.eql('http://calv.info');
     });
+
+    it('should pull from .website[0] if .website is omitted', function(){
+      var msg = new Identify({ traits: { websites: ['http://calv.info'] } });
+      expect(msg.website()).to.eql('http://calv.info');
+    });
+  });
+
+  describe('.websites()', function(){
+    it('should pull from .websites', function(){
+      var msg = new Identify({ traits: { websites: ['http://calv.info'] } });
+      expect(msg.websites()).to.eql(['http://calv.info']);
+    });
+
+    it('should return [.website] if possible', function(){
+      var msg = new Identify({ traits: { website: 'http://calv.info' } });
+      expect(msg.websites()).to.eql(['http://calv.info']);
+    });
+
+    it('should return an empty array if .websites and .website are missing', function(){
+      var msg = new Identify({});
+      expect(msg.websites()).to.eql([]);
+    });
   });
 
   describe('.description()', function(){
