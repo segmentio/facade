@@ -370,6 +370,11 @@ describe('Identify', function(){
       var identify = new Identify({ traits : { phone : '555-555-5555' }});
       expect(identify.phone()).to.eql('555-555-5555');
     });
+
+    it('should pull from .phones[] when possible', function(){
+      var msg = new Identify({ traits: { phones: ['555'] }});
+      expect(msg.phone()).to.eql('555');
+    });
   });
 
   describe('.address()', function(){
