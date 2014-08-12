@@ -16,7 +16,7 @@ node_modules: package.json
 bench:
 	@./node_modules/.bin/matcha bench.js
 
-test: test-node test-phantom
+test: bench test-node test-phantom
 
 test-node:
 	@./node_modules/.bin/mocha -R spec
