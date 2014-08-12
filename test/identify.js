@@ -362,5 +362,10 @@ describe('Identify', function(){
       var identify = new Identify({ traits: { avatar: '//avatars/avatar.jpg' } });
       expect(identify.avatar()).to.eql('//avatars/avatar.jpg');
     })
+
+    it('should fallback to .photoUrl', function(){
+      var identify = new Identify({ traits: { photo_url: 'photo-url' } });
+      expect(identify.avatar()).to.eql('photo-url');
+    });
   })
 });
