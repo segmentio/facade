@@ -282,6 +282,39 @@ describe('Identify', function(){
     })
   })
 
+  describe('.gender()', function(){
+    it('should return the gender', function(){
+      var msg = new Identify({ traits: { gender: 'gender' }});
+      expect(msg.gender()).to.eql('gender');
+    });
+  });
+
+  describe('.birthday()', function(){
+    it('should the birthday', function(){
+      var msg = new Identify({ traits: { birthday: Date('2014-01-01') } });
+      expect(msg.birthday()).to.eql(Date('2014-01-01'));
+    });
+  });
+
+  describe('.age()', function(){
+    it('should return the age', function(){
+      var msg = new Identify({ traits: { age: 24 } });
+      expect(msg.age()).to.eql(24);
+    });
+
+    it('should return null if .birthday() is not a date', function(){
+      var msg = new Identify({ traits: { birthday: 1 } });
+      expect(msg.age()).to.eql(undefined);
+    });
+
+    it('should compute the age from .birthday()', function(){
+      var msg = new Identify({ traits: { birthday: new Date('2000-01-01') } });
+      var date = msg.birthday().getFullYear();
+      var now = new Date().getFullYear();
+      expect(msg.age()).to.eql(now - date);
+    });
+  });
+
   describe('.website()', function(){
     it('should pull from a passed in website', function(){
       var identify = new Identify({ traits : { website : 'http://calv.info' }});
