@@ -282,10 +282,65 @@ describe('Identify', function(){
     })
   })
 
+  describe('.gender()', function(){
+    it('should return the gender', function(){
+      var msg = new Identify({ traits: { gender: 'gender' }});
+      expect(msg.gender()).to.eql('gender');
+    });
+  });
+
+  describe('.birthday()', function(){
+    it('should the birthday', function(){
+      var msg = new Identify({ traits: { birthday: Date('2014-01-01') } });
+      expect(msg.birthday()).to.eql(Date('2014-01-01'));
+    });
+  });
+
+  describe('.age()', function(){
+    it('should return the age', function(){
+      var msg = new Identify({ traits: { age: 24 } });
+      expect(msg.age()).to.eql(24);
+    });
+
+    it('should return null if .birthday() is not a date', function(){
+      var msg = new Identify({ traits: { birthday: 1 } });
+      expect(msg.age()).to.eql(undefined);
+    });
+
+    it('should compute the age from .birthday()', function(){
+      var msg = new Identify({ traits: { birthday: new Date('2000-01-01') } });
+      var date = msg.birthday().getFullYear();
+      var now = new Date().getFullYear();
+      expect(msg.age()).to.eql(now - date);
+    });
+  });
+
   describe('.website()', function(){
     it('should pull from a passed in website', function(){
       var identify = new Identify({ traits : { website : 'http://calv.info' }});
       expect(identify.website()).to.eql('http://calv.info');
+    });
+
+    it('should pull from .website[0] if .website is omitted', function(){
+      var msg = new Identify({ traits: { websites: ['http://calv.info'] } });
+      expect(msg.website()).to.eql('http://calv.info');
+    });
+  });
+
+  describe('.websites()', function(){
+    it('should pull from .websites', function(){
+      var msg = new Identify({ traits: { websites: ['http://calv.info'] } });
+      expect(msg.websites()).to.eql(['http://calv.info']);
+    });
+
+    it('should return [.website] if possible', function(){
+      var msg = new Identify({ traits: { website: 'http://calv.info' } });
+      expect(msg.websites()).to.eql(['http://calv.info']);
+    });
+
+    it('should return an empty array if .websites and .website are missing', function(){
+      var msg = new Identify({});
+      expect(msg.websites()).to.eql([]);
     });
   });
 
@@ -315,6 +370,23 @@ describe('Identify', function(){
       var identify = new Identify({ traits : { phone : '555-555-5555' }});
       expect(identify.phone()).to.eql('555-555-5555');
     });
+
+    it('should pull from .phones[] when possible', function(){
+      var msg = new Identify({ traits: { phones: ['555'] }});
+      expect(msg.phone()).to.eql('555');
+    });
+  });
+
+  describe('.phones()', function(){
+    it('should pull from .phones', function(){
+      var msg = new Identify({ traits: { phones: [1, 2] } });
+      expect(msg.phones()).to.eql([1, 2]);
+    });
+
+    it('should fallback to [.phone]', function(){
+      var msg = new Identify({ traits: { phone: 1 } });
+      expect(msg.phones()).to.eql([1]);
+    });
   });
 
   describe('.address()', function(){
@@ -329,5 +401,22 @@ describe('Identify', function(){
       var identify = new Identify({ traits: { avatar: '//avatars/avatar.jpg' } });
       expect(identify.avatar()).to.eql('//avatars/avatar.jpg');
     })
+
+    it('should fallback to .photoUrl', function(){
+      var identify = new Identify({ traits: { photo_url: 'photo-url' } });
+      expect(identify.avatar()).to.eql('photo-url');
+    });
   })
+
+  describe('.position()', function(){
+    it('should proxy the position', function(){
+      var identify = new Identify({ traits: { position: 'position' } });
+      expect(identify.position()).to.eql('position');
+    });
+
+    it('should fallback to .jobTitle', function(){
+      var identify = new Identify({ traits: { jobTitle: 'position' } });
+      expect(identify.position()).to.eql('position');
+    });
+  });
 });
