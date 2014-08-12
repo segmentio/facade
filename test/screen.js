@@ -92,6 +92,7 @@ describe('Screen', function(){
   describe('.track()', function(){
     it('should convert the screen to track with event', function(){
       var screen = new Screen({
+        timestamp: new Date('2014-01-01'),
         properties: { prop: true },
         category: 'category',
         name: 'name'
@@ -101,6 +102,7 @@ describe('Screen', function(){
       expect(screen.track().event()).to.eql('Loaded a Screen');
       expect(screen.track('name').event()).to.eql('Viewed name Screen');
       expect(screen.track('category').event()).to.eql('Viewed category Screen');
+      expect(screen.track('category').timestamp()).to.eql(screen.timestamp());
       expect(screen.track('event').properties()).to.eql({
         category: 'category',
         name: 'name',
