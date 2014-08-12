@@ -92,6 +92,7 @@ describe('Screen', function(){
   describe('.track()', function(){
     it('should convert the screen to track with event', function(){
       var screen = new Screen({
+        context: { ip: '0.0.0.0' },
         timestamp: new Date('2014-01-01'),
         properties: { prop: true },
         category: 'category',
@@ -103,6 +104,7 @@ describe('Screen', function(){
       expect(screen.track('name').event()).to.eql('Viewed name Screen');
       expect(screen.track('category').event()).to.eql('Viewed category Screen');
       expect(screen.track('category').timestamp()).to.eql(screen.timestamp());
+      expect(screen.track('category').context()).to.eql(screen.context());
       expect(screen.track('event').properties()).to.eql({
         category: 'category',
         name: 'name',
