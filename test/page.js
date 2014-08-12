@@ -93,6 +93,7 @@ describe('Page', function(){
     it('should convert the page to track with event', function(){
       var page = new Page({
         timestamp: new Date('2014-01-01'),
+        context: { ip: '0.0.0.0' },
         properties: { prop: true },
         category: 'category',
         name: 'name'
@@ -104,6 +105,7 @@ describe('Page', function(){
       expect(page.track('category').event()).to.eql('Viewed category Page');
       expect(page.track('category').event()).to.eql('Viewed category Page');
       expect(page.track('category').timestamp()).to.eql(page.timestamp());
+      expect(page.track('category').context()).to.eql(page.context());
       expect(page.track('event').properties()).to.eql({
         category: 'category',
         name: 'name',
