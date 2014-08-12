@@ -377,6 +377,18 @@ describe('Identify', function(){
     });
   });
 
+  describe('.phones()', function(){
+    it('should pull from .phones', function(){
+      var msg = new Identify({ traits: { phones: [1, 2] } });
+      expect(msg.phones()).to.eql([1, 2]);
+    });
+
+    it('should fallback to [.phone]', function(){
+      var msg = new Identify({ traits: { phone: 1 } });
+      expect(msg.phones()).to.eql([1]);
+    });
+  });
+
   describe('.address()', function(){
     it('should pull from a passed in address', function(){
       var identify = new Identify({ traits : { address : '461 2nd St.' }});
