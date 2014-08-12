@@ -368,4 +368,16 @@ describe('Identify', function(){
       expect(identify.avatar()).to.eql('photo-url');
     });
   })
+
+  describe('.position()', function(){
+    it('should proxy the position', function(){
+      var identify = new Identify({ traits: { position: 'position' } });
+      expect(identify.position()).to.eql('position');
+    });
+
+    it('should fallback to .jobTitle', function(){
+      var identify = new Identify({ traits: { jobTitle: 'position' } });
+      expect(identify.position()).to.eql('position');
+    });
+  });
 });
