@@ -63,7 +63,6 @@ describe('Facade', function (){
     });
 
     it('should proxy websites', function(){
-      delete msg.nested.website;
       msg = new Facade(msg);
       msg.all = Facade.multi('nested.website');
       expect(msg.all()).to.eql(['https://segment.io']);
@@ -80,6 +79,38 @@ describe('Facade', function (){
       msg = new Facade({});
       msg.all = Facade.multi('nested.website');
       expect(msg.all()).to.eql([]);
+    });
+  });
+
+  describe('.one()', function(){
+    var msg;
+
+    beforeEach(function(){
+      msg = {
+        nested: {
+          website: 'https://segment.io',
+          websites: ['https://segment.io']
+        }
+      };
+    });
+
+    it('should proxy .website', function(){
+      msg = new Facade(msg);
+      msg.one = Facade.one('nested.website');
+      expect(msg.one()).to.eql('https://segment.io');
+    });
+
+    it('should proxy .websites[0]', function(){
+      delete msg.nested.website;
+      msg = new Facade(msg);
+      msg.one = Facade.one('nested.website');
+      expect(msg.one()).to.eql('https://segment.io');
+    });
+
+    it('should return null if .website and .websites are missing', function(){
+      msg = new Facade({});
+      msg.one = Facade.one('nested.website');
+      expect(msg.one()).to.eql(undefined);
     });
   });
 
