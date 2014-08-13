@@ -2,7 +2,6 @@
   "name": "facade",
   "repo": "segmentio/facade",
   "description": "Providing common fields for analytics integrations",
-  "version": "1.2.1",
   "keywords": [],
   "dependencies": {
     "segmentio/isodate-traverse": "0.x",

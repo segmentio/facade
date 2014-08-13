@@ -1,4 +1,27 @@
 
+1.4.0 / 2014-08-13
+==================
+
+ * screen: fix .context()
+ * page: fix .context()
+ * page: fix .timestamp()
+ * screen: fix .timestamp()
+ * add .phones()
+ * .phone(): fallback to .phones[0]
+ * add .websites()
+ * add Facade.one()
+ * add Facade.multi()
+ * add .position()
+ * add .avatar() fallback to .photoUrl
+ * add .gender(), .birthday() and .age()
+ * make: bench on make test
+ * make: add bench target
+ * make: test target should test all (travis gotchas etc..)
+ * track#subtotal: fix lookup and add tests
+ * deps: add type()
+ * track#products: make sure it always returns an array
+ * deps: upgrade duo
+
 1.3.0 / 2014-08-07
 ==================
 
