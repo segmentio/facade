@@ -78,7 +78,6 @@ describe('Identify', function(){
     })
   });
 
-
   describe('.email()', function(){
     var email = 'calvin@segment.io';
     it('should proxy the email from traits', function(){
@@ -91,7 +90,6 @@ describe('Identify', function(){
       expect(identify.email()).to.eql(email);
     });
   });
-
 
   describe('.created()', function(){
     var created = new Date();
@@ -417,6 +415,88 @@ describe('Identify', function(){
     it('should fallback to .jobTitle', function(){
       var identify = new Identify({ traits: { jobTitle: 'position' } });
       expect(identify.position()).to.eql('position');
+    });
+  });
+
+  describe('.city()', function(){
+    it('should pull from traits.address.city', function(){
+      var msg = new Identify({ traits: {
+        address: { city: 'city' }
+      }});
+      expect(msg.city()).to.eql('city');
+    });
+
+    it('should pull from traits.city', function(){
+      var msg = new Identify({ traits: { city: 'city' } });
+      expect(msg.city()).to.eql('city');
+    });
+  });
+
+  describe('.country()', function(){
+    it('should pull from traits.address.country', function(){
+      var msg = new Identify({ traits: {
+        address: { country: 'country' }
+      }});
+      expect(msg.country()).to.eql('country');
+    });
+
+    it('should pull from traits.country', function(){
+      var msg = new Identify({ traits: { country: 'country' } });
+      expect(msg.country()).to.eql('country');
+    });
+  });
+
+  describe('.state()', function(){
+    it('should pull from traits.address.state', function(){
+      var msg = new Identify({ traits: {
+        address: { state: 'state' }
+      }});
+      expect(msg.state()).to.eql('state');
+    });
+
+    it('should pull from traits.state', function(){
+      var msg = new Identify({ traits: { state: 'state' } });
+      expect(msg.state()).to.eql('state');
+    });
+  });
+
+  describe('.street()', function(){
+    it('should pull from traits.address.street', function(){
+      var msg = new Identify({ traits: {
+        address: { street: 'street' }
+      }});
+      expect(msg.street()).to.eql('street');
+    });
+
+    it('should pull from traits.street', function(){
+      var msg = new Identify({ traits: { street: 'street' } });
+      expect(msg.street()).to.eql('street');
+    });
+  });
+
+  describe('.zip()', function(){
+    it('should pull from traits.address.zip', function(){
+      var msg = new Identify({ traits: {
+        address: { zip: 'zip' }
+      }});
+      expect(msg.zip()).to.eql('zip');
+    });
+
+    it('should pull from traits.zip', function(){
+      var msg = new Identify({ traits: { zip: 'zip' } });
+      expect(msg.zip()).to.eql('zip');
+    });
+
+    it('should pull from traits.address.postalCode', function(){
+      var msg = new Identify({ traits: {
+        address: { postalCode: 'postalCode' }
+      }});
+      expect(msg.zip()).to.eql('postalCode');
+    });
+
+    it('should pull from traits.postalCode', function(){
+      var msg = new Identify({ traits: { postalCode: 'postalCode' } });
+      expect(msg.zip()).to.eql('postalCode');
     });
   });
 });
