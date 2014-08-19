@@ -220,6 +220,13 @@ describe('Group', function(){
     });
   });
 
+  describe('.name()', function(){
+    it('should proxy name', function(){
+      var msg = new Group({ traits: { name: 'tech' } });
+      expect(msg.name()).to.eql('tech');
+    });
+  });
+
   describe('.email()', function(){
     it('should proxy email', function(){
       var msg = new Group({ traits: { email: 'email@example.com' } });
