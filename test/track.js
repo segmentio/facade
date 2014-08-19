@@ -323,6 +323,20 @@ describe('Track', function(){
     })
   })
 
+  describe('.description()', function(){
+    it('should return the description', function(){
+      var msg = new Track({ properties: { description: 'description' } });
+      expect(msg.description()).to.eql('description');
+    });
+  });
+
+  describe('.plan()', function(){
+    it('should return the description', function(){
+      var msg = new Track({ properties: { plan: 'plan' } });
+      expect(msg.plan()).to.eql('plan');
+    });
+  });
+
   describe('.identify()', function(){
     it('should convert track to identify calls', function(){
       var track = new Track(args);
