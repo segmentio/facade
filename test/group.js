@@ -219,4 +219,21 @@ describe('Group', function(){
       expect(msg.industry()).to.eql('tech');
     });
   });
+
+  describe('.email()', function(){
+    it('should proxy email', function(){
+      var msg = new Group({ traits: { email: 'email@example.com' } });
+      expect(msg.email()).to.eql('email@example.com');
+    });
+
+    it('should fallback to .groupId if its a valid email', function(){
+      var msg = new Group({ groupId: 'email@example.com' });
+      expect(msg.email()).to.eql('email@example.com');
+    });
+
+    it('should not return the .groupId if its an invalid email', function(){
+      var msg = new Group({ groupId: 23 });
+      expect(msg.email()).to.eql(undefined);
+    });
+  });
 });
