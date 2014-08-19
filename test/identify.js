@@ -404,6 +404,11 @@ describe('Identify', function(){
       var identify = new Identify({ traits: { photo_url: 'photo-url' } });
       expect(identify.avatar()).to.eql('photo-url');
     });
+
+    it('should fallback to .avatarUrl', function(){
+      var msg = new Identify({ traits: { avatarUrl: 'avatar-url' } });
+      expect(msg.avatar()).to.eql('avatar-url');
+    });
   })
 
   describe('.position()', function(){
