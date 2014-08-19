@@ -1,4 +1,13 @@
 
+1.4.2 / 2014-08-19
+==================
+
+ * identify: add .avatarUrl fallback to .avatar()
+ * page: add .title(), .path(), .url()
+ * group: add .name()
+ * group: add .email() that behaves like identify.email()
+ * group: add .employees() and .industry()
+
 1.4.1 / 2014-08-19
 ==================
 
