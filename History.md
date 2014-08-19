@@ -1,4 +1,9 @@
 
+1.4.1 / 2014-08-19
+==================
+
+ * address: add address traits to group and identify
+
 1.4.0 / 2014-08-13
 ==================
 
