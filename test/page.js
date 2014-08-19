@@ -133,4 +133,24 @@ describe('Page', function(){
     })
   })
 
+  describe('.url()', function(){
+    it('should proxy the url', function(){
+      var msg = new Page({ properties: { url: 'url' } });
+      expect(msg.url()).to.eql('url');
+    });
+  });
+
+  describe('.title()', function(){
+    it('should proxy the url', function(){
+      var msg = new Page({ properties: { title: 'title' } });
+      expect(msg.title()).to.eql('title');
+    });
+  });
+
+  describe('.path()', function(){
+    it('should proxy the url', function(){
+      var msg = new Page({ properties: { path: 'path' } });
+      expect(msg.path()).to.eql('path');
+    });
+  });
 })
