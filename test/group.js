@@ -205,4 +205,18 @@ describe('Group', function(){
       expect(msg.zip()).to.eql('postalCode');
     });
   });
-})
+
+  describe('.employees()', function(){
+    it('should proxy employees', function(){
+      var msg = new Group({ traits: { employees: 50 } });
+      expect(msg.employees()).to.eql(50);
+    });
+  });
+
+  describe('.industry()', function(){
+    it('should proxy industry', function(){
+      var msg = new Group({ traits: { industry: 'tech' } });
+      expect(msg.industry()).to.eql('tech');
+    });
+  });
+});
