@@ -20,8 +20,8 @@
     "type-component": "0.0.1"
   },
   "devDependencies": {
-    "duo": "0.6.x",
-    "duo-test": "0.x",
+    "duo": "0.7.x",
+    "duo-test": "0.3.x",
     "expect.js": "~0.2.0",
     "matcha": "^0.5.0",
     "mocha": "*",
