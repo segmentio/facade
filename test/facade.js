@@ -394,4 +394,86 @@ describe('Facade', function (){
       });
     });
   });
+
+  describe('.city()', function(){
+    it('should pull from traits.address.city', function(){
+      var msg = new Facade({ context: {
+        traits: { address: { city: 'city' }}
+      }});
+      expect(msg.city()).to.eql('city');
+    });
+
+    it('should pull from traits.city', function(){
+      var msg = new Facade({ context: { traits: { city: 'city' }}});
+      expect(msg.city()).to.eql('city');
+    });
+  });
+
+  describe('.country()', function(){
+    it('should pull from traits.address.country', function(){
+      var msg = new Facade({ context: {
+        traits: { address: { country: 'country' }}
+      }});
+      expect(msg.country()).to.eql('country');
+    });
+
+    it('should pull from traits.country', function(){
+      var msg = new Facade({ context: { traits: { country: 'country' }}});
+      expect(msg.country()).to.eql('country');
+    });
+  });
+
+  describe('.state()', function(){
+    it('should pull from traits.address.state', function(){
+      var msg = new Facade({ context: {
+        traits: { address: { state: 'state' }}
+      }});
+      expect(msg.state()).to.eql('state');
+    });
+
+    it('should pull from traits.state', function(){
+      var msg = new Facade({ context: { traits: { state: 'state' }}});
+      expect(msg.state()).to.eql('state');
+    });
+  });
+
+  describe('.street()', function(){
+    it('should pull from traits.address.street', function(){
+      var msg = new Facade({ context: {
+        traits: { address: { street: 'street' }}
+      }});
+      expect(msg.street()).to.eql('street');
+    });
+
+    it('should pull from traits.street', function(){
+      var msg = new Facade({ context: { traits: { street: 'street' }}});
+      expect(msg.street()).to.eql('street');
+    });
+  });
+
+  describe('.zip()', function(){
+    it('should pull from traits.address.zip', function(){
+      var msg = new Facade({ context: {
+        traits: { address: { zip: 'zip' } }
+      }});
+      expect(msg.zip()).to.eql('zip');
+    });
+
+    it('should pull from traits.zip', function(){
+      var msg = new Facade({ context: { traits: { zip: 'zip' }}});
+      expect(msg.zip()).to.eql('zip');
+    });
+
+    it('should pull from traits.address.postalCode', function(){
+      var msg = new Facade({ context: {
+        traits: { address: { postalCode: 'postalCode' }}
+      }});
+      expect(msg.zip()).to.eql('postalCode');
+    });
+
+    it('should pull from traits.postalCode', function(){
+      var msg = new Facade({ context: { traits: { postalCode: 'postalCode' }}});
+      expect(msg.zip()).to.eql('postalCode');
+    });
+  });
 });
