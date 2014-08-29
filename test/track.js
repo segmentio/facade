@@ -143,6 +143,20 @@ describe('Track', function(){
       var track = new Track({ properties: { country: 'country' } });
       expect(track.country()).to.eql('country');
     })
+
+    it('should proxy context.traits', function(){
+      var track = new Track({
+        context: {
+          traits: {
+            address: {
+              country: 'country'
+            }
+          }
+        }
+      });
+
+      expect(track.country()).to.eql('country');
+    });
   })
 
   describe('.price()', function(){
