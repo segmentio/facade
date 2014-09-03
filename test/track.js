@@ -85,9 +85,9 @@ describe('Track', function(){
       expect(track.subtotal()).to.eql(6);
     })
 
-    it('should lookup .tax, .shipping and .total properly', function(){
-      var track = new Track({ properties: { Total: 10, Tax: 2, Shipping: 2 }});
-      expect(track.subtotal()).to.eql(6);
+    it('should compute subtotal from .tax, .shipping, .discount and .total', function(){
+      var track = new Track({ properties: { Total: 10, Tax: 2, Shipping: 2, Discount: 1 }});
+      expect(track.subtotal()).to.eql(7);
     });
 
     it('should lookup .subtotal properly', function(){
@@ -184,6 +184,13 @@ describe('Track', function(){
     it('should proxy shipping', function(){
       var track = new Track({ properties: { shipping: 'shipping' } });
       expect(track.shipping()).to.eql('shipping');
+    })
+  })
+
+  describe('.discount()', function(){
+    it('should proxy discount', function(){
+      var track = new Track({ properties: { discount: 'discount' } });
+      expect(track.discount()).to.eql('discount');
     })
   })
 
