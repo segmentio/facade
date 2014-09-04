@@ -1,4 +1,10 @@
 
+1.4.6 / 2014-09-04
+==================
+
+  * Merge pull request #63 from segmentio/add/discount
+  * adding discount proxy and computation to subtotal
+
 1.4.5 / 2014-09-02
 ==================
 

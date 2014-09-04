@@ -1,6 +1,6 @@
 {
   "name": "segmentio-facade",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Providing common fields for analytics integrations",
   "keywords": [],
   "author": "Segment.io <friends@segment.io>",
