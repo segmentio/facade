@@ -194,6 +194,13 @@ describe('Track', function(){
     })
   })
 
+  describe('.category()', function(){
+    it('should proxy category', function(){
+      var track = new Track({ properties: { category: 'bracelets' } });
+      expect(track.category()).to.eql('bracelets');
+    })
+  })
+
   describe('.products()', function(){
     it('should proxy products', function(){
       var track = new Track({ properties: { products: [{}] } });
