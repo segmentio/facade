@@ -89,6 +89,18 @@ describe('Page', function(){
     })
   })
 
+  describe('.referrer()', function(){
+    it('should proxy properties.referrer', function(){
+      var page = new Page({ properties: { referrer: 'url' } });
+      expect(page.referrer()).to.eql('url');
+    });
+
+    it('should proxy context.referrer.url', function(){
+      var page = new Page({ context: { referrer: { url: 'url' } } });
+      expect(page.referrer()).to.eql('url');
+    });
+  });
+
   describe('.track()', function(){
     it('should convert the page to track with event', function(){
       var page = new Page({
