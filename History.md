@@ -1,4 +1,11 @@
 
+1.4.7 / 2014-09-18
+==================
+
+ * travis: add token
+ * make: catch test changes
+ * add referrer
+
 1.4.6 / 2014-09-04
 ==================
 
