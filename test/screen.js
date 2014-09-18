@@ -78,6 +78,18 @@ describe('Screen', function(){
     })
   })
 
+  describe('.referrer()', function(){
+    it('should proxy properties.referrer', function(){
+      var screen = new Screen({ properties: { referrer: 'url' } });
+      expect(screen.referrer()).to.eql('url');
+    });
+
+    it('should proxy context.referrer.url', function(){
+      var screen = new Screen({ context: { referrer: { url: 'url' } } });
+      expect(screen.referrer()).to.eql('url');
+    });
+  });
+
   describe('.event()', function(){
     it('should concat name if given', function(){
       var screen = new Screen({});

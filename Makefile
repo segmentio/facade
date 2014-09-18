@@ -2,7 +2,7 @@
 BROWSER= firefox
 DUO= node_modules/.bin/duo
 DUO-TEST= node_modules/.bin/duo-test -B /build.js
-SRC= $(wildcard lib/*.js)
+SRC= $(wildcard lib/*.js test/*.js)
 
 build.js: $(SRC)
 	@$(DUO) --development test/index.js > build.js
