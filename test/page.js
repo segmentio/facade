@@ -104,6 +104,8 @@ describe('Page', function(){
   describe('.track()', function(){
     it('should convert the page to track with event', function(){
       var page = new Page({
+        anonymousId: 'anon-id',
+        userId: 'user-id',
         timestamp: new Date('2014-01-01'),
         context: { ip: '0.0.0.0' },
         properties: { prop: true },
@@ -111,6 +113,8 @@ describe('Page', function(){
         name: 'name'
       });
 
+      expect(page.track('event').anonymousId()).to.be.eql('anon-id');
+      expect(page.track('event').userId()).to.be.eql('user-id');
       expect(page.track('event')).to.be.a(Track);
       expect(page.track().event()).to.eql('Loaded a Page');
       expect(page.track('name').event()).to.eql('Viewed name Page');
