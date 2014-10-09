@@ -104,6 +104,8 @@ describe('Screen', function(){
   describe('.track()', function(){
     it('should convert the screen to track with event', function(){
       var screen = new Screen({
+        anonymousId: 'anon-id',
+        userId: 'user-id',
         context: { ip: '0.0.0.0' },
         timestamp: new Date('2014-01-01'),
         properties: { prop: true },
@@ -111,6 +113,8 @@ describe('Screen', function(){
         name: 'name'
       });
 
+      expect(screen.track('event').anonymousId()).to.be.eql('anon-id');
+      expect(screen.track('event').userId()).to.eql('user-id');
       expect(screen.track('event')).to.be.a(Track);
       expect(screen.track().event()).to.eql('Loaded a Screen');
       expect(screen.track('name').event()).to.eql('Viewed name Screen');
