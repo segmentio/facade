@@ -314,6 +314,14 @@ describe('Facade', function (){
     });
   });
 
+  describe('.timezone()', function(){
+    it('should return the timezone', function(){
+      var timezone = 'America/New_York';
+      var facade  = new Facade({ context : { timezone: timezone } });
+      expect(facade.timezone()).to.eql(timezone);
+    });
+  });
+
   describe('.timestamp()', function(){
     it('should return the current timestamp if none is supplied', function(){
       var facade = new Facade({});
@@ -392,6 +400,35 @@ describe('Facade', function (){
         name: 'analytics-node',
         version: 1.0
       });
+    });
+  });
+
+  describe('.device()', function(){
+    it('should return the device', function(){
+      var facade = new Facade({ context: { device: { token: 'token' }}});
+      expect(facade.device()).to.eql({ token: 'token' });
+    });
+
+    it('should leave existing device-types untouched', function(){
+      var facade = new Facade({
+        context: {
+          library: { name: 'analytics-ios' },
+          device: { type: 'browser' }
+        }
+      });
+      expect(facade.device().type).to.eql('browser');
+    });
+
+    it('should infer device.type when library.name is analytics-ios', function(){
+      var ios = { name: 'analytics-ios' };
+      var facade = new Facade({ context: { library: ios }});
+      expect(facade.device().type).to.eql('ios');
+    });
+
+    it('should infer device.type when library.name is analytics-android', function(){
+      var android = { name: 'analytics-android' };
+      var facade = new Facade({ context: { library: android }});
+      expect(facade.device().type).to.eql('android');
     });
   });
 
