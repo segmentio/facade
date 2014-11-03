@@ -474,6 +474,20 @@ describe('Facade', function (){
     });
   });
 
+  describe('.region()', function(){
+    it('should pull from traits.address.region', function(){
+      var msg = new Facade({ context: {
+        traits: { address: { region: 'region' }}
+      }});
+      expect(msg.region()).to.eql('region');
+    });
+
+    it('should pull from traits.region', function(){
+      var msg = new Facade({ context: { traits: { region: 'region' }}});
+      expect(msg.region()).to.eql('region');
+    });
+  });
+
   describe('.street()', function(){
     it('should pull from traits.address.street', function(){
       var msg = new Facade({ context: {
