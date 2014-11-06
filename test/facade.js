@@ -82,6 +82,59 @@ describe('Facade', function (){
     });
   });
 
+  describe('.options(name)', function(){
+    var msg;
+
+    beforeEach(function(){
+      msg = new Facade({
+        context: {
+          Salesforce: {
+            object: 'Account'
+          }
+        },
+        integrations: {
+          Salesforce: true
+        }
+      });
+    });
+
+    it('should return the correct object', function(){
+      expect(msg.options('Salesforce')).to.eql({
+        object: 'Account'
+      });
+    });
+
+    it('should always return an object', function(){
+      delete msg.obj.context;
+      expect(msg.options('Salesforce')).to.eql({});
+    });
+
+    it('should lookup options using obj-case', function(){
+      expect(msg.options('salesforce')).to.eql({
+        object: 'Account'
+      });
+    })
+
+    it('should support deprecated context', function(){
+      var msg = new Facade({
+        context: {
+          providers: {
+            Salesforce: true
+          },
+          Salesforce: {
+            object: 'Lead',
+            lookup: { email: 'peter@initech.com' }
+          }
+        }
+      });
+
+      expect(msg.options('salesforce')).to.eql({
+        object: 'Lead',
+        lookup: { email: 'peter@initech.com' }
+      });
+    });
+  });
+
   describe('.one()', function(){
     var msg;
 
