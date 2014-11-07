@@ -22,6 +22,13 @@ describe('Track', function(){
 
   var track = new Track(args);
 
+  describe('.repeat()', function(){
+    it('should proxy properties.repeat', function(){
+      var msg = new Track({ properties: { repeat: true } });
+      expect(msg.repeat()).to.equal(true);
+    });
+  });
+
   describe('.type()', function(){
     it('should have the proper .type()', function(){
       expect(track.type()).to.eql('track');
