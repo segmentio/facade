@@ -1,4 +1,11 @@
 
+2.1.0 / 2014-12-03
+==================
+
+ * facade: pass options around
+ * facade: option to skip iso-traverse
+ * track: add repeat()
+
 2.0.5 / 2014-11-06
 ==================
 
