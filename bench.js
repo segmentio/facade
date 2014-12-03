@@ -13,34 +13,44 @@ var fixture = {
   }
 };
 
-suite('Facade - clone:true', function () {
+suite('Facade - clone:true (default)', function () {
   var facade = new Facade(fixture);
-
   bench('new Facade()', function(){
     var facade = new Facade(fixture);
   });
-
   bench('.proxy', function(){
     facade.proxy('traits');
   });
-
   bench('.field', function(){
     facade.field('traits');
   });
 });
 
 suite('Facade - clone:false', function () {
-  var facade = new Facade(fixture, { clone: false });
-
+  var opts = { clone: false };
+  var facade = new Facade(fixture, opts);
   bench('new Facade()', function(){
-    var facade = new Facade(fixture, { clone: false });
+    var facade = new Facade(fixture, opts);
   });
-
   bench('.proxy', function(){
     facade.proxy('traits');
   });
-
   bench('.field', function(){
     facade.field('traits');
   });
 });
+
+suite('Facade - clone:false, traverse:false', function () {
+  var opts = { clone: false, traverse: false };
+  var facade = new Facade(fixture, opts);
+  bench('new Facade()', function(){
+    var facade = new Facade(fixture, opts);
+  });
+  bench('.proxy', function(){
+    facade.proxy('traits');
+  });
+  bench('.field', function(){
+    facade.field('traits');
+  });
+});
+
