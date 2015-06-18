@@ -4,6 +4,7 @@
 
 DUO = node_modules/.bin/duo
 DUO-TEST = node_modules/.bin/duo-test -B /build.js
+ESLINT = node_modules/.bin/eslint
 ISTANBUL = node_modules/.bin/istanbul
 MATCHA = node_modules/.bin/matcha
 MOCHA = node_modules/.bin/_mocha
@@ -76,6 +77,10 @@ bench: node_modules
 check-coverage: node_modules
 	@$(ISTANBUL) check-coverage --statements 95 --functions 95 --branches 89 --lines 95
 .PHONY: check-coverage
+
+lint: node_modules
+	@$(ESLINT) $(SRCS) $(TESTS)
+.PHONY: lint
 
 # Run tests locally in Node. Generates a coverage report if COVER is set.
 test-node: node_modules
