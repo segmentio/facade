@@ -4,8 +4,10 @@
 
 DUO = node_modules/.bin/duo
 DUO-TEST = node_modules/.bin/duo-test -B /build.js
+ISTANBUL = node_modules/.bin/istanbul
 MATCHA = node_modules/.bin/matcha
 MOCHA = node_modules/.bin/_mocha
+_MOCHA = node_modules/.bin/_mocha
 
 #
 # Files.
@@ -19,7 +21,17 @@ TESTS = $(wildcard test/*.js)
 #
 
 BROWSER = chrome
+
 MOCHA_OPTS = -R spec
+
+ifdef COVER
+MOCHA = \
+	$(ISTANBUL) cover \
+	--include-comments \
+	-x "**/components/**" \
+	-x "**/build.js" \
+	$(_MOCHA) --
+endif
 
 #
 # Chore targets.
@@ -59,7 +71,13 @@ bench: node_modules
 # Test targets.
 #
 
-# Run tests locally in Node.
+# Check that coverage is within good levels.
+# FIXME: Improve coverage and change branches=95
+check-coverage: node_modules
+	@$(ISTANBUL) check-coverage --statements 95 --functions 95 --branches 89 --lines 95
+.PHONY: check-coverage
+
+# Run tests locally in Node. Generates a coverage report if COVER is set.
 test-node: node_modules
 	@$(MOCHA) $(MOCHA_OPTS) $(TESTS)
 .PHONY: test-node
@@ -80,4 +98,4 @@ test-sauce: node_modules build.js
 .PHONY: test-sauce
 
 # Shortcut running all test tasks.
-test: bench test-node test-phantomjs
+test: lint bench test-node test-phantomjs check-coverage

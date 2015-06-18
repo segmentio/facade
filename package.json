@@ -23,6 +23,7 @@
     "duo": "0.8.x",
     "duo-test": "0.3.x",
     "expect.js": "~0.2.0",
+    "istanbul": "^0.3.15",
     "matcha": "^0.5.0",
     "mocha": "*",
     "mocha-phantomjs": "^3.5.0",
