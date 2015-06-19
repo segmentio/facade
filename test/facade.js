@@ -3,20 +3,25 @@ var expect = require('expect.js');
 
 describe('Facade', function() {
   describe('.proxy()', function() {
-    var obj = {
-      name: 'Flight of the Conchords',
-      members: {
-        Brett: 'Likes animals',
-        Jemaine: 'Rock and roll',
-        Murray: 'Band manager'
-      },
-      band: { meeting: { present: true } },
-      dates: {
-        start: '2014-01-01',
-        end: '2014-02-01'
-      }
-    };
-    var facade = new Facade(obj);
+    var facade;
+    var obj;
+
+    beforeEach(function() {
+      obj = {
+        name: 'Flight of the Conchords',
+        members: {
+          Brett: 'Likes animals',
+          Jemaine: 'Rock and roll',
+          Murray: 'Band manager'
+        },
+        band: { meeting: { present: true } },
+        dates: {
+          start: '2014-01-01',
+          end: '2014-02-01'
+        }
+      };
+      facade = new Facade(obj);
+    });
 
     it('should proxy a single field', function() {
       facade.members = Facade.field('members');
@@ -169,7 +174,7 @@ describe('Facade', function() {
 
   describe('.json()', function() {
     it('should return the full object', function() {
-      var obj = { a: 'b', c: 'd', x: [1, 2, 3] };
+      var obj = { a: 'b', c: 'd', x: [1, 2, 3], timestamp: new Date(1979) };
       var facade = new Facade(obj);
       expect(facade.json()).to.eql(obj);
     });
