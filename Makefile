@@ -5,6 +5,7 @@
 DUO = node_modules/.bin/duo
 DUO-TEST = node_modules/.bin/duo-test -B /build.js
 ESLINT = node_modules/.bin/eslint
+GNODE = node_modules/.bin/gnode
 ISTANBUL = node_modules/.bin/istanbul
 MATCHA = node_modules/.bin/matcha
 MOCHA = node_modules/.bin/_mocha
@@ -59,7 +60,7 @@ node_modules: package.json $(wildcard node_modules/*/package.json)
 
 # Build Facade and tests into a testing bundle for duo-test.
 build.js: node_modules $(wildcard components/*) $(SRCS) $(TESTS)
-	@$(DUO) --development test/index.js > build.js
+	@$(GNODE) $(DUO) --stdout --development test/index.js > build.js
 .DEFAULT_GOAL = build.js
 
 # Run benchmarks against Facade.
