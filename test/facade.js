@@ -2,6 +2,36 @@ var Facade = require('../lib');
 var expect = require('expect.js');
 
 describe('Facade', function() {
+  describe('options', function() {
+    describe('clone', function() {
+      it('should store a copy of `obj` when clone=true', function() {
+        var obj = { timestamp: '1979', nested: {} };
+        var facade = new Facade(obj, { clone: true });
+        expect(facade.obj).to.not.equal(obj);
+        expect(facade.obj.nested).to.not.equal(obj.nested);
+      });
+
+      it('should not mutate the original object during instantiation when clone=true (GH#77)', function() {
+        var now = new Date();
+        var obj = { timestamp: '1979', birthday: '1999', now: now };
+        var facade = new Facade(obj, { clone: true });
+        expect(facade.obj).to.not.equal(obj);
+        expect(obj.timestamp).to.equal('1979');
+        expect(obj.birthday).to.equal('1999');
+        expect(obj.now).to.equal(now);
+      });
+
+      it('should store a reference to `obj` when clone=false', function() {
+        var obj = {};
+        var facade = new Facade(obj, { clone: false });
+        expect(facade.obj).to.equal(obj);
+      });
+    });
+
+    // TODO: Add tests for traverse
+    xdescribe('traverse', function() {});
+  });
+
   describe('.proxy()', function() {
     var facade;
     var obj;
