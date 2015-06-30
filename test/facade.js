@@ -2,6 +2,25 @@ var Facade = require('../lib');
 var expect = require('expect.js');
 
 describe('Facade', function (){
+  describe('instantiation', function() {
+    it('should store a copy of `obj` when clone=true', function() {
+      var obj = { timestamp: '1979', nested: {} };
+      var facade = new Facade(obj, { clone: true });
+      expect(facade.obj).to.not.equal(obj);
+      expect(facade.obj.nested).to.not.equal(obj.nested);
+    });
+
+    it('should not mutate the original object during instantiation when clone=true (GH#77)', function() {
+      var now = new Date();
+      var obj = { timestamp: '1979', birthday: '1999', now: now };
+      var facade = new Facade(obj, { clone: true });
+      expect(facade.obj).to.not.equal(obj);
+      expect(obj.timestamp).to.equal('1979');
+      expect(obj.birthday).to.equal('1999');
+      expect(obj.now).to.equal(now);
+    });
+  });
+
   describe('.proxy()', function (){
     var obj = {
       name : 'Flight of the Conchords',
@@ -116,7 +135,8 @@ describe('Facade', function (){
 
   describe('.json()', function(){
     it('should return the full object', function(){
-      var obj = { a: 'b', c: 'd', x: [1,2,3] };
+      var now = new Date();
+      var obj = { a: 'b', c: 'd', x: [1,2,3], timestamp: now };
       var facade = new Facade(obj);
       expect(facade.json()).to.eql(obj);
     });
