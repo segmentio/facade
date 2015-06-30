@@ -4,8 +4,10 @@ notifications:
   email:
   - engineering@segment.io
 node_js:
+- '0.12'
 - '0.11'
 - '0.10'
 env:
   global:
-    secure: WGCJd+3AsmUkekxiUaUhPqR3Xs/upih0Vj6rhlFo6SGTvLWv+FL6ac8BsXxJgm49W5kdkjAVXqIbyUaQR8ih7z6cqqNV8ClXN3kzAdo8YwMc5y7kUW0+pHiB0ebIACpzWhFwE9rbCf8CclHJrLyD96BzGH/l6sC5lL5V1CVMFpc=
+    - COVER=true
+    - secure: WGCJd+3AsmUkekxiUaUhPqR3Xs/upih0Vj6rhlFo6SGTvLWv+FL6ac8BsXxJgm49W5kdkjAVXqIbyUaQR8ih7z6cqqNV8ClXN3kzAdo8YwMc5y7kUW0+pHiB0ebIACpzWhFwE9rbCf8CclHJrLyD96BzGH/l6sC5lL5V1CVMFpc=

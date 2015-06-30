@@ -1,67 +1,67 @@
+/* global Screen:true */
 
 var Screen = require('../lib').Screen;
 var Track = require('../lib').Track;
 var expect = require('expect.js');
 
-describe('Screen', function(){
-
+describe('Screen', function() {
   var obj;
   var screen;
 
-  beforeEach(function(){
+  beforeEach(function() {
     obj = {};
     obj.userId = 2;
     obj.sessionId = 3;
     obj.category = 'songs';
     obj.name = 'ab frank';
     screen = new Screen(obj);
-  })
+  });
 
-  describe('.type()', function(){
-    it('should have the proper .type()', function(){
+  describe('.type()', function() {
+    it('should have the proper .type()', function() {
       expect(screen.type()).to.eql('screen');
     });
 
-    it('should equal .action()', function(){
+    it('should equal .action()', function() {
       expect(screen.type()).to.eql(screen.action());
     });
   });
 
-  describe('.category()', function(){
-    it('should proxy category', function(){
+  describe('.category()', function() {
+    it('should proxy category', function() {
       expect(screen.category()).to.eql('songs');
-    })
-  })
+    });
+  });
 
-  describe('.userId()', function(){
-    it('should proxy the userId', function(){
+  describe('.userId()', function() {
+    it('should proxy the userId', function() {
       expect(screen.userId()).to.eql(obj.userId);
     });
   });
 
-  describe('.sessionId()', function(){
-    it('should proxy the sessionId', function(){
+  describe('.sessionId()', function() {
+    it('should proxy the sessionId', function() {
       expect(screen.sessionId()).to.eql(obj.sessionId);
     });
   });
 
-  describe('.properties()', function(){
-    it('should proxy properties', function(){
+  describe('.properties()', function() {
+    it('should proxy properties', function() {
       var obj = {};
       var p = new Screen({ properties: obj });
       expect(p.properties()).to.eql(obj);
-    })
+    });
 
-    it('should default to an empty object if properties is undefined', function(){
+    it('should default to an empty object if properties is undefined', function() {
       var screen = new Screen({});
       expect(screen.properties()).to.eql({});
-    })
+    });
 
-    it('should mixin category and name', function(){
+    it('should mixin category and name', function() {
       var screen = new Screen({
         properties: { prop: true },
         category: 'category',
-        name: 'name',
+        name: 'name'
       });
 
       expect(screen.properties()).to.eql({
@@ -69,40 +69,40 @@ describe('Screen', function(){
         name: 'name',
         prop: true
       });
-    })
-  })
+    });
+  });
 
-  describe('.name()', function(){
-    it('should proxy name', function(){
+  describe('.name()', function() {
+    it('should proxy name', function() {
       expect(screen.name()).to.eql(obj.name);
-    })
-  })
+    });
+  });
 
-  describe('.referrer()', function(){
-    it('should proxy properties.referrer', function(){
+  describe('.referrer()', function() {
+    it('should proxy properties.referrer', function() {
       var screen = new Screen({ properties: { referrer: 'url' } });
       expect(screen.referrer()).to.eql('url');
     });
 
-    it('should proxy context.referrer.url', function(){
+    it('should proxy context.referrer.url', function() {
       var screen = new Screen({ context: { referrer: { url: 'url' } } });
       expect(screen.referrer()).to.eql('url');
     });
   });
 
-  describe('.event()', function(){
-    it('should concat name if given', function(){
+  describe('.event()', function() {
+    it('should concat name if given', function() {
       var screen = new Screen({});
       expect(screen.event('baz')).to.eql('Viewed baz Screen');
-    })
+    });
 
-    it('should return "Loaded a Screen" if name is omitted', function(){
+    it('should return "Loaded a Screen" if name is omitted', function() {
       expect(new Screen({}).event()).to.eql('Loaded a Screen');
-    })
-  })
+    });
+  });
 
-  describe('.track()', function(){
-    it('should convert the screen to track with event', function(){
+  describe('.track()', function() {
+    it('should convert the screen to track with event', function() {
       var screen = new Screen({
         anonymousId: 'anon-id',
         userId: 'user-id',
@@ -126,25 +126,25 @@ describe('Screen', function(){
         name: 'name',
         prop: true
       });
-    })
-  })
+    });
+  });
 
-  describe('.fullName()', function(){
-    it('should return only name if category is omitted', function(){
+  describe('.fullName()', function() {
+    it('should return only name if category is omitted', function() {
       var screen = new Screen({
         name: 'baz'
       });
 
       expect(screen.fullName()).to.eql('baz');
-    })
+    });
 
-    it('should return the category + name if available', function(){
+    it('should return the category + name if available', function() {
       var screen = new Screen({
         category: 'cat',
         name: 'baz'
       });
 
       expect(screen.fullName()).to.eql('cat baz');
-    })
-  })
-})
+    });
+  });
+});
