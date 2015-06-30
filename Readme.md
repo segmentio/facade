@@ -10,7 +10,7 @@ Providing common fields for analytics integrations. Wraps the Segment.io api for
 
 ## API
 
-### .proxy(field)
+#### .proxy(field)
 
 Proxies a field which is stored in the object.
 
@@ -39,7 +39,7 @@ facade = new Facade({ SOME : { reallyGreat : { other_field : 'x' }}});
 facade.proxy('some.reallyGreat.otherField'); // 'x'
 ```
 
-### .field(field)
+#### .field(field)
 
 Returns just the top level field of an object. You should generally be able to use .proxy() instead.
 
@@ -48,7 +48,7 @@ track.field('event')  // 'Loaded a page'
 track.field('userId') // 'calvin@segment.io'
 ```
 
-### .json()
+#### .json()
 
 Returns the full json of whatever was passed into the facade
 
@@ -56,7 +56,7 @@ Returns the full json of whatever was passed into the facade
 (new Facade({ x : 'y'; })).json() // { x : 'y' }
 ```
 
-### .options([integration])
+#### .options([integration])
 
 Returns the options passed in to the facade. If you pass in an integration name, it will return the options only for that integration. If the integration isn't enabled, you won't get anything back for it
 
@@ -70,7 +70,7 @@ facade.options('Customer.io') // {}
 facade.options('Salesforce') // undefined;
 ```
 
-### .enabled(integration)
+#### .enabled(integration)
 
 Returns whether the integration name is enabled:
 
@@ -80,7 +80,7 @@ facade.enabled('Salesforce'); // false (off by default)
 facade.enabled('Customer.io'); // true
 ```
 
-### .channel()
+#### .channel()
 
 Returns the channel for where the call came from, `client` or `server`
 
@@ -90,7 +90,7 @@ If your integration uses browser javascript, you'll want to check all incoming f
 facade.channel(); // 'server'
 ```
 
-### .timestamp()
+#### .timestamp()
 
 Returns the timestamp when the call was made
 
@@ -98,7 +98,7 @@ Returns the timestamp when the call was made
 facade.timestamp(); // Thu Aug 29 2013 17:53:03 GMT-0700 (PDT)
 ```
 
-### .userAgent()
+#### .userAgent()
 
 Returns the user agent for the call if passed into the `options.userAgent` field.
 
@@ -115,47 +115,47 @@ full: 'Mozilla/5.0 (Macintosh; Intel Mac O...
 */
 ```
 
-### .active()
+#### .active()
 
 Decides whether a call should be used to update the user who the call is for. Defaults to `true`, taken from `options.active`.
 
 Any active call will update the user's last seen fields.
 
-### .groupId()
+#### .groupId()
 
 Proxies the group id via `context.groupId`.
 
-## Track
+### Track
 
-### .event()
+#### .event()
 
 return the tracked event
 
-### .userId()
+#### .userId()
 
 return the user's id for the track call
 
-### .sessionId()
+#### .sessionId()
 
 return the session id for the track call
 
-### .properties()
+#### .properties()
 
 return the event properties
 
-### .referrer()
+#### .referrer()
 
 return the referrer as taken from the properties
 
-### .username()
+#### .username()
 
 return the username from traits or the userid
 
-### .email()
+#### .email()
 
 return the email from the traits
 
-### .identify()
+#### .identify()
 
 convert the track call into an identify call to feed its traits into services which use super properties
 
@@ -164,31 +164,31 @@ var identify = track.identify();
 identify.firstName(); // 'Bill',  pulled from options.traits
 ```
 
-## Identify
+### Identify
 
-### .userId()
+#### .userId()
 
 return the user's id
 
-### .sessionId()
+#### .sessionId()
 
 return the session id
 
-### .traits()
+#### .traits()
 
 return the passed in traits
 
-### .email()
+#### .email()
 
 return the email from traits and user id
 
-### .username()
+#### .username()
 
 return the username from the traits and user id
 
-## Alias
+### Alias
 
-#### .previousId()
+##### .previousId()
 
 returns the previous user id to alias from
 
