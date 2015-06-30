@@ -1,4 +1,9 @@
 
+1.4.8 / 2015-06-30
+==================
+
+ * Take clone of input object at instantiation time to ensure we don't mutate it
+
 1.4.7 / 2014-09-18
 ==================
 
