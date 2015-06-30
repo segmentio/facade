@@ -1,4 +1,9 @@
 
+2.1.1 / 2015-06-30
+==================
+
+ * Facade: take deep clone of object at instantiation time when `options.clone = true` (fixes https://github.com/segmentio/facade/issues/77)
+
 2.1.0 / 2014-12-03
 ==================
 
