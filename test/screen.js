@@ -1,3 +1,4 @@
+/* global Screen:true */
 
 var Screen = require('../lib').Screen;
 var Track = require('../lib').Track;

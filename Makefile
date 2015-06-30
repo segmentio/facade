@@ -3,7 +3,8 @@
 #
 
 DUO = node_modules/.bin/duo
-DUO-TEST = node_modules/.bin/duo-test -B /build.js
+_DUO = node_modules/.bin/_duo
+DUOT = node_modules/.bin/duo-test
 ESLINT = node_modules/.bin/eslint
 GNODE = node_modules/.bin/gnode
 ISTANBUL = node_modules/.bin/istanbul
@@ -22,7 +23,10 @@ TESTS = $(wildcard test/*.js)
 # Program arguments.
 #
 
+
 BROWSER = chrome
+
+DUOT_OPTS = -B /build.js
 
 MOCHA_OPTS = -R spec
 
@@ -60,7 +64,7 @@ node_modules: package.json $(wildcard node_modules/*/package.json)
 
 # Build Facade and tests into a testing bundle for duo-test.
 build.js: node_modules $(wildcard components/*) $(SRCS) $(TESTS)
-	@$(GNODE) $(DUO) --stdout --development test/index.js > build.js
+	@$(GNODE) $(_DUO) --stdout --development test/index.js > build.js
 .DEFAULT_GOAL = build.js
 
 # Run benchmarks against Facade.
@@ -90,17 +94,17 @@ test-node: node_modules
 
 # Run tests locally in a browser.
 test-browser: node_modules build.js
-	@$(DUO-TEST) browser -c make
+	@$(DUOT) $(DUOT_OPTS) browser -c make
 .PHONY: test-browser
 
 # Run tests locally in PhantomJS.
 test-phantomjs: node_modules build.js
-	@$(DUO-TEST) $(MOCHA_OPTS) phantomjs
+	@$(DUOT) $(DUOT_OPTS) $(MOCHA_OPTS) phantomjs
 .PHONY: test-phantomjs
 
 # Run tests remotely in Sauce Labs.
 test-sauce: node_modules build.js
-	@$(DUO-TEST) saucelabs -t facade -b $(BROWSER)
+	@$(DUOT) $(DUOT_OPTS) saucelabs -t facade -b $(BROWSER)
 .PHONY: test-sauce
 
 # Shortcut running all test tasks.
