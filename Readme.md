@@ -8,7 +8,7 @@ Providing common fields for analytics integrations. Wraps the Segment.io api for
 ---                                          | ---
 [![2.x Build Status][ci-2.x-badge]][ci-link] | [![1.x Build Status][ci-1.x-badge]][ci-link]
 
-## Facade
+## API
 
 ### .proxy(field)
 
