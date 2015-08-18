@@ -69,8 +69,22 @@ describe('Page', function(){
         name: 'name',
         prop: true
       });
-    })
-  })
+    });
+
+    it('should respect aliases', function(){
+      var page = new Page({
+        properties: { prop: true },
+        category: 'category',
+        name: 'name'
+      });
+
+      expect(page.properties({ name: 'pagename', prop: 'alias' })).to.eql({
+        category: 'category',
+        pagename: 'name',
+        alias: true
+      });
+    });
+  });
 
   describe('.name()', function(){
     it('should proxy name', function(){
