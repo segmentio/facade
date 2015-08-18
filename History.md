@@ -1,4 +1,14 @@
 
+2.2.0 / 2015-08-18
+==================
+  
+  * enable aliasing of page properties
+
+1.5.0 / 2015-08-18
+==================
+  
+  * enable aliasing of page properties
+
 2.1.1 / 2015-06-30
 ==================
 
