@@ -326,6 +326,27 @@ describe('Track', function() {
       var track = new Track({ userId: 'test@segment.io' });
       expect(track.email()).to.eql('test@segment.io');
     });
+
+    it('should fall back to context.traits.email', function() {
+      var track = new Track({
+        event: 'Email Bounced',
+        properties: {
+          email_id: '18vzF7u3z',
+          email_subject: 'First shirt on us!',
+          campaign_id: '123',
+          campaign_name: 'New Customer Discount'
+        },
+        context: {
+          ip: '67.207.109.102',
+          user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36',
+          traits: {
+            email: 'pgibbons@initech.com'
+          }
+        }
+      });
+
+      expect(track.email()).to.eql('pgibbons@initech.com');
+    });
   });
 
   describe('.cents()', function() {
