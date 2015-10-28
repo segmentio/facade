@@ -260,6 +260,16 @@ describe('Track', function() {
     it('should proxy the referrer', function() {
       expect(track.referrer()).to.eql(args.properties.referrer);
     });
+
+    it('should proxy context.referrer.url', function() {
+      var track = new Track({ context: { referrer: { url: 'url' } } });
+      expect(track.referrer()).to.eql('url');
+    });
+
+    it('should proxy context.page.referrer', function() {
+      var track = new Track({ context: { page: { referrer: 'url' } } });
+      expect(track.referrer()).to.eql('url');
+    });
   });
 
   describe('.username()', function() {
