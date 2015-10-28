@@ -1,4 +1,10 @@
 
+2.2.1 / 2015-10-28
+==================
+
+  * Update referrer methods on track and page to use `properties.referrer`, `context.referrer.url` and `context.page.referrer`
+  * update track#email to fallback to context.traits.email
+
 2.2.0 / 2015-08-18
 ==================
   
