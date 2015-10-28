@@ -112,6 +112,11 @@ describe('Page', function() {
       var page = new Page({ context: { referrer: { url: 'url' } } });
       expect(page.referrer()).to.eql('url');
     });
+
+    it('should proxy context.page.referrer', function() {
+      var page = new Page({ context: { page: { referrer: 'url' } } });
+      expect(page.referrer()).to.eql('url');
+    });
   });
 
   describe('.track()', function() {
