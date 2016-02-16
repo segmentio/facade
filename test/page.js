@@ -85,6 +85,30 @@ describe('Page', function() {
     });
   });
 
+  describe('.email()', function() {
+    var email = 'han@segment.com';
+
+    it('should proxy the email from properties', function() {
+      var page = new Page({ userId: 'x', properties: { email: email } });
+      expect(page.email()).to.eql(email);
+    });
+
+    it('should proxy the email from userId', function() {
+      var page = new Page({ userId: email });
+      expect(page.email()).to.eql(email);
+    });
+
+    it('should proxy the email from context.traits', function() {
+      var page = new Page({ context: { traits: { email: email }}});
+      expect(page.email()).to.eql(email);
+    });
+
+    it('should not error if there is no email', function() {
+      var page = new Page({});
+      expect(page.email()).to.eql(undefined);
+    });
+  });
+
   describe('.name()', function() {
     it('should proxy name', function() {
       expect(page.name()).to.eql(obj.name);

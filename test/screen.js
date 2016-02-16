@@ -72,6 +72,30 @@ describe('Screen', function() {
     });
   });
 
+  describe('.email()', function() {
+    var email = 'han@segment.com';
+
+    it('should proxy the email from properties', function() {
+      var screen = new Screen({ userId: 'x', properties: { email: email } });
+      expect(screen.email()).to.eql(email);
+    });
+
+    it('should proxy the email from userId', function() {
+      var screen = new Screen({ userId: email });
+      expect(screen.email()).to.eql(email);
+    });
+
+    it('should proxy the email from context.traits', function() {
+      var screen = new Screen({ context: { traits: { email: email }}});
+      expect(screen.email()).to.eql(email);
+    });
+
+    it('should not error if there is no email', function() {
+      var screen = new Screen({});
+      expect(screen.email()).to.eql(undefined);
+    });
+  });
+
   describe('.name()', function() {
     it('should proxy name', function() {
       expect(screen.name()).to.eql(obj.name);
