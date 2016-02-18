@@ -1,4 +1,10 @@
 
+2.2.2 / 2016-02-18
+==================
+
+  * updating travis
+  * add email helper to page/screen events
+
 2.2.1 / 2015-10-28
 ==================
 
