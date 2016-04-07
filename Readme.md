@@ -4,9 +4,10 @@ Providing common fields for analytics integrations. Wraps the Segment.io api for
 
 ## Build Status
 
-1.x                                          | 2.x (Modern)
----                                          | ---
-[![2.x Build Status][ci-2.x-badge]][ci-link] | [![1.x Build Status][ci-1.x-badge]][ci-link]
+1.x                                          | 2.x (Modern)                                 | 3.x (Modern-er)
+---                                          | ---                                          | ---
+[![2.x Build Status][ci-2.x-badge]][ci-link] | [![1.x Build Status][ci-1.x-badge]][ci-link] | [![Circle CI](https://circleci.com/gh/segmentio/facade.svg?style=svg)](https://circleci.com/gh/segmentio/facade)
+
 
 ## API
 
