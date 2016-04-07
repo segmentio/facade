@@ -1,4 +1,16 @@
 
+3.0.0 / 2016-04-07
+==================
+
+  * remove travis
+  * circle: add explict test phases
+  * Makefile: add back lint, node-tests and coverage
+  * circle,Makefile: build "build.js"
+  * facade: fix "traverse" require
+  * add `circle.yml`
+  * package: replace "isodate-traverse" with "@segment/isodate-traverse"
+  * remove component, add browserify
+
 2.2.2 / 2016-02-18
 ==================
 
