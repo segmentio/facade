@@ -12,4 +12,7 @@ dependencies:
 test:
   override:
     - make build.js
-    - make test
+    - make lint
+    - make test-node
+    - make test-phantomjs
+    - make check-coverage
