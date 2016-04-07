@@ -11,5 +11,5 @@ dependencies:
 
 test:
   override:
-    - make bundle.js
+    - make build.js
     - make test
