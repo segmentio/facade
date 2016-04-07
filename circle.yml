@@ -1,0 +1,18 @@
+
+machine:
+  node:
+    version: 4
+
+dependencies:
+  pre:
+    - npm config set "//registry.npmjs.org/:_authToken" $NPM_AUTH
+  override:
+    - make node_modules
+
+test:
+  override:
+    - make build.js
+    - make lint
+    - make test-node
+    - make test-phantomjs
+    - make check-coverage

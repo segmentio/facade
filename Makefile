@@ -1,111 +1,36 @@
-#
-# Binaries.
-#
 
-DUO = node_modules/.bin/duo
-_DUO = node_modules/.bin/_duo
-DUOT = node_modules/.bin/duo-test
-ESLINT = node_modules/.bin/eslint
-GNODE = node_modules/.bin/gnode
-ISTANBUL = node_modules/.bin/istanbul
-MATCHA = node_modules/.bin/matcha
-MOCHA = node_modules/.bin/_mocha
-_MOCHA = node_modules/.bin/_mocha
-
-#
-# Files.
-#
-
-SRCS = $(wildcard lib/*.js)
+BIN := node_modules/.bin
+SRC := $(wildcard lib/*.js)
 TESTS = $(wildcard test/*.js)
 
-#
-# Program arguments.
-#
+build.js: $(SRC) node_modules
+	$(BIN)/browserify lib/index.js > $@
 
+node_modules: package.json
+	npm install
+	touch $@
 
-BROWSER = chrome
-
-DUOT_OPTS = -B /build.js
-
-MOCHA_OPTS = -R spec
-
-ifdef COVER
-MOCHA = \
-	$(ISTANBUL) cover \
-	--include-comments \
-	-x "**/components/**" \
-	-x "**/build.js" \
-	$(_MOCHA) --
-endif
-
-#
-# Chore targets.
-#
-
-# Remove all temporary/built files.
-clean:
-	rm -rf build.js
-.PHONY: clean
-
-# Remove all temporary/built files and vendor dependencies.
-distclean: clean
-	rm -rf components node_modules
-.PHONY: distclean
-
-# Install node dependencies.
-node_modules: package.json $(wildcard node_modules/*/package.json)
-	@npm install
-	@touch node_modules
-
-#
-# Build targets.
-#
-
-# Build Facade and tests into a testing bundle for duo-test.
-build.js: node_modules $(wildcard components/*) $(SRCS) $(TESTS)
-	@$(GNODE) $(_DUO) --stdout --development test/index.js > build.js
-.DEFAULT_GOAL = build.js
-
-# Run benchmarks against Facade.
-bench: node_modules
-	@$(MATCHA) bench.js
-.PHONY: bench
-
-
-#
-# Test targets.
-#
-
-# Check that coverage is within good levels.
-# FIXME: Improve coverage and change branches=95
-check-coverage: node_modules
-	@$(ISTANBUL) check-coverage --statements 95 --functions 95 --branches 89 --lines 95
-.PHONY: check-coverage
+test: lint test-node test-phantomjs
 
 lint: node_modules
-	@$(ESLINT) $(SRCS) $(TESTS)
-.PHONY: lint
+	$(BIN)/eslint $(SRC) $(TESTS)
 
-# Run tests locally in Node. Generates a coverage report if COVER is set.
-test-node: node_modules
-	@$(MOCHA) $(MOCHA_OPTS) $(TESTS)
-.PHONY: test-node
+test-phantomjs:
+	$(BIN)/mochify --phantomjs $(BIN)/phantomjs --reporter spec test/index.js
 
-# Run tests locally in a browser.
-test-browser: node_modules build.js
-	@$(DUOT) $(DUOT_OPTS) browser -c make
-.PHONY: test-browser
+test-node:
+	$(BIN)/mocha
 
-# Run tests locally in PhantomJS.
-test-phantomjs: node_modules build.js
-	@$(DUOT) $(DUOT_OPTS) $(MOCHA_OPTS) phantomjs
-.PHONY: test-phantomjs
+coverage: $(SRC) $(TESTS) node_modules
+	$(BIN)/istanbul cover --include-comments -x "**/components/**" -x "**/build.js" $(BIN)/_mocha
 
-# Run tests remotely in Sauce Labs.
-test-sauce: node_modules build.js
-	@$(DUOT) $(DUOT_OPTS) saucelabs -t facade -b $(BROWSER)
-.PHONY: test-sauce
+check-coverage: coverage
+	$(BIN)/istanbul check-coverage --statements 95 --functions 95 --branches 89 --lines 95
 
-# Shortcut running all test tasks.
-test: lint bench test-node test-phantomjs check-coverage
+clean:
+	rm -f build.js
+
+distclean: clean
+	rm -rf node_modules
+
+.PHONY: test test-node test-phantomjs clean distclean check-coverage
