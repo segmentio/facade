@@ -70,7 +70,7 @@ describe('Page', function() {
       );
     });
 
-    it('should respect aliases', function(){
+    it('should respect aliases', function() {
       var page = new Page({
         properties: { prop: true },
         category: 'category',
@@ -98,7 +98,7 @@ describe('Page', function() {
     });
 
     it('should proxy the email from context.traits', function() {
-      var page = new Page({ context: { traits: { email: email }}});
+      var page = new Page({ context: { traits: { email: email } } });
       assert.deepEqual(page.email(), email);
     });
 

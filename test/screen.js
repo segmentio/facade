@@ -86,7 +86,7 @@ describe('Screen', function() {
     });
 
     it('should proxy the email from context.traits', function() {
-      var screen = new Screen({ context: { traits: { email: email }}});
+      var screen = new Screen({ context: { traits: { email: email } } });
       assert.deepEqual(screen.email(), email);
     });
 

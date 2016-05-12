@@ -1,7 +1,6 @@
 'use strict';
 
 var Alias = require('../lib').Alias;
-var Facade = require('../lib');
 var assert = require('proclaim');
 
 describe('Alias', function() {
