@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@segment/isodate-traverse": "^1.0.0",
-    "clone": "^1.0.2",
+    "@ndhoule/clone": "^1.0.0",
     "inherits": "^2.0.1",
     "is-email": "0.1.0",
     "new-date": "0.1.1",
