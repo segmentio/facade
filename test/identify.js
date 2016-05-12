@@ -1,6 +1,8 @@
+'use strict';
 
 var Identify = require('../lib').Identify;
-var expect = require('expect.js');
+var assert = require('proclaim');
+var isodate = require('@segment/isodate');
 
 describe('Identify', function() {
   var obj = {
@@ -11,29 +13,29 @@ describe('Identify', function() {
 
   describe('.type()', function() {
     it('should have the proper .type()', function() {
-      expect(identify.type()).to.be('identify');
+      assert.strictEqual(identify.type(), 'identify');
     });
 
     it('should equal .action()', function() {
-      expect(identify.type()).to.eql(identify.action());
+      assert.deepEqual(identify.type(), identify.action());
     });
   });
 
   describe('.userId()', function() {
     it('should proxy the userId', function() {
-      expect(identify.userId()).to.eql(obj.userId);
+      assert.deepEqual(identify.userId(), obj.userId);
     });
   });
 
   describe('.sessionId()', function() {
     it('should proxy the sessionId', function() {
-      expect(identify.sessionId()).to.eql(obj.sessionId);
+      assert.deepEqual(identify.sessionId(), obj.sessionId);
     });
 
     it('should proxy .anonymousId', function() {
       var obj = { anonymousId: 'id' };
       var identify = new Identify(obj);
-      expect(identify.anonymousId()).to.eql(obj.anonymousId);
+      assert.deepEqual(identify.anonymousId(), obj.anonymousId);
     });
   });
 
@@ -41,26 +43,25 @@ describe('Identify', function() {
     it('should proxy the traits', function() {
       var traits = { a: 'b', c: [1, 2, 3] };
       var identify = new Identify({ traits: traits });
-      expect(identify.traits()).to.eql(traits);
+      assert.deepEqual(identify.traits(), traits);
     });
 
     it('should return an empty object if no traits are given', function() {
       var identify = new Identify({});
-      expect(identify.traits()).to.eql({});
+      assert.deepEqual(identify.traits(), {});
     });
 
     it('should mixin id if available', function() {
       var identify = new Identify(obj);
-      expect(identify.traits()).to.eql({ id: '123' });
+      assert.deepEqual(identify.traits(), { id: '123' });
     });
 
     it('should respect aliases', function() {
       var identify = new Identify({ traits: { a: 'b', c: 'c', email: 'a@b.com' } });
-      expect(identify.traits({ a: 'b', email: '$email' })).to.eql({
-        $email: 'a@b.com',
-        b: 'b',
-        c: 'c'
-      });
+      assert.deepEqual(
+        identify.traits({ a: 'b', email: '$email' }),
+        { $email: 'a@b.com', b: 'b', c: 'c' }
+      );
     });
 
     it('should respect aliases which are a 1-1 mapping', function() {
@@ -70,11 +71,10 @@ describe('Identify', function() {
           lastName: 'lastName'
         }
       });
-      expect(identify.traits({ name: 'name' })).to.eql({
-        name: 'firstName lastName',
-        firstName: 'firstName',
-        lastName: 'lastName'
-      });
+      assert.deepEqual(
+        identify.traits({ name: 'name' }),
+        { name: 'firstName lastName', firstName: 'firstName', lastName: 'lastName' }
+      );
     });
   });
 
@@ -82,12 +82,12 @@ describe('Identify', function() {
     var email = 'calvin@segment.io';
     it('should proxy the email from traits', function() {
       var identify = new Identify({ userId: 'x', traits: { email: email } });
-      expect(identify.email()).to.eql(email);
+      assert.deepEqual(identify.email(), email);
     });
 
     it('should proxy the email from userId', function() {
       var identify = new Identify({ userId: email });
-      expect(identify.email()).to.eql(email);
+      assert.deepEqual(identify.email(), email);
     });
   });
 
@@ -96,17 +96,17 @@ describe('Identify', function() {
 
     it('should proxy from createdAt', function() {
       var identify = new Identify({ traits: { createdAt: created } });
-      expect(identify.created()).to.eql(created);
+      assert.deepEqual(identify.created(), created);
     });
 
     it('should proxy from created', function() {
       var identify = new Identify({ traits: { created: created } });
-      expect(identify.created()).to.eql(created);
+      assert.deepEqual(identify.created(), created);
     });
 
     it('should turn unix timestamps into dates', function() {
       var identify = new Identify({ traits: { created: 1374193002 } });
-      expect(identify.created()).to.eql(new Date(1374193002000));
+      assert.deepEqual(identify.created(), new Date(1374193002000));
     });
 
     it('should turn strings into dates', function() {
@@ -115,36 +115,49 @@ describe('Identify', function() {
           created: '2013-07-18T23:58:38.555Z'
         }
       });
-      expect(identify.created()).to.eql(new Date('2013-07-18T23:58:38.555Z'));
+      assert.deepEqual(identify.created(), isodate.parse('2013-07-18T23:58:38.555Z'));
     });
   });
 
   describe('.companyCreated()', function() {
-    var traits = { company: {} };
-
     it('should proxy from company.createdAt', function() {
-      var date = traits.company.createdAt = new Date();
-      var identify = new Identify({ traits: traits });
-      expect(identify.companyCreated()).to.eql(date);
+      var createdAt = new Date();
+      var identify = new Identify({
+        traits: {
+          company: { createdAt: createdAt }
+        }
+      });
+      assert.deepEqual(identify.companyCreated(), createdAt);
     });
 
     it('should proxy from company.created', function() {
-      var date = traits.company.created = new Date();
-      var identify = new Identify({ traits: traits });
-      expect(identify.companyCreated()).to.eql(date);
+      var createdAt = new Date();
+      var identify = new Identify({
+        traits: {
+          company: { created: createdAt }
+        }
+      });
+      assert.deepEqual(identify.companyCreated(), createdAt);
     });
 
     it('should turn unix timestamps into dates', function() {
-      traits.company.created = 1374193002;
-      var identify = new Identify({ traits: traits });
-      expect(identify.companyCreated()).to.eql(new Date(1374193002000));
+      var createdAt = 1374193002;
+      var identify = new Identify({
+        traits: {
+          company: { created: createdAt }
+        }
+      });
+      assert.deepEqual(identify.companyCreated(), new Date(1374193002000));
     });
 
-    it('should turn strings into dates', function() {
-      var str = '2013-07-18T23:58:38.555Z';
-      traits.company.created = str;
-      var identify = new Identify({ traits: traits });
-      expect(identify.companyCreated()).to.eql(new Date(str));
+    it('should turn ISO datestrings into dates', function() {
+      var createdAt = '2013-07-18T23:58:38.555Z';
+      var identify = new Identify({
+        traits: {
+          company: { created: createdAt }
+        }
+      });
+      assert.deepEqual(identify.companyCreated(), isodate.parse(createdAt));
     });
   });
 
@@ -155,7 +168,7 @@ describe('Identify', function() {
 
     it('should pull name from a passed in name', function() {
       var identify = new Identify({ traits: { name: name } });
-      expect(identify.name()).to.eql(name);
+      assert.deepEqual(identify.name(), name);
     });
 
     it('should pull name from a firstName/lastName pair', function() {
@@ -165,7 +178,7 @@ describe('Identify', function() {
           lastName: lastName
         }
       });
-      expect(identify.name()).to.eql(firstName + ' ' + lastName);
+      assert.deepEqual(identify.name(), firstName + ' ' + lastName);
     });
 
     it('should not throw on a non-string', function() {
@@ -174,7 +187,7 @@ describe('Identify', function() {
           name: {}
         }
       });
-      expect(identify.name()).to.eql(undefined);
+      assert.deepEqual(identify.name(), undefined);
     });
 
     it('should not throw on a non-string pair', function() {
@@ -184,7 +197,7 @@ describe('Identify', function() {
           lastName: {}
         }
       });
-      expect(identify.name()).to.eql(undefined);
+      assert.deepEqual(identify.name(), undefined);
     });
   });
 
@@ -194,12 +207,12 @@ describe('Identify', function() {
 
     it('should pull from a passed in firstName', function() {
       var identify = new Identify({ traits: { firstName: firstName } });
-      expect(identify.firstName()).to.eql(firstName);
+      assert.deepEqual(identify.firstName(), firstName);
     });
 
     it('should pull from a passed in name', function() {
       var identify = new Identify({ traits: { name: name } });
-      expect(identify.firstName()).to.eql(firstName);
+      assert.deepEqual(identify.firstName(), firstName);
     });
 
     it('should not fail on a non-string', function() {
@@ -208,7 +221,7 @@ describe('Identify', function() {
           firstName: {}
         }
       });
-      expect(identify.firstName()).to.eql(undefined);
+      assert.deepEqual(identify.firstName(), undefined);
     });
   });
 
@@ -218,17 +231,17 @@ describe('Identify', function() {
 
     it('should pull from a passed in lastName', function() {
       var identify = new Identify({ traits: { lastName: lastName } });
-      expect(identify.lastName()).to.eql(lastName);
+      assert.deepEqual(identify.lastName(), lastName);
     });
 
     it('should pull from a passed in name', function() {
       var identify = new Identify({ traits: { name: name } });
-      expect(identify.lastName()).to.eql(lastName);
+      assert.deepEqual(identify.lastName(), lastName);
     });
 
     it('should split and trim the full lastName properly', function() {
       var identify = new Identify({ traits: { name: 'Freddie  Mercury III' } });
-      expect(identify.lastName()).to.eql('Mercury III');
+      assert.deepEqual(identify.lastName(), 'Mercury III');
     });
 
     it('should not fail on a non-string', function() {
@@ -237,31 +250,31 @@ describe('Identify', function() {
           lastName: {}
         }
       });
-      expect(identify.lastName()).to.eql(undefined);
+      assert.deepEqual(identify.lastName(), undefined);
     });
   });
 
   describe('.username()', function() {
     it('should pull from a passed in username', function() {
       var identify = new Identify({ traits: { username: 'calvinfo' } });
-      expect(identify.username()).to.eql('calvinfo');
+      assert.deepEqual(identify.username(), 'calvinfo');
     });
   });
 
   describe('.uid()', function() {
     it('should pull the userId', function() {
       var identify = new Identify({ userId: 'id' });
-      expect(identify.uid()).to.eql('id');
+      assert.deepEqual(identify.uid(), 'id');
     });
 
     it('should pull the username', function() {
       var identify = new Identify({ traits: { username: 'username' } });
-      expect(identify.uid()).to.eql('username');
+      assert.deepEqual(identify.uid(), 'username');
     });
 
     it('should pull the email', function() {
       var identify = new Identify({ traits: { email: 'email@example.com' } });
-      expect(identify.uid()).to.eql('email@example.com');
+      assert.deepEqual(identify.uid(), 'email@example.com');
     });
 
     it('should prefer userId', function() {
@@ -273,81 +286,81 @@ describe('Identify', function() {
         }
       });
 
-      expect(identify.uid()).to.eql('id');
+      assert.deepEqual(identify.uid(), 'id');
     });
   });
 
   describe('.gender()', function() {
     it('should return the gender', function() {
       var msg = new Identify({ traits: { gender: 'gender' } });
-      expect(msg.gender()).to.eql('gender');
+      assert.deepEqual(msg.gender(), 'gender');
     });
   });
 
   describe('.birthday()', function() {
     it('should the birthday', function() {
       var msg = new Identify({ traits: { birthday: Date('2014-01-01') } });
-      expect(msg.birthday()).to.eql(Date('2014-01-01'));
+      assert.deepEqual(msg.birthday(), Date('2014-01-01'));
     });
   });
 
   describe('.age()', function() {
     it('should return the age', function() {
       var msg = new Identify({ traits: { age: 24 } });
-      expect(msg.age()).to.eql(24);
+      assert.deepEqual(msg.age(), 24);
     });
 
     it('should return null if .birthday() is not a date', function() {
       var msg = new Identify({ traits: { birthday: 1 } });
-      expect(msg.age()).to.eql(undefined);
+      assert.deepEqual(msg.age(), undefined);
     });
 
     it('should compute the age from .birthday()', function() {
-      var msg = new Identify({ traits: { birthday: new Date('2000-01-01') } });
+      var msg = new Identify({ traits: { birthday: isodate.parse('2000-01-01') } });
       var date = msg.birthday().getFullYear();
       var now = new Date().getFullYear();
-      expect(msg.age()).to.eql(now - date);
+      assert.deepEqual(msg.age(), now - date);
     });
   });
 
   describe('.website()', function() {
     it('should pull from a passed in website', function() {
       var identify = new Identify({ traits: { website: 'http://calv.info' } });
-      expect(identify.website()).to.eql('http://calv.info');
+      assert.deepEqual(identify.website(), 'http://calv.info');
     });
 
     it('should pull from .website[0] if .website is omitted', function() {
       var msg = new Identify({ traits: { websites: ['http://calv.info'] } });
-      expect(msg.website()).to.eql('http://calv.info');
+      assert.deepEqual(msg.website(), 'http://calv.info');
     });
   });
 
   describe('.websites()', function() {
     it('should pull from .websites', function() {
       var msg = new Identify({ traits: { websites: ['http://calv.info'] } });
-      expect(msg.websites()).to.eql(['http://calv.info']);
+      assert.deepEqual(msg.websites(), ['http://calv.info']);
     });
 
     it('should return [.website] if possible', function() {
       var msg = new Identify({ traits: { website: 'http://calv.info' } });
-      expect(msg.websites()).to.eql(['http://calv.info']);
+      assert.deepEqual(msg.websites(), ['http://calv.info']);
     });
 
     it('should return an empty array if .websites and .website are missing', function() {
       var msg = new Identify({});
-      expect(msg.websites()).to.eql([]);
+      assert.deepEqual(msg.websites(), []);
     });
   });
 
   describe('.description()', function() {
     it('should pull from description', function() {
       var identify = new Identify({ traits: { description: 'baz' } });
-      expect(identify.description()).to.eql('baz');
+      assert.deepEqual(identify.description(), 'baz');
     });
 
     it('should pull from background', function() {
       var identify = new Identify({ traits: { background: 'baz' } });
-      expect(identify.description()).to.eql('baz');
+      assert.deepEqual(identify.description(), 'baz');
     });
 
     it('should prefer description', function() {
@@ -356,67 +369,67 @@ describe('Identify', function() {
         description: 'foo'
       } });
 
-      expect(identify.description()).to.eql('foo');
+      assert.deepEqual(identify.description(), 'foo');
     });
   });
 
   describe('.phone()', function() {
     it('should pull from a passed in phone', function() {
       var identify = new Identify({ traits: { phone: '555-555-5555' } });
-      expect(identify.phone()).to.eql('555-555-5555');
+      assert.deepEqual(identify.phone(), '555-555-5555');
     });
 
     it('should pull from .phones[] when possible', function() {
       var msg = new Identify({ traits: { phones: ['555'] } });
-      expect(msg.phone()).to.eql('555');
+      assert.deepEqual(msg.phone(), '555');
     });
   });
 
   describe('.phones()', function() {
     it('should pull from .phones', function() {
       var msg = new Identify({ traits: { phones: [1, 2] } });
-      expect(msg.phones()).to.eql([1, 2]);
+      assert.deepEqual(msg.phones(), [1, 2]);
     });
 
     it('should fallback to [.phone]', function() {
       var msg = new Identify({ traits: { phone: 1 } });
-      expect(msg.phones()).to.eql([1]);
+      assert.deepEqual(msg.phones(), [1]);
     });
   });
 
   describe('.address()', function() {
     it('should pull from a passed in address', function() {
       var identify = new Identify({ traits: { address: '461 2nd St.' } });
-      expect(identify.address()).to.eql('461 2nd St.');
+      assert.deepEqual(identify.address(), '461 2nd St.');
     });
   });
 
   describe('.avatar()', function() {
     it('should pull from passed in avatar', function() {
       var identify = new Identify({ traits: { avatar: '//avatars/avatar.jpg' } });
-      expect(identify.avatar()).to.eql('//avatars/avatar.jpg');
+      assert.deepEqual(identify.avatar(), '//avatars/avatar.jpg');
     });
 
     it('should fallback to .photoUrl', function() {
       var identify = new Identify({ traits: { photo_url: 'photo-url' } });
-      expect(identify.avatar()).to.eql('photo-url');
+      assert.deepEqual(identify.avatar(), 'photo-url');
     });
 
     it('should fallback to .avatarUrl', function() {
       var msg = new Identify({ traits: { avatarUrl: 'avatar-url' } });
-      expect(msg.avatar()).to.eql('avatar-url');
+      assert.deepEqual(msg.avatar(), 'avatar-url');
     });
   });
 
   describe('.position()', function() {
     it('should proxy the position', function() {
       var identify = new Identify({ traits: { position: 'position' } });
-      expect(identify.position()).to.eql('position');
+      assert.deepEqual(identify.position(), 'position');
     });
 
     it('should fallback to .jobTitle', function() {
       var identify = new Identify({ traits: { jobTitle: 'position' } });
-      expect(identify.position()).to.eql('position');
+      assert.deepEqual(identify.position(), 'position');
     });
   });
 });

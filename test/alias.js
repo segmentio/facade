@@ -1,6 +1,8 @@
-var expect = require('expect.js');
+'use strict';
+
+var Alias = require('../lib').Alias;
 var Facade = require('../lib');
-var Alias = Facade.Alias;
+var assert = require('proclaim');
 
 describe('Alias', function() {
   var alias;
@@ -15,43 +17,43 @@ describe('Alias', function() {
   describe('.type()', function() {
     var alias = new Alias({});
     it('should have the proper .type()', function() {
-      expect(alias.type()).to.eql('alias');
+      assert.deepEqual(alias.type(), 'alias');
     });
 
     it('should equal .action()', function() {
-      expect(alias.type()).to.eql(alias.action());
+      assert.deepEqual(alias.type(), alias.action());
     });
   });
 
   describe('.from()', function() {
     it('should alias .previousId', function() {
-      expect(alias.from).to.equal(alias.previousId);
+      assert.strictEqual(alias.from, alias.previousId);
     });
 
     it('should proxy .from', function() {
       var alias = new Alias({ from: 'x' });
-      expect(alias.from()).to.eql('x');
+      assert.deepEqual(alias.from(), 'x');
     });
 
     it('should proxy .previousId', function() {
       var alias = new Alias({ previousId: 'x' });
-      expect(alias.from()).to.eql('x');
+      assert.deepEqual(alias.from(), 'x');
     });
   });
 
   describe('.to()', function() {
     it('should alias .userId', function() {
-      expect(alias.to).to.equal(alias.userId);
+      assert.strictEqual(alias.to, alias.userId);
     });
 
     it('should proxy .to', function() {
       var alias = new Alias({ to: 'x' });
-      expect(alias.to()).to.eql('x');
+      assert.deepEqual(alias.to(), 'x');
     });
 
     it('should proxy .userId', function() {
       var alias = new Alias({ userId: 'x' });
-      expect(alias.to()).to.eql('x');
+      assert.deepEqual(alias.to(), 'x');
     });
   });
 });
