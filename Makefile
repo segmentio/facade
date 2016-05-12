@@ -1,36 +1,94 @@
+##
+# Binaries
+##
 
-BIN := node_modules/.bin
-SRC := $(wildcard lib/*.js)
-TESTS = $(wildcard test/*.js)
+ESLINT := node_modules/.bin/eslint
+ISTANBUL := node_modules/.bin/istanbul
+KARMA := node_modules/.bin/karma
+MOCHA := node_modules/.bin/mocha
+_MOCHA := node_modules/.bin/_mocha
 
-build.js: $(SRC) node_modules
-	$(BIN)/browserify lib/index.js > $@
+##
+# Files
+##
 
-node_modules: package.json
-	npm install
-	touch $@
+LIBS = $(shell find lib -type f -name "*.js")
+TESTS = $(shell find test -type f -name "*.js")
+SUPPORT = $(wildcard karma.conf*.js)
+ALL_FILES = $(LIBS) $(TESTS) $(SUPPORT)
 
-test: lint test-node test-phantomjs
+##
+# Program options/flags
+##
 
-lint: node_modules
-	$(BIN)/eslint $(SRC) $(TESTS)
+# A list of options to pass to Karma
+# Overriding this overwrites all options specified in this file (e.g. BROWSERS)
+KARMA_FLAGS ?=
 
-test-phantomjs:
-	$(BIN)/mochify --phantomjs $(BIN)/phantomjs --reporter spec test/index.js
+# A list of Karma browser launchers to run
+# http://karma-runner.github.io/0.13/config/browsers.html
+BROWSERS ?=
+ifdef BROWSERS
+KARMA_FLAGS += --browsers $(BROWSERS)
+endif
 
-test-node:
-	$(BIN)/mocha
+# Mocha flags.
+GREP ?= .
+MOCHA_REPORTER ?= spec
+MOCHA_FLAGS := \
+	--grep "$(GREP)" \
+	--reporter "$(MOCHA_REPORTER)" \
+	--ui bdd
 
-coverage: $(SRC) $(TESTS) node_modules
-	$(BIN)/istanbul cover --include-comments -x "**/components/**" -x "**/build.js" $(BIN)/_mocha
+# Istanbul flags.
+COVERAGE_DIR ?= coverage
+ISTANBUL_FLAGS := \
+	--root "./lib" \
+	--include-all-sources true \
+	--dir "$(COVERAGE_DIR)/Node $(shell node -v)"
 
-check-coverage: coverage
-	$(BIN)/istanbul check-coverage --statements 95 --functions 95 --branches 89 --lines 95
+##
+# Tasks
+##
 
+# Install node modules.
+node_modules: package.json $(wildcard node_modules/*/package.json)
+	@npm install
+	@touch $@
+
+# Install dependencies.
+install: node_modules
+
+# Remove temporary files and build artifacts.
 clean:
-	rm -f build.js
+	rm -rf *.log coverage
+.PHONY: clean
 
+# Remove temporary files, build artifacts, and vendor dependencies.
 distclean: clean
 	rm -rf node_modules
+.PHONY: distclean
 
-.PHONY: test test-node test-phantomjs clean distclean check-coverage
+# Lint JavaScript source files.
+lint: install
+	@$(ESLINT) $(ALL_FILES)
+.PHONY: lint
+
+# Attempt to fix linting errors.
+fmt: install
+	@$(ESLINT) --fix $(ALL_FILES)
+.PHONY: fmt
+
+# Run unit tests in node.
+test-node: install
+	@NODE_ENV=test $(ISTANBUL) cover $(ISTANBUL_FLAGS) $(_MOCHA) -- $(MOCHA_FLAGS) $(TESTS)
+.PHONY: test-node
+
+# Run browser unit tests in a browser.
+test-browser: install
+	@$(KARMA) start $(KARMA_FLAGS)
+
+# Default test target.
+test: lint test-node test-browser
+.PHONY: test
+.DEFAULT_GOAL = test

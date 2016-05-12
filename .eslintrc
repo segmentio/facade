@@ -1,10 +1,7 @@
 {
-  "extends": "segment/browser",
+  "extends": "@segment/eslint-config/browser/legacy",
 
   "rules": {
-    // FIXME: Remove all these
-    "consistent-return": 1,
-    "guard-for-in": 1,
-    "strict": 0
+    "guard-for-in": 0
   }
 }
