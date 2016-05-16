@@ -157,7 +157,7 @@ describe('Identify', function() {
           company: { created: createdAt }
         }
       });
-      assert.deepEqual(identify.companyCreated(), isodate.parse(createdAt));
+      assert.deepEqual(identify.companyCreated(), new Date(1374191918555));
     });
   });
 

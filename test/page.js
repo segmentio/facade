@@ -147,7 +147,7 @@ describe('Page', function() {
       var page = new Page({
         anonymousId: 'anon-id',
         userId: 'user-id',
-        timestamp: new Date('2014-01-01'),
+        timestamp: new Date(1388534400000),
         context: { ip: '0.0.0.0' },
         properties: { prop: true },
         category: 'category',
@@ -161,7 +161,7 @@ describe('Page', function() {
       assert.deepEqual(page.track('name').event(), 'Viewed name Page');
       assert.deepEqual(page.track('category').event(), 'Viewed category Page');
       assert.deepEqual(page.track('category').event(), 'Viewed category Page');
-      assert.deepEqual(page.track('category').timestamp(), page.timestamp());
+      assert.deepEqual(page.track('category').timestamp(), new Date(1388534400000));
       assert.deepEqual(page.track('category').context(), page.context());
       assert.deepEqual(
         page.track('event').properties(),

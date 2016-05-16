@@ -22,7 +22,7 @@
     "@ndhoule/clone": "^1.0.0",
     "inherits": "^2.0.1",
     "is-email": "0.1.0",
-    "new-date": "0.1.1",
+    "new-date": "^1.0.0",
     "obj-case": "0.x",
     "trim": "0.0.1",
     "type-component": "0.0.1"
@@ -51,6 +51,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "proclaim": "^3.4.1",
     "sinon": "^1.7.3",
+    "to-iso-string": "0.0.2",
     "watchify": "^3.7.0"
   }
 }

@@ -68,7 +68,7 @@ describe('Group', function() {
     it('should turn strings into dates', function() {
       var str = '2013-07-18T23:58:38.555Z';
       var g = new Group({ properties: { created: str } });
-      assert.deepEqual(g.created(), new Date(str));
+      assert.deepEqual(g.created(), new Date(1374191918555));
     });
 
     it('should return undefined if date was not found', function() {

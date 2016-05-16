@@ -427,10 +427,9 @@ describe('Facade', function() {
       assert.notEqual(new Date(), timestamp);
     });
 
-    // TODO(ndhoule): Either I fucked this test up or if the impl doesn't work correctly
-    xit('should cast timestamps to dates', function() {
+    it('should cast timestamps to dates', function() {
       var facade = new Facade({ timestamp: '5/12/2015' });
-      assert.deepEqual(facade.timestamp(), isodate.parse('2015'));
+      assert.deepEqual(facade.timestamp(), new Date('5/12/2015'));
     });
 
     it('should cast ms to date', function() {
