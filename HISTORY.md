@@ -1,4 +1,4 @@
-vNEXT / ????-??-??
+3.0.1 / 2016-05-16
 ==================
 
   * Modernize test/CI harness
