@@ -1,6 +1,6 @@
 # facade
 
-[![CircleCI](https://img.shields.io/circleci/project/segmentio/facade/master.svg?maxAge=2592000)](https://circleci.com/gh/segmentio/facade)
+[![CircleCI](https://circleci.com/gh/segmentio/facade.svg?style=shield&circle-token=82b4b760c18fa8d1e41191230a808f2139d0a3f4)](https://circleci.com/gh/segmentio/facade)
 [![Codecov](https://img.shields.io/codecov/c/github/segmentio/facade/master.svg?maxAge=2592000)](https://codecov.io/gh/segmentio/facade)
 
 Providing common fields for analytics integrations. Wraps the Segment.io API for use on the server or client.
