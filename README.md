@@ -1,13 +1,9 @@
 # facade
 
-Providing common fields for analytics integrations. Wraps the Segment.io api for use on the server or client.
+[![CircleCI](https://img.shields.io/circleci/project/segmentio/facade/master.svg?maxAge=2592000)](https://circleci.com/gh/segmentio/facade)
+[![Codecov](https://img.shields.io/codecov/c/github/segmentio/facade/master.svg?maxAge=2592000)](https://codecov.io/gh/segmentio/facade)
 
-## Build Status
-
-1.x                                          | 2.x (Modern)                                 | 3.x (Modern-er)
----                                          | ---                                          | ---
-[![2.x Build Status][ci-2.x-badge]][ci-link] | [![1.x Build Status][ci-1.x-badge]][ci-link] | [![Circle CI](https://circleci.com/gh/segmentio/facade.svg?style=svg)](https://circleci.com/gh/segmentio/facade)
-
+Providing common fields for analytics integrations. Wraps the Segment.io API for use on the server or client.
 
 ## API
 
