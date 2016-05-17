@@ -32,6 +32,12 @@ ifdef BROWSERS
 KARMA_FLAGS += --browsers $(BROWSERS)
 endif
 
+ifdef CI
+KARMA_CONF ?= karma.conf.ci.js
+else
+KARMA_CONF ?= karma.conf.js
+endif
+
 # Mocha flags.
 GREP ?= .
 MOCHA_REPORTER ?= spec
@@ -86,7 +92,7 @@ test-node: install
 
 # Run browser unit tests in a browser.
 test-browser: install
-	@$(KARMA) start $(KARMA_FLAGS)
+	@$(KARMA) start $(KARMA_FLAGS) $(KARMA_CONF)
 
 # Default test target.
 test: lint test-node test-browser

@@ -1,9 +1,7 @@
 /* eslint-env node */
 'use strict';
 
-if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
-  throw new Error('SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables are required but are missing');
-}
+var baseConfig = require('./karma.conf');
 
 var customLaunchers = {
   sl_chrome_latest: {
@@ -66,20 +64,28 @@ var customLaunchers = {
   }
 };
 
-module.exports = {
-  singleRun: true,
+module.exports = function(config) {
+  baseConfig(config);
 
-  browsers: ['PhantomJS'].concat(Object.keys(customLaunchers)),
-
-  customLaunchers: customLaunchers,
-
-  sauceLabs: {
-    testName: require('./package.json').name
+  if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
+    throw new Error('SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables are required but are missing');
   }
 
-  // coverageReporter: {
-  //   reporters: [
-  //     { type: 'lcov' }
-  //   ]
-  // }
+  config.set({
+    singleRun: true,
+
+    browsers: ['PhantomJS'].concat(Object.keys(customLaunchers)),
+
+    customLaunchers: customLaunchers,
+
+    sauceLabs: {
+      testName: require('./package.json').name
+    }
+
+    // coverageReporter: {
+    //   reporters: [
+    //     { type: 'lcov' }
+    //   ]
+    // }
+  });
 };
