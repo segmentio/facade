@@ -13,7 +13,7 @@ _MOCHA := node_modules/.bin/_mocha
 ##
 
 LIBS = $(shell find lib -type f -name "*.js")
-TESTS = $(shell find test -type f -name "*.js")
+TESTS = $(shell find test -type f -name "*.test.js")
 SUPPORT = $(wildcard karma.conf*.js)
 ALL_FILES = $(LIBS) $(TESTS) $(SUPPORT)
 
