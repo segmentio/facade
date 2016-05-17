@@ -30,6 +30,7 @@
   "devDependencies": {
     "@segment/eslint-config": "^3.1.1",
     "@segment/isodate": "^1.0.2",
+    "@segment/to-iso-string": "^1.0.0",
     "browserify": "^13.0.0",
     "browserify-istanbul": "^2.0.0",
     "eslint": "^2.9.0",
@@ -51,7 +52,6 @@
     "phantomjs-prebuilt": "^2.1.7",
     "proclaim": "^3.4.1",
     "sinon": "^1.7.3",
-    "to-iso-string": "0.0.2",
     "watchify": "^3.7.0"
   }
 }
