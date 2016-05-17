@@ -4,7 +4,7 @@
 module.exports = function(config) {
   config.set({
     files: [
-      'test/**/*.js'
+      'test/**/*.test.js'
     ],
 
     browsers: ['PhantomJS'],
