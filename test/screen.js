@@ -1,8 +1,9 @@
-/* global Screen:true */
+'use strict';
 
 var Screen = require('../lib').Screen;
 var Track = require('../lib').Track;
-var expect = require('expect.js');
+var assert = require('proclaim');
+var newDate = require('new-date');
 
 describe('Screen', function() {
   var obj;
@@ -19,29 +20,29 @@ describe('Screen', function() {
 
   describe('.type()', function() {
     it('should have the proper .type()', function() {
-      expect(screen.type()).to.eql('screen');
+      assert.deepEqual(screen.type(), 'screen');
     });
 
     it('should equal .action()', function() {
-      expect(screen.type()).to.eql(screen.action());
+      assert.deepEqual(screen.type(), screen.action());
     });
   });
 
   describe('.category()', function() {
     it('should proxy category', function() {
-      expect(screen.category()).to.eql('songs');
+      assert.deepEqual(screen.category(), 'songs');
     });
   });
 
   describe('.userId()', function() {
     it('should proxy the userId', function() {
-      expect(screen.userId()).to.eql(obj.userId);
+      assert.deepEqual(screen.userId(), obj.userId);
     });
   });
 
   describe('.sessionId()', function() {
     it('should proxy the sessionId', function() {
-      expect(screen.sessionId()).to.eql(obj.sessionId);
+      assert.deepEqual(screen.sessionId(), obj.sessionId);
     });
   });
 
@@ -49,12 +50,12 @@ describe('Screen', function() {
     it('should proxy properties', function() {
       var obj = {};
       var p = new Screen({ properties: obj });
-      expect(p.properties()).to.eql(obj);
+      assert.deepEqual(p.properties(), obj);
     });
 
     it('should default to an empty object if properties is undefined', function() {
       var screen = new Screen({});
-      expect(screen.properties()).to.eql({});
+      assert.deepEqual(screen.properties(), {});
     });
 
     it('should mixin category and name', function() {
@@ -64,11 +65,10 @@ describe('Screen', function() {
         name: 'name'
       });
 
-      expect(screen.properties()).to.eql({
-        category: 'category',
-        name: 'name',
-        prop: true
-      });
+      assert.deepEqual(
+        screen.properties(),
+        { category: 'category', name: 'name', prop: true }
+      );
     });
   });
 
@@ -77,51 +77,51 @@ describe('Screen', function() {
 
     it('should proxy the email from properties', function() {
       var screen = new Screen({ userId: 'x', properties: { email: email } });
-      expect(screen.email()).to.eql(email);
+      assert.deepEqual(screen.email(), email);
     });
 
     it('should proxy the email from userId', function() {
       var screen = new Screen({ userId: email });
-      expect(screen.email()).to.eql(email);
+      assert.deepEqual(screen.email(), email);
     });
 
     it('should proxy the email from context.traits', function() {
-      var screen = new Screen({ context: { traits: { email: email }}});
-      expect(screen.email()).to.eql(email);
+      var screen = new Screen({ context: { traits: { email: email } } });
+      assert.deepEqual(screen.email(), email);
     });
 
     it('should not error if there is no email', function() {
       var screen = new Screen({});
-      expect(screen.email()).to.eql(undefined);
+      assert.deepEqual(screen.email(), undefined);
     });
   });
 
   describe('.name()', function() {
     it('should proxy name', function() {
-      expect(screen.name()).to.eql(obj.name);
+      assert.deepEqual(screen.name(), obj.name);
     });
   });
 
   describe('.referrer()', function() {
     it('should proxy properties.referrer', function() {
       var screen = new Screen({ properties: { referrer: 'url' } });
-      expect(screen.referrer()).to.eql('url');
+      assert.deepEqual(screen.referrer(), 'url');
     });
 
     it('should proxy context.referrer.url', function() {
       var screen = new Screen({ context: { referrer: { url: 'url' } } });
-      expect(screen.referrer()).to.eql('url');
+      assert.deepEqual(screen.referrer(), 'url');
     });
   });
 
   describe('.event()', function() {
     it('should concat name if given', function() {
       var screen = new Screen({});
-      expect(screen.event('baz')).to.eql('Viewed baz Screen');
+      assert.deepEqual(screen.event('baz'), 'Viewed baz Screen');
     });
 
     it('should return "Loaded a Screen" if name is omitted', function() {
-      expect(new Screen({}).event()).to.eql('Loaded a Screen');
+      assert.deepEqual(new Screen({}).event(), 'Loaded a Screen');
     });
   });
 
@@ -131,25 +131,24 @@ describe('Screen', function() {
         anonymousId: 'anon-id',
         userId: 'user-id',
         context: { ip: '0.0.0.0' },
-        timestamp: new Date('2014-01-01'),
+        timestamp: newDate('2014-01-01'),
         properties: { prop: true },
         category: 'category',
         name: 'name'
       });
 
-      expect(screen.track('event').anonymousId()).to.be.eql('anon-id');
-      expect(screen.track('event').userId()).to.eql('user-id');
-      expect(screen.track('event')).to.be.a(Track);
-      expect(screen.track().event()).to.eql('Loaded a Screen');
-      expect(screen.track('name').event()).to.eql('Viewed name Screen');
-      expect(screen.track('category').event()).to.eql('Viewed category Screen');
-      expect(screen.track('category').timestamp()).to.eql(screen.timestamp());
-      expect(screen.track('category').context()).to.eql(screen.context());
-      expect(screen.track('event').properties()).to.eql({
-        category: 'category',
-        name: 'name',
-        prop: true
-      });
+      assert.strictEqual(screen.track('event').anonymousId(), 'anon-id');
+      assert.strictEqual(screen.track('event').userId(), 'user-id');
+      assert(screen.track('event') instanceof Track);
+      assert.deepEqual(screen.track().event(), 'Loaded a Screen');
+      assert.deepEqual(screen.track('name').event(), 'Viewed name Screen');
+      assert.deepEqual(screen.track('category').event(), 'Viewed category Screen');
+      assert.deepEqual(screen.track('category').timestamp(), screen.timestamp());
+      assert.deepEqual(screen.track('category').context(), screen.context());
+      assert.deepEqual(
+        screen.track('event').properties(),
+        { category: 'category', name: 'name', prop: true }
+      );
     });
   });
 
@@ -159,7 +158,7 @@ describe('Screen', function() {
         name: 'baz'
       });
 
-      expect(screen.fullName()).to.eql('baz');
+      assert.deepEqual(screen.fullName(), 'baz');
     });
 
     it('should return the category + name if available', function() {
@@ -168,7 +167,7 @@ describe('Screen', function() {
         name: 'baz'
       });
 
-      expect(screen.fullName()).to.eql('cat baz');
+      assert.deepEqual(screen.fullName(), 'cat baz');
     });
   });
 });

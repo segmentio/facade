@@ -1,6 +1,7 @@
+'use strict';
 
 var Group = require('../lib').Group;
-var expect = require('expect.js');
+var assert = require('assert');
 
 describe('Group', function() {
   var obj = {
@@ -15,17 +16,17 @@ describe('Group', function() {
 
   describe('.type()', function() {
     it('should have the proper .type()', function() {
-      expect(group.type()).to.be('group');
+      assert.strictEqual(group.type(), 'group');
     });
 
     it('should equal .action()', function() {
-      expect(group.type()).to.eql(group.action());
+      assert.deepEqual(group.type(), group.action());
     });
   });
 
   describe('.groupId()', function() {
     it('should proxy the group id', function() {
-      expect(group.groupId()).to.eql(obj.groupId);
+      assert.deepEqual(group.groupId(), obj.groupId);
     });
   });
 
@@ -33,19 +34,19 @@ describe('Group', function() {
     it('should proxy properties', function() {
       var obj = {};
       var g = new Group({ properties: obj });
-      expect(g.properties()).to.eql(obj);
+      assert.deepEqual(g.properties(), obj);
     });
   });
 
   describe('.userId()', function() {
     it('should proxy the userId', function() {
-      expect(group.userId()).to.eql(obj.userId);
+      assert.deepEqual(group.userId(), obj.userId);
     });
   });
 
   describe('.sessionId()', function() {
     it('should proxy the sessionId', function() {
-      expect(group.sessionId()).to.eql(obj.sessionId);
+      assert.deepEqual(group.sessionId(), obj.sessionId);
     });
   });
 
@@ -55,110 +56,110 @@ describe('Group', function() {
     it('should proxy created', function() {
       var opts = { traits: { created: at } };
       var g = new Group(opts);
-      expect(g.created()).to.eql(at);
+      assert.deepEqual(g.created(), at);
     });
 
     it('should proxy createdAt', function() {
       var opts = { traits: { createdAt: at } };
       var g = new Group(opts);
-      expect(g.created()).to.eql(at);
+      assert.deepEqual(g.created(), at);
     });
 
     it('should turn strings into dates', function() {
       var str = '2013-07-18T23:58:38.555Z';
       var g = new Group({ properties: { created: str } });
-      expect(g.created()).to.eql(new Date(str));
+      assert.deepEqual(g.created(), new Date(1374191918555));
     });
 
     it('should return undefined if date was not found', function() {
       var group = new Group({ properties: {} });
-      expect(group.created()).to.eql(undefined);
+      assert.deepEqual(group.created(), undefined);
     });
   });
 
   describe('.type()', function() {
     it('should return "group"', function() {
-      expect(group.type()).to.be('group');
+      assert.strictEqual(group.type(), 'group');
     });
 
     it('should respond to .action()', function() {
-      expect(group.action()).to.be('group');
+      assert.strictEqual(group.action(), 'group');
     });
   });
 
   describe('.groupId()', function() {
     it('should proxy the groupId', function() {
-      expect(group.groupId()).to.eql(obj.userId);
+      assert.deepEqual(group.groupId(), obj.userId);
     });
   });
 
   describe('.userId()', function() {
     it('should proxy the userId', function() {
-      expect(group.userId()).to.eql(obj.userId);
+      assert.deepEqual(group.userId(), obj.userId);
     });
   });
 
   describe('.traits()', function() {
     it('should proxy traits', function() {
-      expect(group.traits()).to.eql({ trait: true, id: '1' });
+      assert.deepEqual(group.traits(), { trait: true, id: '1' });
     });
 
     it('should return an empty object if traits is undefined', function() {
-      expect(new Group({}).traits()).to.eql({});
+      assert.deepEqual(new Group({}).traits(), {});
     });
 
     it('should respect aliases', function() {
       var group = new Group({ traits: { a: 1, b: 2 } });
-      expect(group.traits({ a: 1 })).to.eql({ 1: 1, b: 2 });
+      assert.deepEqual(group.traits({ a: 1 }), { 1: 1, b: 2 });
     });
   });
 
   describe('.properties()', function() {
     it('should proxy traits', function() {
-      expect(group.properties()).to.eql(obj.traits);
+      assert.deepEqual(group.properties(), obj.traits);
     });
 
     it('should proxy properties if theres no traits', function() {
       var group = new Group({ properties: { prop: true } });
-      expect(group.properties()).to.eql({ prop: true });
+      assert.deepEqual(group.properties(), { prop: true });
     });
   });
 
   describe('.employees()', function() {
     it('should proxy employees', function() {
       var msg = new Group({ traits: { employees: 50 } });
-      expect(msg.employees()).to.eql(50);
+      assert.deepEqual(msg.employees(), 50);
     });
   });
 
   describe('.industry()', function() {
     it('should proxy industry', function() {
       var msg = new Group({ traits: { industry: 'tech' } });
-      expect(msg.industry()).to.eql('tech');
+      assert.deepEqual(msg.industry(), 'tech');
     });
   });
 
   describe('.name()', function() {
     it('should proxy name', function() {
       var msg = new Group({ traits: { name: 'tech' } });
-      expect(msg.name()).to.eql('tech');
+      assert.deepEqual(msg.name(), 'tech');
     });
   });
 
   describe('.email()', function() {
     it('should proxy email', function() {
       var msg = new Group({ traits: { email: 'email@example.com' } });
-      expect(msg.email()).to.eql('email@example.com');
+      assert.deepEqual(msg.email(), 'email@example.com');
     });
 
     it('should fallback to .groupId if its a valid email', function() {
       var msg = new Group({ groupId: 'email@example.com' });
-      expect(msg.email()).to.eql('email@example.com');
+      assert.deepEqual(msg.email(), 'email@example.com');
     });
 
     it('should not return the .groupId if its an invalid email', function() {
       var msg = new Group({ groupId: 23 });
-      expect(msg.email()).to.eql(undefined);
+      assert.deepEqual(msg.email(), undefined);
     });
   });
 });

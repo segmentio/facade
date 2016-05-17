@@ -1,7 +1,8 @@
+'use strict';
 
 var Page = require('../lib').Page;
 var Track = require('../lib').Track;
-var expect = require('expect.js');
+var assert = require('proclaim');
 
 describe('Page', function() {
   var obj;
@@ -18,29 +19,29 @@ describe('Page', function() {
 
   describe('.type()', function() {
     it('should have the proper .type()', function() {
-      expect(page.type()).to.eql('page');
+      assert.deepEqual(page.type(), 'page');
     });
 
     it('should equal .action()', function() {
-      expect(page.type()).to.eql(page.action());
+      assert.deepEqual(page.type(), page.action());
     });
   });
 
   describe('.category()', function() {
     it('should proxy category', function() {
-      expect(page.category()).to.eql('docs');
+      assert.deepEqual(page.category(), 'docs');
     });
   });
 
   describe('.userId()', function() {
     it('should proxy the userId', function() {
-      expect(page.userId()).to.eql(obj.userId);
+      assert.deepEqual(page.userId(), obj.userId);
     });
   });
 
   describe('.sessionId()', function() {
     it('should proxy the sessionId', function() {
-      expect(page.sessionId()).to.eql(obj.sessionId);
+      assert.deepEqual(page.sessionId(), obj.sessionId);
     });
   });
 
@@ -48,12 +49,12 @@ describe('Page', function() {
     it('should proxy properties', function() {
       var obj = {};
       var p = new Page({ properties: obj });
-      expect(p.properties()).to.eql(obj);
+      assert.deepEqual(p.properties(), obj);
     });
 
     it('should default to an empty object if properties is undefined', function() {
       var page = new Page({});
-      expect(page.properties()).to.eql({});
+      assert.deepEqual(page.properties(), {});
     });
 
     it('should mixin category and name', function() {
@@ -63,25 +64,23 @@ describe('Page', function() {
         name: 'name'
       });
 
-      expect(page.properties()).to.eql({
-        category: 'category',
-        name: 'name',
-        prop: true
-      });
+      assert.deepEqual(
+        page.properties(),
+        { category: 'category', name: 'name', prop: true }
+      );
     });
 
-    it('should respect aliases', function(){
+    it('should respect aliases', function() {
       var page = new Page({
         properties: { prop: true },
         category: 'category',
         name: 'name'
       });
 
-      expect(page.properties({ name: 'pagename', prop: 'alias' })).to.eql({
-        category: 'category',
-        pagename: 'name',
-        alias: true
-      });
+      assert.deepEqual(
+        page.properties({ name: 'pagename', prop: 'alias' }),
+        { category: 'category', pagename: 'name', alias: true }
+      );
     });
   });
 
@@ -90,56 +89,56 @@ describe('Page', function() {
 
     it('should proxy the email from properties', function() {
       var page = new Page({ userId: 'x', properties: { email: email } });
-      expect(page.email()).to.eql(email);
+      assert.deepEqual(page.email(), email);
     });
 
     it('should proxy the email from userId', function() {
       var page = new Page({ userId: email });
-      expect(page.email()).to.eql(email);
+      assert.deepEqual(page.email(), email);
     });
 
     it('should proxy the email from context.traits', function() {
-      var page = new Page({ context: { traits: { email: email }}});
-      expect(page.email()).to.eql(email);
+      var page = new Page({ context: { traits: { email: email } } });
+      assert.deepEqual(page.email(), email);
     });
 
     it('should not error if there is no email', function() {
       var page = new Page({});
-      expect(page.email()).to.eql(undefined);
+      assert.deepEqual(page.email(), undefined);
     });
   });
 
   describe('.name()', function() {
     it('should proxy name', function() {
-      expect(page.name()).to.eql(obj.name);
+      assert.deepEqual(page.name(), obj.name);
     });
   });
 
   describe('.event()', function() {
     it('should concat name if given', function() {
       var page = new Page({});
-      expect(page.event('baz')).to.eql('Viewed baz Page');
+      assert.deepEqual(page.event('baz'), 'Viewed baz Page');
     });
 
     it('should return "Loaded a Page" if name is omitted', function() {
-      expect(new Page({}).event()).to.eql('Loaded a Page');
+      assert.deepEqual(new Page({}).event(), 'Loaded a Page');
     });
   });
 
   describe('.referrer()', function() {
     it('should proxy properties.referrer', function() {
       var page = new Page({ properties: { referrer: 'url' } });
-      expect(page.referrer()).to.eql('url');
+      assert.deepEqual(page.referrer(), 'url');
     });
 
     it('should proxy context.referrer.url', function() {
       var page = new Page({ context: { referrer: { url: 'url' } } });
-      expect(page.referrer()).to.eql('url');
+      assert.deepEqual(page.referrer(), 'url');
     });
 
     it('should proxy context.page.referrer', function() {
       var page = new Page({ context: { page: { referrer: 'url' } } });
-      expect(page.referrer()).to.eql('url');
+      assert.deepEqual(page.referrer(), 'url');
     });
   });
 
@@ -148,27 +147,26 @@ describe('Page', function() {
       var page = new Page({
         anonymousId: 'anon-id',
         userId: 'user-id',
-        timestamp: new Date('2014-01-01'),
+        timestamp: new Date(1388534400000),
         context: { ip: '0.0.0.0' },
         properties: { prop: true },
         category: 'category',
         name: 'name'
       });
 
-      expect(page.track('event').anonymousId()).to.be.eql('anon-id');
-      expect(page.track('event').userId()).to.be.eql('user-id');
-      expect(page.track('event')).to.be.a(Track);
-      expect(page.track().event()).to.eql('Loaded a Page');
-      expect(page.track('name').event()).to.eql('Viewed name Page');
-      expect(page.track('category').event()).to.eql('Viewed category Page');
-      expect(page.track('category').event()).to.eql('Viewed category Page');
-      expect(page.track('category').timestamp()).to.eql(page.timestamp());
-      expect(page.track('category').context()).to.eql(page.context());
-      expect(page.track('event').properties()).to.eql({
-        category: 'category',
-        name: 'name',
-        prop: true
-      });
+      assert.deepEqual(page.track('event').anonymousId(), 'anon-id');
+      assert.deepEqual(page.track('event').userId(), 'user-id');
+      assert(page.track('event') instanceof Track);
+      assert.deepEqual(page.track().event(), 'Loaded a Page');
+      assert.deepEqual(page.track('name').event(), 'Viewed name Page');
+      assert.deepEqual(page.track('category').event(), 'Viewed category Page');
+      assert.deepEqual(page.track('category').event(), 'Viewed category Page');
+      assert.deepEqual(page.track('category').timestamp(), new Date(1388534400000));
+      assert.deepEqual(page.track('category').context(), page.context());
+      assert.deepEqual(
+        page.track('event').properties(),
+        { category: 'category', name: 'name', prop: true }
+      );
     });
   });
 
@@ -178,7 +176,7 @@ describe('Page', function() {
         name: 'baz'
       });
 
-      expect(page.fullName()).to.eql('baz');
+      assert.deepEqual(page.fullName(), 'baz');
     });
 
     it('should return the category + name if available', function() {
@@ -187,28 +185,28 @@ describe('Page', function() {
         name: 'baz'
       });
 
-      expect(page.fullName()).to.eql('cat baz');
+      assert.deepEqual(page.fullName(), 'cat baz');
     });
   });
 
   describe('.url()', function() {
     it('should proxy the url', function() {
       var msg = new Page({ properties: { url: 'url' } });
-      expect(msg.url()).to.eql('url');
+      assert.deepEqual(msg.url(), 'url');
     });
   });
 
   describe('.title()', function() {
     it('should proxy the url', function() {
       var msg = new Page({ properties: { title: 'title' } });
-      expect(msg.title()).to.eql('title');
+      assert.deepEqual(msg.title(), 'title');
     });
   });
 
   describe('.path()', function() {
     it('should proxy the url', function() {
       var msg = new Page({ properties: { path: 'path' } });
-      expect(msg.path()).to.eql('path');
+      assert.deepEqual(msg.path(), 'path');
     });
   });
 });
