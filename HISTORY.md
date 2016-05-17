@@ -1,3 +1,10 @@
+vNEXT / ????-??-??
+==================
+
+  * Modernize test/CI harness
+    * Note: Coverage in Sauce Labs is disabled due to repeated browser timeouts/crashes. Need to investigate this further
+  * Lint compliance
+  * Fix tests on IE8, IE7
 
 3.0.0 / 2016-04-07
 ==================
