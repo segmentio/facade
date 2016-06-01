@@ -315,6 +315,13 @@ describe('Track', function() {
       track = new Track({ properties: { total: 75 }, event: 'completed order' });
       assert.strictEqual(track.revenue(), 75);
     });
+
+    it('should return revenue and not fallback to total (completed order)', function () {
+      var track = new Track({ properties: { revenue: 0, total: 75}, event: 'completed order'});
+      assert.strictEqual(track.revenue(), 0);
+      track = new Track({ properties: { revenue: '10', total: 75}, event: 'completed order'});
+      assert.strictEqual(track.revenue(), 10);
+    });
   });
 
   describe('.value()', function() {
