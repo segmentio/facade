@@ -9,7 +9,6 @@ describe('Track', function() {
     sessionId: 'abc123',
     properties: {
       revenue: '$50',
-      query: 'Shangri La',
       referrer: 'http://segment.io',
       username: 'calvinfo',
       email: 'test@segment.io'
@@ -243,7 +242,7 @@ describe('Track', function() {
     });
 
     it('should respect aliases', function() {
-      assert.deepEqual(track.properties({ revenue: 'amount', query: 'searchString' }), { referrer: 'http://segment.io', email: 'test@segment.io', username: 'calvinfo', amount: 50, searchString: 'Shangri La' });
+      assert.deepEqual(track.properties({ revenue: 'amount' }), { referrer: 'http://segment.io', email: 'test@segment.io', username: 'calvinfo', amount: 50 });
     });
 
     it('should traverse isodate', function() {
