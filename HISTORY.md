@@ -1,3 +1,8 @@
+3.0.3 / 2016-06-06
+==================
+
+  * Update `Order Completed` Regexp in track.prototype.revenue
+
 3.0.2 / 2016-05-17
 ==================
 
