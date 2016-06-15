@@ -97,7 +97,7 @@ facade.timestamp(); // Thu Aug 29 2013 17:53:03 GMT-0700 (PDT)
 
 #### .userAgent()
 
-Returns the user agent for the call if passed into the `options.userAgent` field.
+Returns the user agent for the call if passed into the `context.userAgent` field.
 
 #### .active()
 
