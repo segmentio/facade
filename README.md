@@ -99,19 +99,6 @@ facade.timestamp(); // Thu Aug 29 2013 17:53:03 GMT-0700 (PDT)
 
 Returns the user agent for the call if passed into the `options.userAgent` field.
 
-The user agent will be parsed by [component/user-agent-parser](https://github.com/component/user-agent-parser) and will store the full user agent under `facade.userAgent().full`;
-
-```javascript
-facade.userAgent();
-/*
-{
-browser : 'chrome',
-os : 'Mac OS X',
-full: 'Mozilla/5.0 (Macintosh; Intel Mac O...
-}
-*/
-```
-
 #### .active()
 
 Decides whether a call should be used to update the user who the call is for. Defaults to `true`, taken from `options.active`.
