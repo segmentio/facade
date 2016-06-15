@@ -97,20 +97,7 @@ facade.timestamp(); // Thu Aug 29 2013 17:53:03 GMT-0700 (PDT)
 
 #### .userAgent()
 
-Returns the user agent for the call if passed into the `options.userAgent` field.
-
-The user agent will be parsed by [component/user-agent-parser](https://github.com/component/user-agent-parser) and will store the full user agent under `facade.userAgent().full`;
-
-```javascript
-facade.userAgent();
-/*
-{
-browser : 'chrome',
-os : 'Mac OS X',
-full: 'Mozilla/5.0 (Macintosh; Intel Mac O...
-}
-*/
-```
+Returns the user agent for the call if passed into the `context.userAgent` field.
 
 #### .active()
 
