@@ -23,6 +23,30 @@ describe('Track', function() {
 
   var track = new Track(args);
 
+  describe('.id()', function() {
+    it('should proxy properties.id as default fallback', function() {
+      var msg = new Track({ properties: { id: '1738' } });
+      assert.strictEqual(msg.id(), '1738');
+    });
+
+    it('should proxy properties\' [object]Id', function() {
+      var msg = new Track({ properties: { productId: '1738' } });
+      assert.strictEqual(msg.id('product'), '1738');
+    });
+
+    it('should proxy properties\' [object]_id', function() {
+      var msg = new Track({ properties: { promotion_id: '1738' } });
+      assert.strictEqual(msg.id('promotion'), '1738');
+    });
+  });
+
+  describe('.sku()', function() {
+    it('should proxy properties.sku', function() {
+      var msg = new Track({ properties: { sku: '12039' } });
+      assert.strictEqual(msg.sku(), '12039');
+    });
+  });
+
   describe('.repeat()', function() {
     it('should proxy properties.repeat', function() {
       var msg = new Track({ properties: { repeat: true } });
@@ -232,6 +256,11 @@ describe('Track', function() {
 
     it('should proxy `id`', function() {
       var track = new Track({ properties: { id: 'id' } });
+      assert.strictEqual(track.orderId(), 'id');
+    });
+
+    it('should proxy `order_id`', function() {
+      var track = new Track({ properties: { order_id: 'id' } });
       assert.strictEqual(track.orderId(), 'id');
     });
   });
