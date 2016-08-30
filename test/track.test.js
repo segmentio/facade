@@ -38,6 +38,11 @@ describe('Track', function() {
       var msg = new Track({ properties: { promotion_id: '1738' } });
       assert.strictEqual(msg.id('promotion'), '1738');
     });
+
+    it('should respect falback order: snake_case || camelCase', function() {
+      var msg = new Track({ properties: { order_id: 'yolo', orderId: 'yolo2' } }); 
+      assert.strictEqual(msg.id('order'), 'yolo');
+    });
   });
 
   describe('.sku()', function() {
@@ -262,6 +267,24 @@ describe('Track', function() {
     it('should proxy `order_id`', function() {
       var track = new Track({ properties: { order_id: 'id' } });
       assert.strictEqual(track.orderId(), 'id');
+    });
+
+    it('should respect fallback order: `id` || `orderId` || `order_id`', function() {
+      var props = {
+        id: '1',
+        orderId: '2',
+        order_id: '3'
+      };
+      var track = new Track({ properties: props });
+      assert.strictEqual(track.orderId(), '1');
+      
+      delete props.id;
+      var track2 = new Track({ properties: props });
+      assert.strictEqual(track2.orderId(), '2');
+
+      delete props.orderId;
+      var track3 = new Track({ properties: props });
+      assert.strictEqual(track3.orderId(), '3');
     });
   });
 
