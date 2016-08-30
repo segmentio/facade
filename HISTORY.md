@@ -1,3 +1,10 @@
+
+3.1.0 / 2016-08-30
+==================
+
+  * create individual helper functions for each object_id
+  * update .orderId unction to support ecom spec v2
+
 3.0.3 / 2016-06-06
 ==================
 
