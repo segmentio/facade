@@ -23,6 +23,108 @@ describe('Track', function() {
 
   var track = new Track(args);
 
+  describe('.id()', function() {
+    it('should proxy properties.id', function() {
+      var msg = new Track({ properties: { id: '12039' } });
+      assert.strictEqual(msg.id(), '12039');
+    });
+  });
+
+  describe('.productId()', function() {
+    it('should proxy properties.product_id', function() {
+      var msg = new Track({ properties: { product_id: '1738' } }); 
+      assert.strictEqual(msg.productId(), '1738');
+    });
+    it('should proxy properties.productId', function() {
+      var msg = new Track({ properties: { productId: '1738' } }); 
+      assert.strictEqual(msg.productId(), '1738');
+    });
+  });
+
+  describe('.promotionId()', function() {
+    it('should proxy properties.promotion_id', function() {
+      var msg = new Track({ properties: { promotion_id: '1738' } }); 
+      assert.strictEqual(msg.promotionId(), '1738');
+    });
+    it('should proxy properties.promotionId', function() {
+      var msg = new Track({ properties: { promotionId: '1738' } }); 
+      assert.strictEqual(msg.promotionId(), '1738');
+    });
+  });
+
+  describe('.cartId()', function() {
+    it('should proxy properties.cart_id', function() {
+      var msg = new Track({ properties: { cart_id: '1738' } }); 
+      assert.strictEqual(msg.cartId(), '1738');
+    });
+    it('should proxy properties.cartId', function() {
+      var msg = new Track({ properties: { cartId: '1738' } }); 
+      assert.strictEqual(msg.cartId(), '1738');
+    });
+  });
+
+  describe('.checkoutId()', function() {
+    it('should proxy properties.checkout_id', function() {
+      var msg = new Track({ properties: { checkout_id: '1738' } }); 
+      assert.strictEqual(msg.checkoutId(), '1738');
+    });
+    it('should proxy properties.checkoutId', function() {
+      var msg = new Track({ properties: { checkoutId: '1738' } }); 
+      assert.strictEqual(msg.checkoutId(), '1738');
+    });
+  });
+
+  describe('.paymentId()', function() {
+    it('should proxy properties.payment_id', function() {
+      var msg = new Track({ properties: { payment_id: '1738' } }); 
+      assert.strictEqual(msg.paymentId(), '1738');
+    });
+    it('should proxy properties.paymentId', function() {
+      var msg = new Track({ properties: { paymentId: '1738' } }); 
+      assert.strictEqual(msg.paymentId(), '1738');
+    });
+  });
+
+  describe('.couponId()', function() {
+    it('should proxy properties.coupon_id', function() {
+      var msg = new Track({ properties: { coupon_id: '1738' } }); 
+      assert.strictEqual(msg.couponId(), '1738');
+    });
+    it('should proxy properties.couponId', function() {
+      var msg = new Track({ properties: { couponId: '1738' } }); 
+      assert.strictEqual(msg.couponId(), '1738');
+    });
+  });
+
+  describe('.wishlistId()', function() {
+    it('should proxy properties.wishlist_id', function() {
+      var msg = new Track({ properties: { wishlist_id: '1738' } }); 
+      assert.strictEqual(msg.wishlistId(), '1738');
+    });
+    it('should proxy properties.wishlistId', function() {
+      var msg = new Track({ properties: { wishlistId: '1738' } }); 
+      assert.strictEqual(msg.wishlistId(), '1738');
+    });
+  });
+
+  describe('.reviewId()', function() {
+    it('should proxy properties.review_id', function() {
+      var msg = new Track({ properties: { review_id: '1738' } }); 
+      assert.strictEqual(msg.reviewId(), '1738');
+    });
+    it('should proxy properties.reviewId', function() {
+      var msg = new Track({ properties: { reviewId: '1738' } }); 
+      assert.strictEqual(msg.reviewId(), '1738');
+    });
+  });
+
+  describe('.sku()', function() {
+    it('should proxy properties.sku', function() {
+      var msg = new Track({ properties: { sku: '12039' } });
+      assert.strictEqual(msg.sku(), '12039');
+    });
+  });
+
   describe('.repeat()', function() {
     it('should proxy properties.repeat', function() {
       var msg = new Track({ properties: { repeat: true } });
@@ -232,6 +334,11 @@ describe('Track', function() {
 
     it('should proxy `id`', function() {
       var track = new Track({ properties: { id: 'id' } });
+      assert.strictEqual(track.orderId(), 'id');
+    });
+
+    it('should proxy `order_id`', function() {
+      var track = new Track({ properties: { order_id: 'id' } });
       assert.strictEqual(track.orderId(), 'id');
     });
   });
