@@ -499,6 +499,28 @@ describe('Track', function() {
     });
   });
 
+  describe('.shippingMethod()', function() {
+    it('should proxy properties.shipping_method', function() {
+      var msg = new Track({ properties: { shipping_method: 'UPS' } }); 
+      assert.strictEqual(msg.shippingMethod(), 'UPS');
+    });
+    it('should proxy properties.shippingMethod', function() {
+      var msg = new Track({ properties: { shippingMethod: 'UPS' } }); 
+      assert.strictEqual(msg.shippingMethod(), 'UPS');
+    });
+  });
+
+  describe('.paymentMethod()', function() {
+    it('should proxy properties.payment_method', function() {
+      var msg = new Track({ properties: { payment_method: 'VISA' } }); 
+      assert.strictEqual(msg.paymentMethod(), 'VISA');
+    });
+    it('should proxy properties.paymentMethod', function() {
+      var msg = new Track({ properties: { paymentMethod: 'VISA' } }); 
+      assert.strictEqual(msg.paymentMethod(), 'VISA');
+    });
+  });
+  
   describe('.identify()', function() {
     it('should convert track to identify calls', function() {
       var track = new Track(args);
