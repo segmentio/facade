@@ -1,4 +1,9 @@
 
+3.2.0 / 2016-11-21
+==================
+
+  * track: add .shippingMethod, .paymentMethod methods
+
 3.1.0 / 2016-08-30
 ==================
 
