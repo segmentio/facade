@@ -483,6 +483,11 @@ describe('Track', function() {
       });
       assert.strictEqual(track.cents(), 999);
     });
+
+    it('should handle 100 * 19.99', function() {
+      var track = new Track({ properties: { revenue: 19.99 } });
+      assert.strictEqual(track.cents(), 1999);
+    });
   });
 
   describe('.description()', function() {
