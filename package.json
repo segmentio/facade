@@ -31,7 +31,7 @@
     "@segment/eslint-config": "^3.1.1",
     "@segment/isodate": "^1.0.2",
     "@segment/to-iso-string": "^1.0.0",
-    "browserify": "^13.0.0",
+    "browserify": "13.0.0",
     "browserify-istanbul": "^2.0.0",
     "eslint": "^2.9.0",
     "eslint-plugin-mocha": "^2.2.0",
