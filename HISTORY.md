@@ -1,3 +1,7 @@
+3.2.1 / 2017-06-13
+==================
+
+  * Add optional argument to `screen.track()` to support returning just the screen name instead of `Viewed + screen.name + screen`.
 
 3.2.0 / 2016-11-21
 ==================

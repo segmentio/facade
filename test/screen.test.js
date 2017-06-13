@@ -123,6 +123,11 @@ describe('Screen', function() {
     it('should return "Loaded a Screen" if name is omitted', function() {
       assert.deepEqual(new Screen({}).event(), 'Loaded a Screen');
     });
+
+    it('should return just the name if padScreenName is false', function() {
+      var screen = new Screen({});
+      assert.deepEqual(screen.event('Foo', false), 'Foo');
+    });
   });
 
   describe('.track()', function() {
