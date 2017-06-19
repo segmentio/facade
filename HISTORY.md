@@ -1,3 +1,9 @@
+3.2.1 / 2017-06-19
+==================
+
+* track: fallback to revenue property in .subtotal method
+* update .subtotal tests
+* pin package.json dependencies
 
 3.2.0 / 2016-11-21
 ==================
@@ -54,12 +60,12 @@
 
 2.2.0 / 2015-08-18
 ==================
-  
+
   * enable aliasing of page properties
 
 1.5.0 / 2015-08-18
 ==================
-  
+
   * enable aliasing of page properties
 
 2.1.1 / 2015-06-30

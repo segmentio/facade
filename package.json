@@ -1,6 +1,6 @@
 {
   "name": "segmentio-facade",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Providing common fields for analytics integrations",
   "keywords": [],
   "main": "lib/index.js",
