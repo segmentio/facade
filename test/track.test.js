@@ -32,88 +32,88 @@ describe('Track', function() {
 
   describe('.productId()', function() {
     it('should proxy properties.product_id', function() {
-      var msg = new Track({ properties: { product_id: '1738' } }); 
+      var msg = new Track({ properties: { product_id: '1738' } });
       assert.strictEqual(msg.productId(), '1738');
     });
     it('should proxy properties.productId', function() {
-      var msg = new Track({ properties: { productId: '1738' } }); 
+      var msg = new Track({ properties: { productId: '1738' } });
       assert.strictEqual(msg.productId(), '1738');
     });
   });
 
   describe('.promotionId()', function() {
     it('should proxy properties.promotion_id', function() {
-      var msg = new Track({ properties: { promotion_id: '1738' } }); 
+      var msg = new Track({ properties: { promotion_id: '1738' } });
       assert.strictEqual(msg.promotionId(), '1738');
     });
     it('should proxy properties.promotionId', function() {
-      var msg = new Track({ properties: { promotionId: '1738' } }); 
+      var msg = new Track({ properties: { promotionId: '1738' } });
       assert.strictEqual(msg.promotionId(), '1738');
     });
   });
 
   describe('.cartId()', function() {
     it('should proxy properties.cart_id', function() {
-      var msg = new Track({ properties: { cart_id: '1738' } }); 
+      var msg = new Track({ properties: { cart_id: '1738' } });
       assert.strictEqual(msg.cartId(), '1738');
     });
     it('should proxy properties.cartId', function() {
-      var msg = new Track({ properties: { cartId: '1738' } }); 
+      var msg = new Track({ properties: { cartId: '1738' } });
       assert.strictEqual(msg.cartId(), '1738');
     });
   });
 
   describe('.checkoutId()', function() {
     it('should proxy properties.checkout_id', function() {
-      var msg = new Track({ properties: { checkout_id: '1738' } }); 
+      var msg = new Track({ properties: { checkout_id: '1738' } });
       assert.strictEqual(msg.checkoutId(), '1738');
     });
     it('should proxy properties.checkoutId', function() {
-      var msg = new Track({ properties: { checkoutId: '1738' } }); 
+      var msg = new Track({ properties: { checkoutId: '1738' } });
       assert.strictEqual(msg.checkoutId(), '1738');
     });
   });
 
   describe('.paymentId()', function() {
     it('should proxy properties.payment_id', function() {
-      var msg = new Track({ properties: { payment_id: '1738' } }); 
+      var msg = new Track({ properties: { payment_id: '1738' } });
       assert.strictEqual(msg.paymentId(), '1738');
     });
     it('should proxy properties.paymentId', function() {
-      var msg = new Track({ properties: { paymentId: '1738' } }); 
+      var msg = new Track({ properties: { paymentId: '1738' } });
       assert.strictEqual(msg.paymentId(), '1738');
     });
   });
 
   describe('.couponId()', function() {
     it('should proxy properties.coupon_id', function() {
-      var msg = new Track({ properties: { coupon_id: '1738' } }); 
+      var msg = new Track({ properties: { coupon_id: '1738' } });
       assert.strictEqual(msg.couponId(), '1738');
     });
     it('should proxy properties.couponId', function() {
-      var msg = new Track({ properties: { couponId: '1738' } }); 
+      var msg = new Track({ properties: { couponId: '1738' } });
       assert.strictEqual(msg.couponId(), '1738');
     });
   });
 
   describe('.wishlistId()', function() {
     it('should proxy properties.wishlist_id', function() {
-      var msg = new Track({ properties: { wishlist_id: '1738' } }); 
+      var msg = new Track({ properties: { wishlist_id: '1738' } });
       assert.strictEqual(msg.wishlistId(), '1738');
     });
     it('should proxy properties.wishlistId', function() {
-      var msg = new Track({ properties: { wishlistId: '1738' } }); 
+      var msg = new Track({ properties: { wishlistId: '1738' } });
       assert.strictEqual(msg.wishlistId(), '1738');
     });
   });
 
   describe('.reviewId()', function() {
     it('should proxy properties.review_id', function() {
-      var msg = new Track({ properties: { review_id: '1738' } }); 
+      var msg = new Track({ properties: { review_id: '1738' } });
       assert.strictEqual(msg.reviewId(), '1738');
     });
     it('should proxy properties.reviewId', function() {
-      var msg = new Track({ properties: { reviewId: '1738' } }); 
+      var msg = new Track({ properties: { reviewId: '1738' } });
       assert.strictEqual(msg.reviewId(), '1738');
     });
   });
@@ -201,7 +201,17 @@ describe('Track', function() {
     });
 
     it('should lookup .subtotal properly', function() {
-      var track = new Track({ properties: { Subtotal: 10 } });
+      var track = new Track({ properties: { subtotal: 10 } });
+      assert.strictEqual(track.subtotal(), 10);
+    });
+
+    it('should fall back to .revenue properly', function() {
+      var track = new Track({ properties: { revenue: 10 } });
+      assert.strictEqual(track.subtotal(), 10);
+    });
+
+    it('should not deduct .tax .shipping or .discount from revenue', function() {
+      var track = new Track({ properties: { revenue: 10, tax: 2, shipping: 2, discount: 1 } });
       assert.strictEqual(track.subtotal(), 10);
     });
   });
@@ -501,26 +511,26 @@ describe('Track', function() {
 
   describe('.shippingMethod()', function() {
     it('should proxy properties.shipping_method', function() {
-      var msg = new Track({ properties: { shipping_method: 'UPS' } }); 
+      var msg = new Track({ properties: { shipping_method: 'UPS' } });
       assert.strictEqual(msg.shippingMethod(), 'UPS');
     });
     it('should proxy properties.shippingMethod', function() {
-      var msg = new Track({ properties: { shippingMethod: 'UPS' } }); 
+      var msg = new Track({ properties: { shippingMethod: 'UPS' } });
       assert.strictEqual(msg.shippingMethod(), 'UPS');
     });
   });
 
   describe('.paymentMethod()', function() {
     it('should proxy properties.payment_method', function() {
-      var msg = new Track({ properties: { payment_method: 'VISA' } }); 
+      var msg = new Track({ properties: { payment_method: 'VISA' } });
       assert.strictEqual(msg.paymentMethod(), 'VISA');
     });
     it('should proxy properties.paymentMethod', function() {
-      var msg = new Track({ properties: { paymentMethod: 'VISA' } }); 
+      var msg = new Track({ properties: { paymentMethod: 'VISA' } });
       assert.strictEqual(msg.paymentMethod(), 'VISA');
     });
   });
-  
+
   describe('.identify()', function() {
     it('should convert track to identify calls', function() {
       var track = new Track(args);
