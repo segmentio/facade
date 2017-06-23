@@ -5,6 +5,11 @@
 * update .subtotal tests
 * pin package.json dependencies
 
+3.2.1 / 2017-03-29
+==================
+
+  * track: add rounding to .cents() method
+
 3.2.0 / 2016-11-21
 ==================
 
