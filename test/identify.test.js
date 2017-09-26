@@ -165,10 +165,10 @@ describe('Identify', function() {
     it('should proxy from company.name', function() {
       var identify = new Identify({
         traits: {
-          company: { name: "Example Company" }
+          company: { name: 'Example Company' }
         }
       });
-      assert.deepEqual(identify.companyName(), "Example Company");
+      assert.deepEqual(identify.companyName(), 'Example Company');
     });
   });
 
