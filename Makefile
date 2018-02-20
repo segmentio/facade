@@ -98,3 +98,7 @@ test-browser: install
 test: lint test-node test-browser
 .PHONY: test
 .DEFAULT_GOAL = test
+
+docs: install
+	@documentation build --github --format html --output docs lib/**
+.PHONY: docs
