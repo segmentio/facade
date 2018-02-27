@@ -100,5 +100,5 @@ test: lint test-node test-browser
 .DEFAULT_GOAL = test
 
 docs: install
-	@documentation build --github --format html --output docs lib/**
+	@./node_modules/.bin/documentation build --github --format html --output docs lib/**
 .PHONY: docs
