@@ -8,7 +8,7 @@ API for use on the server or client.
 
 ## Documentation
 
-See auto-generated documentation at [facade.segment.com](facade.segment.com).
+See auto-generated documentation at [facade.segment.com](http://facade.segment.com).
 
 ## Contributing
 
