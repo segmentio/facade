@@ -57,13 +57,9 @@ ISTANBUL_FLAGS := \
 # Tasks
 ##
 
-# Install node modules.
-node_modules: package.json $(wildcard node_modules/*/package.json)
-	@npm install
-	@touch $@
-
 # Install dependencies.
-install: node_modules
+install:
+	yarn install --frozen-lockfile
 
 # Remove temporary files and build artifacts.
 clean:
