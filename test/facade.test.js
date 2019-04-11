@@ -326,7 +326,7 @@ describe('Facade', function() {
       assert.strictEqual(facade.enabled('Salesforce'), false);
       facade = new Facade({ context: { Salesforce: { x: 1 } } });
       assert.strictEqual(facade.enabled('Salesforce'), true);
-    });
+    }).skip();
 
     it('should fall back to old providers api', function() {
       var providers = { 'Customer.io': false, Salesforce: true };
