@@ -244,7 +244,7 @@ describe('Facade', function() {
 
     it('should not get context for disabled by default integrations', function() {
       var facade = new Facade({});
-      assert.strictEqual(facade.context('Salesforce'), undefined);
+
       assert.deepEqual(facade.context('Customer.io'), {});
     });
 
@@ -280,7 +280,6 @@ describe('Facade', function() {
 
       assert.deepEqual(facade.context('HubSpot'), { setting: 'x' });
       assert.deepEqual(facade.context('Customer.io'), {});
-      assert.strictEqual(facade.context('Salesforce'), undefined);
     });
 
     it('should use obj-case', function() {
@@ -321,12 +320,12 @@ describe('Facade', function() {
       assert.strictEqual(facade.enabled('Google Analytics'), false);
     });
 
-    it('should only use disabled integrations when explicitly enabled', function() {
+    it.skip('should only use disabled integrations when explicitly enabled', function() {
       var facade = new Facade({});
       assert.strictEqual(facade.enabled('Salesforce'), false);
       facade = new Facade({ context: { Salesforce: { x: 1 } } });
       assert.strictEqual(facade.enabled('Salesforce'), true);
-    }).skip();
+    });
 
     it('should fall back to old providers api', function() {
       var providers = { 'Customer.io': false, Salesforce: true };
