@@ -498,3 +498,8 @@ class Page extends Facade {
    */
   track(name?: string): Track
 }
+
+class Screen extends Page {
+  action(): 'screen'
+  type(): 'screen'
+}
