@@ -1,8 +1,14 @@
-export declare class Facade {
-  static Track: Track
-  static Identify: Identify
-  static Page: Page
-  static Group: Group
+interface Options {
+  clone?: boolean
+  traverse?: boolean
+}
+
+export class Facade<T = { [key: string]: any }> {
+  constructor(object: { [key: string]: any }, options?: Options)
+  Track: Track
+  Identify: Identify
+  Page: Page
+  Group: Group
   /**
    * Get a potentially-nested field in this facade. `field` should be a
    * period-separated sequence of properties.
@@ -35,12 +41,11 @@ export declare class Facade {
    * Options are taken from the `options` property of the underlying object,
    * falling back to the object's `context` or simply `{}`.
    *
-   * @param {string} integration - The name of the integration to get settings
+   * @param integration - The name of the integration to get settings
    * for. Casing does not matter.
-   * @return {Object|undefined}
    */
-  options(integration?: string): object | void
-  context(integration?: string): object | void
+  options(): { [key: string]: any }
+  options(integration?: string): T
   /**
    * Check whether an integration is enabled.
    *
@@ -89,7 +94,7 @@ export declare class Facade {
    * in the traits, and move it to `yyy`. If `xxx` is a method of this facade,
    * it'll be called as a function instead of treated as a key into the traits.
    */
-  traits(aliases?: object): object
+  traits(aliases?: object): { [key: string]: any }
   /**
    * The library and version of the client used to produce the message.
    *
@@ -146,13 +151,13 @@ export declare class Facade {
    * `properties.address`.
    */
   region(): unknown
+  type(): 'page' | 'identify' | 'group' | 'track' | 'screen' | 'alias'
+  action(): 'page' | 'identify' | 'group' | 'track' | 'screen' | 'alias'
 }
 
-class Track extends Facade {
-  /** Return the type of facade this is. This will always return `"track"`. */
-  action(): 'track'
+export class Track<T = { [key: string]: any }> extends Facade<T> {
   /** Get the event name from `event`. */
-  event(): unknown
+  event(): string
   /** Get the event value, usually the monetary value, from `properties.value`. */
   value(): unknown
   /** Get the event cateogry from `properties.category`. */
@@ -242,7 +247,7 @@ class Track extends Facade {
    * track.traits({ "foo": "asdf" }) // { "asdf": "bar" }
    * track.traits({ "sessionId": "rofl" }) // { "rofl": "xxx" }
    */
-  properties(aliases?: object): object
+  properties(aliases?: object): { [key: string]: any }
   /**
    * Get the username of the user for this event from `traits.username`,
    * `properties.username`, `userId`, or `anonymousId`.
@@ -284,9 +289,7 @@ class Track extends Facade {
   identify(): Identify
 }
 
-class Identify extends Facade {
-  /** Return the type of facade this is. This will always return `"identify"`. */
-  action(): 'identify'
+export class Identify<T = { [key: string]: any }> extends Facade<T> {
   /**
    * Get the user's traits. This is identical to how {@link Facade#traits} works,
    * except it looks at `traits.*` instead of `options.traits.*`.
@@ -308,7 +311,7 @@ class Identify extends Facade {
    * identify.traits({ "sessionId": "rofl" }) // { "rofl": "xxx" }
    *
    */
-  traits(aliases?: object): object
+  traits(aliases?: object): { [key: string]: any }
   /**
    * Get the user's email from `traits.email`, falling back to `userId` only if
    * it looks like a valid email.
@@ -349,9 +352,7 @@ class Identify extends Facade {
   lastName(): unknown
 }
 
-class Group extends Facade {
-  action(): 'group'
-  type(): 'group'
+export class Group<T = { [key: string]: any }> extends Facade<T> {
   /**
    * Get the group ID from `groupId`.
    *
@@ -376,7 +377,7 @@ class Group extends Facade {
    * the traits, and move it to `yyy`. If `xxx` is a method of this facade, it'll
    * be called as a function instead of treated as a key into the traits.
    */
-  traits(aliases?: object): object
+  traits(aliases?: object): { [key: string]: any }
   /**
    * Get the group's email from `traits.email`, falling back to `groupId` only if
    * it looks like a valid email.
@@ -410,9 +411,7 @@ class Group extends Facade {
   properties(): unknown
 }
 
-class Page extends Facade {
-  action(): 'page'
-  type(): 'page'
+export class Page<T = { [key: string]: any }> extends Facade<T> {
   /**
    * Get the page category from `category`.
    *
@@ -470,7 +469,7 @@ class Page extends Facade {
    * the traits, and move it to `yyy`. If `xxx` is a method of this facade, it'll
    * be called as a function instead of treated as a key into the traits.
    */
-  properties(aliases?: object): unknown
+  properties(aliases?: object): { [key: string]: any }
   /**
    * Get the user's email from `context.traits.email` or `properties.email`,
    * falling back to `userId` if it's a valid email.
@@ -491,7 +490,7 @@ class Page extends Facade {
    * Get an event name from this page call. If `name` is present, this will be
    * `Viewed $name Page`; otherwise, it will be `Loaded a Page`.
    */
-  event(): string
+  event(name?: string): string
   /**
    * Convert this Page to a {@link Track} facade. The inputted `name` will be
    * converted to the Track's event name via {@link Page#event}.
@@ -499,7 +498,4 @@ class Page extends Facade {
   track(name?: string): Track
 }
 
-class Screen extends Page {
-  action(): 'screen'
-  type(): 'screen'
-}
+export class Screen<T = { [key: string]: any }> extends Page<T> {}
