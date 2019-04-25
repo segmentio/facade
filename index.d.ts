@@ -32,7 +32,7 @@ export class Facade<T = { [key: string]: any }> {
    * will be assigned as the property `type` of the outputted object.
    *
    */
-  json(): object
+  json(): { [key: string]: any }
   /**
    * Get the options of a call. If an integration is passed, only the options for
    * that integration are included. If the integration is not enabled, then
@@ -69,7 +69,7 @@ export class Facade<T = { [key: string]: any }> {
   /**
    * Get all `integration` options.
    */
-  integrations(): object
+  integrations(): { [key: string]: any }
   /**
    * Check whether the user is active.
    */
@@ -78,6 +78,10 @@ export class Facade<T = { [key: string]: any }> {
    * Get `sessionId / anonymousId`.
    */
   anonymousId(): unknown
+  /**
+   * Get `sessionId / anonymousId`.
+   */
+  sessionId(): unknown
   /**
    * Get `groupId` from `context.groupId`.
    */
@@ -153,6 +157,7 @@ export class Facade<T = { [key: string]: any }> {
   region(): unknown
   type(): 'page' | 'identify' | 'group' | 'track' | 'screen' | 'alias'
   action(): 'page' | 'identify' | 'group' | 'track' | 'screen' | 'alias'
+  active(): unknown
 }
 
 export class Track<T = { [key: string]: any }> extends Facade<T> {
