@@ -1,3 +1,8 @@
+3.2.5 / 2019-05-13
+==================
+
+* Update ts declaration file to use a namespace. This should improve the experience when using JSdoc.
+
 3.2.4 / 2019-04-22
 ==================
 
