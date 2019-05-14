@@ -504,6 +504,8 @@ declare namespace Facade {
   }
 
   export class Screen<T = { [key: string]: any }> extends Page<T> {}
+
+  export class Delete<T = { [key: string]: any }> extends Facade<T> {}
 }
 
 declare module "segmentio-facade" {
