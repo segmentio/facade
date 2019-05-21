@@ -504,6 +504,29 @@ declare namespace Facade {
   }
 
   export class Screen<T = { [key: string]: any }> extends Page<T> {}
+
+  export class Delete<T = { [key: string]: any }> extends Facade<T> {}
+
+  export class Alias<T = { [key: string]: any }> extends Facade<T> {
+    /**
+     * Get the user's previous ID from previousId or from.
+     * This should be a string, but may not be if the client isn't adhering to the spec.
+     */
+    previousId(): unknown
+    /**
+     * An alias for .previousId.
+     */
+    from(): unknown
+    /**
+     * An alias for .userId
+     */
+    to(): unknown
+    /**
+     * Get the user's new ID from userId or to.
+     * This should be a string, but may not be if the client isn't adhering to the spec.
+     */
+    userId(): unknown
+  }
 }
 
 declare module "segmentio-facade" {
