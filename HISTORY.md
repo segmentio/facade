@@ -1,3 +1,8 @@
+3.2.6 / 2019-05-21
+==================
+
+* Add types for Delete and Alias in the declaration file.
+
 3.2.5 / 2019-05-13
 ==================
 
