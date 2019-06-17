@@ -1,5 +1,5 @@
 import { Message } from './message'
-import { Facade } from '../src'
+import { Facade } from '../lib'
 import { Identify as Spec } from '@segment/spec/events'
 
 export class Identify extends Message implements Spec {

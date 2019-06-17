@@ -1,4 +1,4 @@
-import { Facade } from '../../src'
+import { Facade } from '../../lib'
 import * as Spec from '@segment/spec/types/web'
 
 export class Campaign extends Facade<Spec.Campaign> implements Spec.Campaign {

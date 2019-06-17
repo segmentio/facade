@@ -1,5 +1,5 @@
 import { Message } from './message'
-import { Facade } from '../src'
+import { Facade } from '../lib'
 import { Track as Spec } from '@segment/spec/events/'
 
 export class Track extends Message implements Spec {

@@ -1,5 +1,5 @@
 import * as Spec from '@segment/spec/types/common'
-import { Facade } from '../../src'
+import { Facade } from '../../lib'
 
 export class Company extends Facade<Spec.Company> implements Spec.Company {
   get name() {

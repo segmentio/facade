@@ -1,4 +1,4 @@
-import { Facade } from '../../src'
+import { Facade } from '../../lib'
 import * as Spec from '@segment/spec/types/ecommerce'
 
 export class Product extends Facade<Spec.Product> implements Spec.Product {

@@ -1,4 +1,4 @@
-import { Facade } from '../../src'
+import { Facade } from '../../lib'
 import * as Spec from '@segment/spec/types/mobile'
 
 export class App extends Facade<Spec.Application> implements Spec.Application {
