@@ -3,7 +3,7 @@
   "version": "4.0.0",
   "description": "Providing common fields for analytics integrations",
   "keywords": [],
-  "main": "dist",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "ts-mocha 'src/**/*.test.ts'",
     "build": "tsc",
