@@ -1,7 +1,0 @@
-{
-  "extends": "@segment/eslint-config/browser/legacy",
-
-  "rules": {
-    "guard-for-in": 0
-  }
-}
