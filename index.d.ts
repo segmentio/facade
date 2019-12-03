@@ -530,6 +530,13 @@ declare namespace Facade {
 
   /**
    * Handy utility to convert objects into a Facade using this library.
+   *
+   * Example usage:
+   * ```js
+   * const { toFacade } = require('segmentio-facade')
+   * const obj = { type: 'identify' traits: { email : 'friends@segment.com' }
+   * toFacade(obj).email() // friends@segment.com
+   * ```
    */
   export function toFacade(Object): Facade;
 }
