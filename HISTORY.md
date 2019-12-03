@@ -1,3 +1,8 @@
+3.3.0 / 2019-12-2
+=================
+
+* Move https://github.com/segmentio/to-facade to this module exported as `toFacade`.
+
 3.2.6 / 2019-05-21
 ==================
 

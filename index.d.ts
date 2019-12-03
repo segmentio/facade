@@ -527,6 +527,11 @@ declare namespace Facade {
      */
     userId(): unknown
   }
+
+  /**
+   * Handy utility to convert objects into a Facade using this library.
+   */
+  export function toFacade(Object): Facade;
 }
 
 declare module "segmentio-facade" {
