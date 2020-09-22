@@ -5,7 +5,7 @@ import { notStrictEqual, strictEqual, deepEqual, notEqual } from "proclaim";
 import { parse } from "@segment/isodate";
 import { useFakeTimers } from "sinon";
 
-const { field, proxy, multi, one } = Facade;
+let { field, proxy, multi, one } = Facade;
 
 describe("Facade", function () {
   var clock;
