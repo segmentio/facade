@@ -38,6 +38,7 @@
     "proclaim": "^3.4.1",
     "sinon": "^1.7.3",
     "ts-jest": "^26.4.0",
+    "tsdx": "^0.14.0",
     "typescript": "^4.0.3",
     "watchify": "^3.7.0"
   }
