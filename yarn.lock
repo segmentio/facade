@@ -2301,6 +2301,11 @@ disparity@^2.0.0:
     ansi-styles "^2.0.1"
     diff "^1.3.2"
 
+dlv@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/dlv/-/dlv-1.1.3.tgz#5c198a8a11453596e751494d49874bc7732f2e79"
+  integrity sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==
+
 doctrine-temporary-fork@2.0.0-alpha-allowarrayindex:
   version "2.0.0-alpha-allowarrayindex"
   resolved "https://registry.npmjs.org/doctrine-temporary-fork/-/doctrine-temporary-fork-2.0.0-alpha-allowarrayindex.tgz#40015a867eb27e75b26c828b71524f137f89f9f0"
