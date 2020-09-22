@@ -1,6 +1,6 @@
 "use strict";
 
-import get from "dlv";
+import get from "obj-case";
 
 function trait(a: string, b?: string) {
   return function () {
