@@ -55,6 +55,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "proclaim": "^3.4.1",
     "sinon": "^1.7.3",
+    "typescript": "^4.0.3",
     "watchify": "^3.7.0"
   }
 }
