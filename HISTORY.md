@@ -1,3 +1,11 @@
+
+3.3.0 / 2020-09-23
+==================
+
+  * Optimize bundle size
+  * Upgrade libraries
+  * Compile modern code with TypeScript
+
 3.2.6 / 2019-05-21
 ==================
 
