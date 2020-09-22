@@ -2,7 +2,7 @@
 
 // A few integrations are disabled by default. They must be explicitly enabled
 // by setting options[Provider] = true.
-const disabled = {
+const disabled: Record<string, boolean> = {
   Salesforce: true,
 };
 
@@ -13,6 +13,6 @@ const disabled = {
  * @param {string} integration
  * @return {boolean}
  */
-export default function (integration) {
+export default function (integration: string): boolean {
   return !disabled[integration];
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-import Alias from "../lib/alias";
+import { Alias } from "../lib";
 import { deepEqual, strictEqual } from "proclaim";
 
 describe("Alias", function () {

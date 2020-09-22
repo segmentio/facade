@@ -1,9 +1,11 @@
 "use strict";
 
-import Facade, { field, proxy, multi, one, Track } from "../lib";
+import { Facade, Track } from "../lib";
 import { notStrictEqual, strictEqual, deepEqual, notEqual } from "proclaim";
 import { parse } from "@segment/isodate";
 import { useFakeTimers } from "sinon";
+
+const { field, proxy, multi, one } = Facade;
 
 describe("Facade", function () {
   var clock;
