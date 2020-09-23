@@ -6,7 +6,8 @@
   "main": "dist/index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "build": "rm -rf dist && yarn tsc"
   },
   "repository": {
     "type": "git",
