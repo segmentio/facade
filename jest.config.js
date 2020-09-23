@@ -1,5 +1,4 @@
 module.exports = {
-  // preset: "ts-jest",
   transform: { "\\.ts$": ["ts-jest"], "\\.js$": ["ts-jest"] },
   modulePathIgnorePatterns: ["<rootDir>/dist/"],
   clearMocks: true,
