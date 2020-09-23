@@ -1,542 +1,560 @@
-'use strict';
+"use strict";
 
-var Track = require('../lib').Track;
-var assert = require('proclaim');
+import { Track } from "../lib";
+import { strictEqual, deepEqual } from "proclaim";
 
-describe('Track', function() {
+describe("Track", function () {
   var args = {
-    userId: 'calvin@segment.io',
-    sessionId: 'abc123',
+    userId: "calvin@segment.io",
+    sessionId: "abc123",
     properties: {
-      revenue: '$50',
-      referrer: 'http://segment.io',
-      username: 'calvinfo',
-      email: 'test@segment.io'
+      revenue: "$50",
+      referrer: "http://segment.io",
+      username: "calvinfo",
+      email: "test@segment.io",
     },
     options: {
-      query: 'segmentio',
+      query: "segmentio",
       traits: {
-        someTrait: 'y'
-      }
-    }
+        someTrait: "y",
+      },
+    },
   };
 
   var track = new Track(args);
 
-  describe('.id()', function() {
-    it('should proxy properties.id', function() {
-      var msg = new Track({ properties: { id: '12039' } });
-      assert.strictEqual(msg.id(), '12039');
+  describe(".id()", function () {
+    it("should proxy properties.id", function () {
+      var msg = new Track({ properties: { id: "12039" } });
+      strictEqual(msg.id(), "12039");
     });
   });
 
-  describe('.productId()', function() {
-    it('should proxy properties.product_id', function() {
-      var msg = new Track({ properties: { product_id: '1738' } });
-      assert.strictEqual(msg.productId(), '1738');
+  describe(".productId()", function () {
+    it("should proxy properties.product_id", function () {
+      var msg = new Track({ properties: { product_id: "1738" } });
+      strictEqual(msg.productId(), "1738");
     });
-    it('should proxy properties.productId', function() {
-      var msg = new Track({ properties: { productId: '1738' } });
-      assert.strictEqual(msg.productId(), '1738');
-    });
-  });
-
-  describe('.promotionId()', function() {
-    it('should proxy properties.promotion_id', function() {
-      var msg = new Track({ properties: { promotion_id: '1738' } });
-      assert.strictEqual(msg.promotionId(), '1738');
-    });
-    it('should proxy properties.promotionId', function() {
-      var msg = new Track({ properties: { promotionId: '1738' } });
-      assert.strictEqual(msg.promotionId(), '1738');
+    it("should proxy properties.productId", function () {
+      var msg = new Track({ properties: { productId: "1738" } });
+      strictEqual(msg.productId(), "1738");
     });
   });
 
-  describe('.cartId()', function() {
-    it('should proxy properties.cart_id', function() {
-      var msg = new Track({ properties: { cart_id: '1738' } });
-      assert.strictEqual(msg.cartId(), '1738');
+  describe(".promotionId()", function () {
+    it("should proxy properties.promotion_id", function () {
+      var msg = new Track({ properties: { promotion_id: "1738" } });
+      strictEqual(msg.promotionId(), "1738");
     });
-    it('should proxy properties.cartId', function() {
-      var msg = new Track({ properties: { cartId: '1738' } });
-      assert.strictEqual(msg.cartId(), '1738');
-    });
-  });
-
-  describe('.checkoutId()', function() {
-    it('should proxy properties.checkout_id', function() {
-      var msg = new Track({ properties: { checkout_id: '1738' } });
-      assert.strictEqual(msg.checkoutId(), '1738');
-    });
-    it('should proxy properties.checkoutId', function() {
-      var msg = new Track({ properties: { checkoutId: '1738' } });
-      assert.strictEqual(msg.checkoutId(), '1738');
+    it("should proxy properties.promotionId", function () {
+      var msg = new Track({ properties: { promotionId: "1738" } });
+      strictEqual(msg.promotionId(), "1738");
     });
   });
 
-  describe('.paymentId()', function() {
-    it('should proxy properties.payment_id', function() {
-      var msg = new Track({ properties: { payment_id: '1738' } });
-      assert.strictEqual(msg.paymentId(), '1738');
+  describe(".cartId()", function () {
+    it("should proxy properties.cart_id", function () {
+      var msg = new Track({ properties: { cart_id: "1738" } });
+      strictEqual(msg.cartId(), "1738");
     });
-    it('should proxy properties.paymentId', function() {
-      var msg = new Track({ properties: { paymentId: '1738' } });
-      assert.strictEqual(msg.paymentId(), '1738');
-    });
-  });
-
-  describe('.couponId()', function() {
-    it('should proxy properties.coupon_id', function() {
-      var msg = new Track({ properties: { coupon_id: '1738' } });
-      assert.strictEqual(msg.couponId(), '1738');
-    });
-    it('should proxy properties.couponId', function() {
-      var msg = new Track({ properties: { couponId: '1738' } });
-      assert.strictEqual(msg.couponId(), '1738');
+    it("should proxy properties.cartId", function () {
+      var msg = new Track({ properties: { cartId: "1738" } });
+      strictEqual(msg.cartId(), "1738");
     });
   });
 
-  describe('.wishlistId()', function() {
-    it('should proxy properties.wishlist_id', function() {
-      var msg = new Track({ properties: { wishlist_id: '1738' } });
-      assert.strictEqual(msg.wishlistId(), '1738');
+  describe(".checkoutId()", function () {
+    it("should proxy properties.checkout_id", function () {
+      var msg = new Track({ properties: { checkout_id: "1738" } });
+      strictEqual(msg.checkoutId(), "1738");
     });
-    it('should proxy properties.wishlistId', function() {
-      var msg = new Track({ properties: { wishlistId: '1738' } });
-      assert.strictEqual(msg.wishlistId(), '1738');
-    });
-  });
-
-  describe('.reviewId()', function() {
-    it('should proxy properties.review_id', function() {
-      var msg = new Track({ properties: { review_id: '1738' } });
-      assert.strictEqual(msg.reviewId(), '1738');
-    });
-    it('should proxy properties.reviewId', function() {
-      var msg = new Track({ properties: { reviewId: '1738' } });
-      assert.strictEqual(msg.reviewId(), '1738');
+    it("should proxy properties.checkoutId", function () {
+      var msg = new Track({ properties: { checkoutId: "1738" } });
+      strictEqual(msg.checkoutId(), "1738");
     });
   });
 
-  describe('.sku()', function() {
-    it('should proxy properties.sku', function() {
-      var msg = new Track({ properties: { sku: '12039' } });
-      assert.strictEqual(msg.sku(), '12039');
+  describe(".paymentId()", function () {
+    it("should proxy properties.payment_id", function () {
+      var msg = new Track({ properties: { payment_id: "1738" } });
+      strictEqual(msg.paymentId(), "1738");
+    });
+    it("should proxy properties.paymentId", function () {
+      var msg = new Track({ properties: { paymentId: "1738" } });
+      strictEqual(msg.paymentId(), "1738");
     });
   });
 
-  describe('.repeat()', function() {
-    it('should proxy properties.repeat', function() {
+  describe(".couponId()", function () {
+    it("should proxy properties.coupon_id", function () {
+      var msg = new Track({ properties: { coupon_id: "1738" } });
+      strictEqual(msg.couponId(), "1738");
+    });
+    it("should proxy properties.couponId", function () {
+      var msg = new Track({ properties: { couponId: "1738" } });
+      strictEqual(msg.couponId(), "1738");
+    });
+  });
+
+  describe(".wishlistId()", function () {
+    it("should proxy properties.wishlist_id", function () {
+      var msg = new Track({ properties: { wishlist_id: "1738" } });
+      strictEqual(msg.wishlistId(), "1738");
+    });
+    it("should proxy properties.wishlistId", function () {
+      var msg = new Track({ properties: { wishlistId: "1738" } });
+      strictEqual(msg.wishlistId(), "1738");
+    });
+  });
+
+  describe(".reviewId()", function () {
+    it("should proxy properties.review_id", function () {
+      var msg = new Track({ properties: { review_id: "1738" } });
+      strictEqual(msg.reviewId(), "1738");
+    });
+    it("should proxy properties.reviewId", function () {
+      var msg = new Track({ properties: { reviewId: "1738" } });
+      strictEqual(msg.reviewId(), "1738");
+    });
+  });
+
+  describe(".sku()", function () {
+    it("should proxy properties.sku", function () {
+      var msg = new Track({ properties: { sku: "12039" } });
+      strictEqual(msg.sku(), "12039");
+    });
+  });
+
+  describe(".repeat()", function () {
+    it("should proxy properties.repeat", function () {
       var msg = new Track({ properties: { repeat: true } });
-      assert.strictEqual(msg.repeat(), true);
+      strictEqual(msg.repeat(), true);
     });
   });
 
-  describe('.type()', function() {
-    it('should have the proper .type()', function() {
-      assert.strictEqual(track.type(), 'track');
+  describe(".type()", function () {
+    it("should have the proper .type()", function () {
+      strictEqual(track.type(), "track");
     });
 
-    it('should equal .action()', function() {
-      assert.strictEqual(track.type(), track.action());
-    });
-  });
-
-  describe('.userId()', function() {
-    it('should proxy the userId', function() {
-      assert.strictEqual(track.userId(), args.userId);
+    it("should equal .action()", function () {
+      strictEqual(track.type(), track.action());
     });
   });
 
-  describe('.sessionId()', function() {
-    it('should proxy the sessionId', function() {
-      assert.strictEqual(track.sessionId(), args.sessionId);
+  describe(".userId()", function () {
+    it("should proxy the userId", function () {
+      strictEqual(track.userId(), args.userId);
     });
   });
 
-  describe('.event()', function() {
-    it('should proxy the event', function() {
-      assert.strictEqual(track.event(), args.event);
+  describe(".sessionId()", function () {
+    it("should proxy the sessionId", function () {
+      strictEqual(track.sessionId(), args.sessionId);
     });
   });
 
-  describe('.quantity()', function() {
-    it('should return the quantity', function() {
+  describe(".event()", function () {
+    it("should proxy the event", function () {
+      strictEqual(track.event(), args.event);
+    });
+  });
+
+  describe(".quantity()", function () {
+    it("should return the quantity", function () {
       var track = new Track({ properties: { quantity: 2 } });
-      assert.strictEqual(track.quantity(), 2);
+      strictEqual(track.quantity(), 2);
     });
 
-    it('should default quantity to 1', function() {
+    it("should default quantity to 1", function () {
       var track = new Track({});
-      assert.strictEqual(track.quantity(), 1);
+      strictEqual(track.quantity(), 1);
     });
   });
 
-  describe('.currency()', function() {
-    it('should return the currency code', function() {
-      var track = new Track({ properties: { currency: 'EUR' } });
-      assert.strictEqual(track.currency(), 'EUR');
+  describe(".currency()", function () {
+    it("should return the currency code", function () {
+      var track = new Track({ properties: { currency: "EUR" } });
+      strictEqual(track.currency(), "EUR");
     });
 
-    it('should default currency to `USD`', function() {
+    it("should default currency to `USD`", function () {
       var track = new Track({});
-      assert.strictEqual(track.currency(), 'USD');
+      strictEqual(track.currency(), "USD");
     });
   });
 
-  describe('.subtotal()', function() {
-    it('should get subtotal', function() {
+  describe(".subtotal()", function () {
+    it("should get subtotal", function () {
       var track = new Track({ properties: { subtotal: 10 } });
-      assert.strictEqual(track.subtotal(), 10);
+      strictEqual(track.subtotal(), 10);
     });
 
-    it('should compute subtotal from total', function() {
+    it("should compute subtotal from total", function () {
       var track = new Track({ properties: { total: 10, tax: 2, shipping: 2 } });
-      assert.strictEqual(track.subtotal(), 6);
+      strictEqual(track.subtotal(), 6);
     });
 
-    it('should compute subtotal from .tax, .shipping, .discount and .total', function() {
-      var track = new Track({ properties: { Total: 10, Tax: 2, Shipping: 2, Discount: 1 } });
-      assert.strictEqual(track.subtotal(), 7);
+    it("should compute subtotal from .tax, .shipping, .discount and .total", function () {
+      var track = new Track({
+        properties: { Total: 10, Tax: 2, Shipping: 2, Discount: 1 },
+      });
+      strictEqual(track.subtotal(), 7);
     });
 
-    it('should lookup .subtotal properly', function() {
+    it("should lookup .subtotal properly", function () {
       var track = new Track({ properties: { subtotal: 10 } });
-      assert.strictEqual(track.subtotal(), 10);
+      strictEqual(track.subtotal(), 10);
     });
 
-    it('should fall back to .revenue properly', function() {
+    it("should fall back to .revenue properly", function () {
       var track = new Track({ properties: { revenue: 10 } });
-      assert.strictEqual(track.subtotal(), 10);
+      strictEqual(track.subtotal(), 10);
     });
 
-    it('should not deduct .tax .shipping or .discount from revenue', function() {
-      var track = new Track({ properties: { revenue: 10, tax: 2, shipping: 2, discount: 1 } });
-      assert.strictEqual(track.subtotal(), 10);
-    });
-  });
-
-  describe('.category()', function() {
-    it('should proxy category', function() {
-      var track = new Track({ properties: { category: 'category' } });
-      assert.strictEqual(track.category(), 'category');
+    it("should not deduct .tax .shipping or .discount from revenue", function () {
+      var track = new Track({
+        properties: { revenue: 10, tax: 2, shipping: 2, discount: 1 },
+      });
+      strictEqual(track.subtotal(), 10);
     });
   });
 
-  describe('.state()', function() {
-    it('should proxy state', function() {
-      var track = new Track({ properties: { state: 'state' } });
-      assert.strictEqual(track.state(), 'state');
+  describe(".category()", function () {
+    it("should proxy category", function () {
+      var track = new Track({ properties: { category: "category" } });
+      strictEqual(track.category(), "category");
     });
   });
 
-  describe('.city()', function() {
-    it('should proxy city', function() {
-      var track = new Track({ properties: { city: 'city' } });
-      assert.strictEqual(track.city(), 'city');
+  describe(".state()", function () {
+    it("should proxy state", function () {
+      var track = new Track({ properties: { state: "state" } });
+      strictEqual(track.state(), "state");
     });
   });
 
-  describe('.zip()', function() {
-    it('should proxy zip', function() {
-      var track = new Track({ properties: { zip: 'zip' } });
-      assert.strictEqual(track.zip(), 'zip');
+  describe(".city()", function () {
+    it("should proxy city", function () {
+      var track = new Track({ properties: { city: "city" } });
+      strictEqual(track.city(), "city");
     });
   });
 
-  describe('.tax()', function() {
-    it('should proxy tax', function() {
-      var track = new Track({ properties: { tax: 'tax' } });
-      assert.strictEqual(track.tax(), 'tax');
+  describe(".zip()", function () {
+    it("should proxy zip", function () {
+      var track = new Track({ properties: { zip: "zip" } });
+      strictEqual(track.zip(), "zip");
     });
   });
 
-  describe('.name()', function() {
-    it('should proxy name', function() {
-      var track = new Track({ properties: { name: 'name' } });
-      assert.strictEqual(track.name(), 'name');
+  describe(".tax()", function () {
+    it("should proxy tax", function () {
+      var track = new Track({ properties: { tax: "tax" } });
+      strictEqual(track.tax(), "tax");
     });
   });
 
-  describe('.country()', function() {
-    it('should proxy country', function() {
-      var track = new Track({ properties: { country: 'country' } });
-      assert.strictEqual(track.country(), 'country');
+  describe(".name()", function () {
+    it("should proxy name", function () {
+      var track = new Track({ properties: { name: "name" } });
+      strictEqual(track.name(), "name");
+    });
+  });
+
+  describe(".country()", function () {
+    it("should proxy country", function () {
+      var track = new Track({ properties: { country: "country" } });
+      strictEqual(track.country(), "country");
     });
 
-    it('should proxy context.traits', function() {
+    it("should proxy context.traits", function () {
       var track = new Track({
         context: {
           traits: {
             address: {
-              country: 'country'
-            }
-          }
-        }
+              country: "country",
+            },
+          },
+        },
       });
 
-      assert.strictEqual(track.country(), 'country');
+      strictEqual(track.country(), "country");
     });
   });
 
-  describe('.price()', function() {
-    it('should proxy price', function() {
-      var track = new Track({ properties: { price: 'price' } });
-      assert.strictEqual(track.price(), 'price');
+  describe(".price()", function () {
+    it("should proxy price", function () {
+      var track = new Track({ properties: { price: "price" } });
+      strictEqual(track.price(), "price");
     });
   });
 
-  describe('.total()', function() {
-    it('should proxy total', function() {
-      var track = new Track({ properties: { total: 'total' } });
-      assert.strictEqual(track.total(), 'total');
+  describe(".total()", function () {
+    it("should proxy total", function () {
+      var track = new Track({ properties: { total: "total" } });
+      strictEqual(track.total(), "total");
     });
   });
 
-  describe('.coupon()', function() {
-    it('should proxy coupon', function() {
-      var track = new Track({ properties: { coupon: 'coupon' } });
-      assert.strictEqual(track.coupon(), 'coupon');
+  describe(".coupon()", function () {
+    it("should proxy coupon", function () {
+      var track = new Track({ properties: { coupon: "coupon" } });
+      strictEqual(track.coupon(), "coupon");
     });
   });
 
-  describe('.shipping()', function() {
-    it('should proxy shipping', function() {
-      var track = new Track({ properties: { shipping: 'shipping' } });
-      assert.strictEqual(track.shipping(), 'shipping');
+  describe(".shipping()", function () {
+    it("should proxy shipping", function () {
+      var track = new Track({ properties: { shipping: "shipping" } });
+      strictEqual(track.shipping(), "shipping");
     });
   });
 
-  describe('.discount()', function() {
-    it('should proxy discount', function() {
-      var track = new Track({ properties: { discount: 'discount' } });
-      assert.strictEqual(track.discount(), 'discount');
+  describe(".discount()", function () {
+    it("should proxy discount", function () {
+      var track = new Track({ properties: { discount: "discount" } });
+      strictEqual(track.discount(), "discount");
     });
   });
 
-  describe('.products()', function() {
-    it('should proxy products', function() {
+  describe(".products()", function () {
+    it("should proxy products", function () {
       var track = new Track({ properties: { products: [{}] } });
-      assert.deepEqual(track.products(), [{}]);
+      deepEqual(track.products(), [{}]);
     });
 
-    it('should return array', function() {
+    it("should return array", function () {
       var track = new Track({});
-      assert.strictEqual(Object.prototype.toString.call(track.products()), '[object Array]');
+      strictEqual(
+        Object.prototype.toString.call(track.products()),
+        "[object Array]"
+      );
     });
 
-    it('should always return an array', function() {
-      var track = new Track({ properties: { products: 'products' } });
-      assert.deepEqual(track.products(), []);
+    it("should always return an array", function () {
+      var track = new Track({ properties: { products: "products" } });
+      deepEqual(track.products(), []);
     });
 
-    it('should lookup products properly', function() {
+    it("should lookup products properly", function () {
       var track = new Track({ properties: { Products: [{}] } });
-      assert.deepEqual(track.products(), [{}]);
+      deepEqual(track.products(), [{}]);
     });
   });
 
-  describe('.orderId()', function() {
-    it('should proxy orderId', function() {
-      var track = new Track({ properties: { orderId: 'orderId' } });
-      assert.strictEqual(track.orderId(), 'orderId');
+  describe(".orderId()", function () {
+    it("should proxy orderId", function () {
+      var track = new Track({ properties: { orderId: "orderId" } });
+      strictEqual(track.orderId(), "orderId");
     });
 
-    it('should proxy `id`', function() {
-      var track = new Track({ properties: { id: 'id' } });
-      assert.strictEqual(track.orderId(), 'id');
+    it("should proxy `id`", function () {
+      var track = new Track({ properties: { id: "id" } });
+      strictEqual(track.orderId(), "id");
     });
 
-    it('should proxy `order_id`', function() {
-      var track = new Track({ properties: { order_id: 'id' } });
-      assert.strictEqual(track.orderId(), 'id');
+    it("should proxy `order_id`", function () {
+      var track = new Track({ properties: { order_id: "id" } });
+      strictEqual(track.orderId(), "id");
     });
   });
 
-  describe('.properties()', function() {
-    it('should proxy the properties', function() {
-      assert.deepEqual(track.properties(), args.properties);
+  describe(".properties()", function () {
+    it("should proxy the properties", function () {
+      deepEqual(track.properties(), args.properties);
     });
 
-    it('should respect aliases', function() {
-      assert.deepEqual(track.properties({ revenue: 'amount' }), { referrer: 'http://segment.io', email: 'test@segment.io', username: 'calvinfo', amount: 50 });
+    it("should respect aliases", function () {
+      deepEqual(track.properties({ revenue: "amount" }), {
+        referrer: "http://segment.io",
+        email: "test@segment.io",
+        username: "calvinfo",
+        amount: 50,
+      });
     });
 
-    it('should traverse isodate', function() {
+    it("should traverse isodate", function () {
       var date = new Date(Date.UTC(2013, 9, 5));
-      var track = new Track({ properties: { date: '2013-10-05T00:00:00.000Z' } });
-      var time = track.properties().date.getTime();
-      assert.strictEqual(time, date.getTime());
-    });
-  });
-
-  describe('.referrer()', function() {
-    it('should proxy the referrer', function() {
-      assert.strictEqual(track.referrer(), args.properties.referrer);
-    });
-
-    it('should proxy context.referrer.url', function() {
-      var track = new Track({ context: { referrer: { url: 'url' } } });
-      assert.strictEqual(track.referrer(), 'url');
-    });
-
-    it('should proxy context.page.referrer', function() {
-      var track = new Track({ context: { page: { referrer: 'url' } } });
-      assert.strictEqual(track.referrer(), 'url');
-    });
-  });
-
-  describe('.username()', function() {
-    it('should proxy the username', function() {
-      assert.strictEqual(track.username(), args.properties.username);
-    });
-
-    it('should proxy the username from the userId', function() {
-      assert.strictEqual(new Track({ userId: 'aaa' }).username(), 'aaa');
-    });
-
-    it('should proxy the username from the sessionId', function() {
-      assert.strictEqual(new Track({ sessionId: 'bbb' }).username(), 'bbb');
-    });
-  });
-
-  describe('.query()', function() {
-    it('should proxy the query', function() {
-      assert.strictEqual(track.query(), args.options.query);
-    });
-  });
-
-  describe('.revenue()', function() {
-    it('should proxy the revenue', function() {
-      assert.strictEqual(track.revenue(), 50);
-    });
-
-    it('should return a number', function() {
-      var track = new Track({ properties: { revenue: 10 } });
-      assert.strictEqual(track.revenue(), 10);
-    });
-
-    it('should intelligently convert strings to numbers if possible', function() {
-      var track = new Track({ properties: { revenue: '$10' } });
-      assert.strictEqual(track.revenue(), 10);
-    });
-
-    it('should return undefined for unknown format', function() {
-      var track = new Track({ properties: { revenue: '$hello' } });
-      assert.strictEqual(track.revenue(), undefined);
-    });
-
-    it('should fallback to total, only during "completed order" event', function() {
-      var track = new Track({ properties: { total: 75 } });
-      assert.strictEqual(track.revenue(), undefined);
-      track = new Track({ properties: { total: 75 }, event: 'completed order' });
-      assert.strictEqual(track.revenue(), 75);
-    });
-  });
-
-  describe('.value()', function() {
-    it('should proxy value', function() {
-      var track = new Track({ properties: { value: 90 } });
-      assert.strictEqual(track.value(), 90);
-    });
-  });
-
-  describe('.email()', function() {
-    it('should proxy the email from properties.email', function() {
-      assert.strictEqual(track.email(), args.properties.email);
-    });
-
-    it('should proxy the email from .userId', function() {
-      var track = new Track({ userId: 'test@segment.io' });
-      assert.strictEqual(track.email(), 'test@segment.io');
-    });
-
-    it('should fall back to context.traits.email', function() {
       var track = new Track({
-        event: 'Email Bounced',
+        properties: { date: "2013-10-05T00:00:00.000Z" },
+      });
+      var time = track.properties().date.getTime();
+      strictEqual(time, date.getTime());
+    });
+  });
+
+  describe(".referrer()", function () {
+    it("should proxy the referrer", function () {
+      strictEqual(track.referrer(), args.properties.referrer);
+    });
+
+    it("should proxy context.referrer.url", function () {
+      var track = new Track({ context: { referrer: { url: "url" } } });
+      strictEqual(track.referrer(), "url");
+    });
+
+    it("should proxy context.page.referrer", function () {
+      var track = new Track({ context: { page: { referrer: "url" } } });
+      strictEqual(track.referrer(), "url");
+    });
+  });
+
+  describe(".username()", function () {
+    it("should proxy the username", function () {
+      strictEqual(track.username(), args.properties.username);
+    });
+
+    it("should proxy the username from the userId", function () {
+      strictEqual(new Track({ userId: "aaa" }).username(), "aaa");
+    });
+
+    it("should proxy the username from the sessionId", function () {
+      strictEqual(new Track({ sessionId: "bbb" }).username(), "bbb");
+    });
+  });
+
+  describe(".query()", function () {
+    it("should proxy the query", function () {
+      strictEqual(track.query(), args.options.query);
+    });
+  });
+
+  describe(".revenue()", function () {
+    it("should proxy the revenue", function () {
+      strictEqual(track.revenue(), 50);
+    });
+
+    it("should return a number", function () {
+      var track = new Track({ properties: { revenue: 10 } });
+      strictEqual(track.revenue(), 10);
+    });
+
+    it("should intelligently convert strings to numbers if possible", function () {
+      var track = new Track({ properties: { revenue: "$10" } });
+      strictEqual(track.revenue(), 10);
+    });
+
+    it("should return undefined for unknown format", function () {
+      var track = new Track({ properties: { revenue: "$hello" } });
+      strictEqual(track.revenue(), undefined);
+    });
+
+    it('should fallback to total, only during "completed order" event', function () {
+      var track = new Track({ properties: { total: 75 } });
+      strictEqual(track.revenue(), undefined);
+      track = new Track({
+        properties: { total: 75 },
+        event: "completed order",
+      });
+      strictEqual(track.revenue(), 75);
+    });
+  });
+
+  describe(".value()", function () {
+    it("should proxy value", function () {
+      var track = new Track({ properties: { value: 90 } });
+      strictEqual(track.value(), 90);
+    });
+  });
+
+  describe(".email()", function () {
+    it("should proxy the email from properties.email", function () {
+      strictEqual(track.email(), args.properties.email);
+    });
+
+    it("should proxy the email from .userId", function () {
+      var track = new Track({ userId: "test@segment.io" });
+      strictEqual(track.email(), "test@segment.io");
+    });
+
+    it("should fall back to context.traits.email", function () {
+      var track = new Track({
+        event: "Email Bounced",
         properties: {
-          email_id: '18vzF7u3z',
-          email_subject: 'First shirt on us!',
-          campaign_id: '123',
-          campaign_name: 'New Customer Discount'
+          email_id: "18vzF7u3z",
+          email_subject: "First shirt on us!",
+          campaign_id: "123",
+          campaign_name: "New Customer Discount",
         },
         context: {
-          ip: '67.207.109.102',
-          user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36',
+          ip: "67.207.109.102",
+          user_agent:
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36",
           traits: {
-            email: 'pgibbons@initech.com'
-          }
-        }
+            email: "pgibbons@initech.com",
+          },
+        },
       });
 
-      assert.strictEqual(track.email(), 'pgibbons@initech.com');
+      strictEqual(track.email(), "pgibbons@initech.com");
     });
   });
 
-  describe('.cents()', function() {
-    it('should return revenue * 100 if available', function() {
+  describe(".cents()", function () {
+    it("should return revenue * 100 if available", function () {
       var track = new Track({ properties: { revenue: 9.99 } });
-      assert.strictEqual(track.cents(), 999);
+      strictEqual(track.cents(), 999);
     });
 
-    it('should return value if revenue is unavailable', function() {
+    it("should return value if revenue is unavailable", function () {
       var track = new Track({ properties: { value: 9 } });
-      assert.strictEqual(track.cents(), 9);
+      strictEqual(track.cents(), 9);
     });
 
-    it('should prefer revenue', function() {
+    it("should prefer revenue", function () {
       var track = new Track({
         properties: {
           revenue: 9.99,
-          value: 9
-        }
+          value: 9,
+        },
       });
-      assert.strictEqual(track.cents(), 999);
+      strictEqual(track.cents(), 999);
     });
   });
 
-  describe('.description()', function() {
-    it('should return the description', function() {
-      var msg = new Track({ properties: { description: 'description' } });
-      assert.strictEqual(msg.description(), 'description');
+  describe(".description()", function () {
+    it("should return the description", function () {
+      var msg = new Track({ properties: { description: "description" } });
+      strictEqual(msg.description(), "description");
     });
   });
 
-  describe('.plan()', function() {
-    it('should return the description', function() {
-      var msg = new Track({ properties: { plan: 'plan' } });
-      assert.strictEqual(msg.plan(), 'plan');
+  describe(".plan()", function () {
+    it("should return the description", function () {
+      var msg = new Track({ properties: { plan: "plan" } });
+      strictEqual(msg.plan(), "plan");
     });
   });
 
-  describe('.shippingMethod()', function() {
-    it('should proxy properties.shipping_method', function() {
-      var msg = new Track({ properties: { shipping_method: 'UPS' } });
-      assert.strictEqual(msg.shippingMethod(), 'UPS');
+  describe(".shippingMethod()", function () {
+    it("should proxy properties.shipping_method", function () {
+      var msg = new Track({ properties: { shipping_method: "UPS" } });
+      strictEqual(msg.shippingMethod(), "UPS");
     });
-    it('should proxy properties.shippingMethod', function() {
-      var msg = new Track({ properties: { shippingMethod: 'UPS' } });
-      assert.strictEqual(msg.shippingMethod(), 'UPS');
-    });
-  });
-
-  describe('.paymentMethod()', function() {
-    it('should proxy properties.payment_method', function() {
-      var msg = new Track({ properties: { payment_method: 'VISA' } });
-      assert.strictEqual(msg.paymentMethod(), 'VISA');
-    });
-    it('should proxy properties.paymentMethod', function() {
-      var msg = new Track({ properties: { paymentMethod: 'VISA' } });
-      assert.strictEqual(msg.paymentMethod(), 'VISA');
+    it("should proxy properties.shippingMethod", function () {
+      var msg = new Track({ properties: { shippingMethod: "UPS" } });
+      strictEqual(msg.shippingMethod(), "UPS");
     });
   });
 
-  describe('.identify()', function() {
-    it('should convert track to identify calls', function() {
+  describe(".paymentMethod()", function () {
+    it("should proxy properties.payment_method", function () {
+      var msg = new Track({ properties: { payment_method: "VISA" } });
+      strictEqual(msg.paymentMethod(), "VISA");
+    });
+    it("should proxy properties.paymentMethod", function () {
+      var msg = new Track({ properties: { paymentMethod: "VISA" } });
+      strictEqual(msg.paymentMethod(), "VISA");
+    });
+  });
+
+  describe(".identify()", function () {
+    it("should convert track to identify calls", function () {
       var track = new Track(args);
       var identify = track.identify();
 
-      assert.deepEqual(identify.traits(), { id: 'calvin@segment.io', someTrait: 'y' });
+      deepEqual(identify.traits(), { id: "calvin@segment.io", someTrait: "y" });
     });
   });
 });

@@ -1,14 +1,14 @@
 declare namespace Facade {
   interface Options {
-    clone?: boolean
-    traverse?: boolean
+    clone?: boolean;
+    traverse?: boolean;
   }
   export class Facade<T = { [key: string]: any }> {
-    constructor(object: { [key: string]: any }, options?: Options)
-    Track: Track
-    Identify: Identify
-    Page: Page
-    Group: Group
+    constructor(object: { [key: string]: any }, options?: Options);
+    Track: Track;
+    Identify: Identify;
+    Page: Page;
+    Group: Group;
     /**
      * Get a potentially-nested field in this facade. `field` should be a
      * period-separated sequence of properties.
@@ -23,7 +23,7 @@ declare namespace Facade {
      * is irrelevant.
      *
      */
-    proxy(path: string): unknown
+    proxy(path: string): unknown;
 
     /**
      * Gets the underlying object this facade wraps around.
@@ -32,7 +32,7 @@ declare namespace Facade {
      * will be assigned as the property `type` of the outputted object.
      *
      */
-    json(): { [key: string]: any }
+    json(): { [key: string]: any };
     /**
      * Get the options of a call. If an integration is passed, only the options for
      * that integration are included. If the integration is not enabled, then
@@ -44,8 +44,8 @@ declare namespace Facade {
      * @param integration - The name of the integration to get settings
      * for. Casing does not matter.
      */
-    options(): { [key: string]: any }
-    options(integration?: string): T
+    options(): { [key: string]: any };
+    options(integration?: string): T;
     /**
      * Check whether an integration is enabled.
      *
@@ -65,27 +65,27 @@ declare namespace Facade {
      * (currently, only Salesforce), then return false.
      * 5. Else, return true.
      */
-    enabled(integration: string): boolean
+    enabled(integration: string): boolean;
     /**
      * Get all `integration` options.
      */
-    integrations(): { [key: string]: any }
+    integrations(): { [key: string]: any };
     /**
      * Check whether the user is active.
      */
-    active(): boolean
+    active(): boolean;
     /**
      * Get `sessionId / anonymousId`.
      */
-    anonymousId(): unknown
+    anonymousId(): unknown;
     /**
      * Get `sessionId / anonymousId`.
      */
-    sessionId(): unknown
+    sessionId(): unknown;
     /**
      * Get `groupId` from `context.groupId`.
      */
-    groupId(): unknown
+    groupId(): unknown;
     /**
      * Get the call's "traits". All event types can pass in traits, though {@link
      * Identify} and {@link Group} override this implementation.
@@ -98,121 +98,121 @@ declare namespace Facade {
      * in the traits, and move it to `yyy`. If `xxx` is a method of this facade,
      * it'll be called as a function instead of treated as a key into the traits.
      */
-    traits(aliases?: object): { [key: string]: any }
+    traits(aliases?: object): { [key: string]: any };
     /**
      * The library and version of the client used to produce the message.
      *
      * If the library name cannot be determined, it is set to `"unknown"`. If the
      * version cannot be determined, it is set to `null`.
      */
-    library(): { name: string; version: null } | unknown
+    library(): { name: string; version: null } | unknown;
     /**
      * Return the device information, falling back to an empty object.
      *
      * Interesting values of `type` are `"ios"` and `"android"`, but other values
      * are possible if the client is doing something unusual with `context.device`.
      */
-    device(): unknown
+    device(): unknown;
     /** Get the User-Agent from `context.userAgent`. */
-    userAgent(): unknown
+    userAgent(): unknown;
     /** Get the timezone from `context.timezone`. */
-    timezone(): unknown
+    timezone(): unknown;
     /** Get the timestamp from `context.timestamp`. */
-    timestamp(): unknown
+    timestamp(): unknown;
     /** Get the channel from `channel`. */
-    channel(): unknown
+    channel(): unknown;
     /** Get the IP address from `context.ip`. */
-    ip(): unknown
+    ip(): unknown;
     /** Get the user ID from `userId`. */
-    userId(): unknown
+    userId(): unknown;
     /**
      * Get the ZIP/Postal code from `traits`, `traits.address`, `properties`, or
      * `properties.address`.
      */
-    zip(): unknown
+    zip(): unknown;
     /**
      * Get the country from `traits`, `traits.address`, `properties`, or
      * `properties.address`.
      */
-    country(): unknown
+    country(): unknown;
     /**
      * Get the street from `traits`, `traits.address`, `properties`, or
      * `properties.address`.
      */
-    street(): unknown
+    street(): unknown;
     /**
      * Get the state from `traits`, `traits.address`, `properties`, or
      * `properties.address`.
      */
-    state(): unknown
+    state(): unknown;
     /**
      * Get the city from `traits`, `traits.address`, `properties`, or
      * `properties.address`.
      */
-    city(): unknown
+    city(): unknown;
     /**
      * Get the region from `traits`, `traits.address`, `properties`, or
      * `properties.address`.
      */
-    region(): unknown
-    type(): 'page' | 'identify' | 'group' | 'track' | 'screen' | 'alias'
-    action(): 'page' | 'identify' | 'group' | 'track' | 'screen' | 'alias'
-    active(): unknown
+    region(): unknown;
+    type(): "page" | "identify" | "group" | "track" | "screen" | "alias";
+    action(): "page" | "identify" | "group" | "track" | "screen" | "alias";
+    active(): unknown;
   }
 
   export class Track<T = { [key: string]: any }> extends Facade<T> {
     /** Get the event name from `event`. */
-    event(): string
+    event(): string;
     /** Get the event value, usually the monetary value, from `properties.value`. */
-    value(): unknown
+    value(): unknown;
     /** Get the event cateogry from `properties.category`. */
-    category(): unknown
+    category(): unknown;
     /** Get the event ID from `properties.id`. */
-    id(): string
+    id(): string;
     /** Get the product ID from `properties.productId` || `properties.product_id` */
-    productId(): unknown
+    productId(): unknown;
     /** Get the promotion ID from `properties.promotionId` || properties.promotion_id */
-    promotionId(): unknown
+    promotionId(): unknown;
     /** Get the cart ID from `properties.cartId`. */
-    cartId(): unknown
+    cartId(): unknown;
     /** Get the checkout ID from `properties.checkoutId` || `properties.checkout_id` */
-    checkoutId(): unknown
+    checkoutId(): unknown;
     /** Get the payment ID from `properties.paymentId` || `properties.payment_id` */
-    paymentId(): unknown
+    paymentId(): unknown;
     /** Get the coupon ID from `properties.couponId` || `properties.coupon_id` */
-    couponId(): unknown
+    couponId(): unknown;
     /** Get the wishlist ID from `properties.wishlistId` || `properties.wishlist_id` */
-    wishlistId(): unknown
+    wishlistId(): unknown;
     /** Get the review ID from `properties.reviewId` || `properties.review_id` */
-    reviewId(): unknown
+    reviewId(): unknown;
     /** Get the order ID from `properties.id` or `properties.orderId` || `properties.order_id` */
-    orderId(): unknown
+    orderId(): unknown;
     /** Get the SKU from `properties.sku`. */
-    sku(): unknown
+    sku(): unknown;
     /** Get the amount of tax for this purchase from `properties.tax`. */
-    tax(): unknown
+    tax(): unknown;
     /** Get the name of this event from `properties.name`. */
-    name(): unknown
+    name(): unknown;
     /** Get the price of this purchase from `properties.price`. */
-    price(): unknown
+    price(): unknown;
     /** Get the total for this purchase from `properties.total`. */
-    total(): unknown
+    total(): unknown;
     /** Whether this is a repeat purchase from `properties.repeat`. */
-    repeat(): unknown
+    repeat(): unknown;
     /** Get the coupon for this purchase from `properties.coupon`. */
-    coupon(): unknown
+    coupon(): unknown;
     /** Get the shipping for this purchase from `properties.shipping`. */
-    shipping(): unknown
+    shipping(): unknown;
     /** Get the discount for this purchase from `properties.discount`. */
-    discount(): unknown
+    discount(): unknown;
     /** Get the shipping method for this purchase from `properties.shippingMethod`. */
-    shippingMethod(): unknown
+    shippingMethod(): unknown;
     /** Get the payment method for this purchase from `properties.paymentMethod` || `properties.payment_method` */
-    paymentMethod(): unknown
+    paymentMethod(): unknown;
     /** Get a description for this event from `properties.description` */
-    description(): unknown
+    description(): unknown;
     /** Get a plan, as in the plan the user is on, for this event from */
-    plan(): unknown
+    plan(): unknown;
     /**
      * Get the subtotal for this purchase from `properties.subtotal`.
      *
@@ -222,17 +222,17 @@ declare namespace Facade {
      *
      * If neither subtotal, total, nor revenue are available, then return 0.
      */
-    subtotal(): unknown
+    subtotal(): unknown;
     /** Get the products for this event from `properties.products` if it's an array, falling back to an empty array. */
-    products(): unknown[]
+    products(): unknown[];
     /** Get the quantity for this event from `properties.quantity`, falling back to a quantity of one. */
-    quantity(): unknown
+    quantity(): unknown;
     /** Get the currency for this event from `properties.currency`, falling back to "USD". */
-    currency(): unknown
+    currency(): unknown;
     /** Get the referrer for this event from `context.referrer.url`, `context.page.referrer`, or `properties.referrer`. */
-    referrer(): unknown
+    referrer(): unknown;
     /** Get the query for this event from `options.query`. */
-    query(): unknown
+    query(): unknown;
     /**
      * Get the page's properties. This is identical to how {@link Facade#traits}
      * works, except it looks at `properties.*` instead of `options.traits.*`.
@@ -252,19 +252,19 @@ declare namespace Facade {
      * track.traits({ "foo": "asdf" }) // { "asdf": "bar" }
      * track.traits({ "sessionId": "rofl" }) // { "rofl": "xxx" }
      */
-    properties(aliases?: object): { [key: string]: any }
+    properties(aliases?: object): { [key: string]: any };
     /**
      * Get the username of the user for this event from `traits.username`,
      * `properties.username`, `userId`, or `anonymousId`.
      */
-    username(): unknown
+    username(): unknown;
     /**
      * Get the email of the user for this event from `trais.email`,
      * `properties.email`, or `options.traits.email`, falling back to `userId` if
      * it looks like a valid email.
      *
      */
-    email(): unknown
+    email(): unknown;
     /**
      * Get the revenue for this event.
      *
@@ -275,14 +275,14 @@ declare namespace Facade {
      * If there are dollar signs in these properties, they will be removed. The
      * result will be parsed into a number.
      */
-    revenue(): unknown
+    revenue(): unknown;
     /**
      * Get the revenue for this event in "cents" -- in other words, multiply the
      * {@link Track#revenue} by 100, or return 0 if there isn't a numerical revenue
      * for this event.
      *
      */
-    cents(): unknown
+    cents(): unknown;
     /**
      * Convert this event into an {@link Identify} facade.
      *
@@ -291,7 +291,7 @@ declare namespace Facade {
      * the Identify's traits.
      *
      */
-    identify(): Identify
+    identify(): Identify;
   }
 
   export class Identify<T = { [key: string]: any }> extends Facade<T> {
@@ -316,31 +316,31 @@ declare namespace Facade {
      * identify.traits({ "sessionId": "rofl" }) // { "rofl": "xxx" }
      *
      */
-    traits(aliases?: object): { [key: string]: any }
+    traits(aliases?: object): { [key: string]: any };
     /**
      * Get the user's email from `traits.email`, falling back to `userId` only if
      * it looks like a valid email.
      *
      */
-    email(): unknown
+    email(): unknown;
     /**
      * Get the time of creation of the user from `traits.created` or
      * `traits.createdAt`.
      */
-    created(): Date | string | number | object
+    created(): Date | string | number | object;
     /**
      * Get the time of creation of the user's company from `traits.company.created`
      * or `traits.company.createdAt`.
      *
      */
-    companyCreated(): Date | string | number | object
+    companyCreated(): Date | string | number | object;
     /** Get the user's company name from `traits.company.name`. */
-    companyName(): unknown
+    companyName(): unknown;
     /**
      * Get the user's name `traits.name`, falling back to combining {@link
      * Identify#firstName} and {@link Identify#lastName} if possible.
      */
-    name(): unknown
+    name(): unknown;
     /**
      * Get the user's first name from `traits.firstName`, optionally splitting it
      * out of a the full name if that's all that was provided.
@@ -349,12 +349,12 @@ declare namespace Facade {
      * form "FirstName LastName"; it will not work for non-Western names.
      *
      */
-    firstName(): unknown
+    firstName(): unknown;
     /**
      * Get the user's last name from `traits.lastName`, optionally splitting it out
      * of a the full name if that's all that was provided.
      */
-    lastName(): unknown
+    lastName(): unknown;
   }
 
   export class Group<T = { [key: string]: any }> extends Facade<T> {
@@ -364,12 +364,12 @@ declare namespace Facade {
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    groupId(): unknown
+    groupId(): unknown;
     /**
      * Get the time of creation of the group from `traits.createdAt`,
      * `traits.created`, `properties.createdAt`, or `properties.created`.
      */
-    created(): Date | string | number | object
+    created(): Date | string | number | object;
     /**
      * Get the group's traits. This is identical to how {@link Facade#traits}
      * works, except it looks at `traits.*` instead of `options.traits.*`.
@@ -382,38 +382,38 @@ declare namespace Facade {
      * the traits, and move it to `yyy`. If `xxx` is a method of this facade, it'll
      * be called as a function instead of treated as a key into the traits.
      */
-    traits(aliases?: object): { [key: string]: any }
+    traits(aliases?: object): { [key: string]: any };
     /**
      * Get the group's email from `traits.email`, falling back to `groupId` only if
      * it looks like a valid email.
      */
-    email(): unknown
+    email(): unknown;
     /**
      * Get the group's name from `traits.name`.
      *
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    name(): unknown
+    name(): unknown;
     /**
      * Get the group's industry from `traits.industry`.
      *
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    industry(): unknown
+    industry(): unknown;
     /**
      * Get the group's employee count from `traits.employees`.
      *
      * This *should* be a number, but may not be if the client isn't adhering to
      * the spec.
      */
-    employees(): unknown
+    employees(): unknown;
     /**
      * Get the group's properties from `traits` or `properties`, falling back to
      * simply an empty object.
      */
-    properties(): unknown
+    properties(): unknown;
   }
 
   export class Page<T = { [key: string]: any }> extends Facade<T> {
@@ -423,35 +423,35 @@ declare namespace Facade {
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    category(): unknown
+    category(): unknown;
     /**
      * Get the page name from `name`.
      *
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    name(): unknown
+    name(): unknown;
     /**
      * Get the page title from `properties.title`.
      *
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    title(): unknown
+    title(): unknown;
     /**
      * Get the page path from `properties.path`.
      *
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    path(): unknown
+    path(): unknown;
     /**
      * Get the page URL from `properties.url`.
      *
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    url(): unknown
+    url(): unknown;
     /**
      * Get the HTTP referrer from `context.referrer.url`, `context.page.referrer`,
      * or `properties.referrer`.
@@ -461,7 +461,7 @@ declare namespace Facade {
      *
      * @return {string}
      */
-    referrer(): unknown
+    referrer(): unknown;
     /**
      * Get the page's properties. This is identical to how {@link Facade#traits}
      * works, except it looks at `properties.*` instead of `options.traits.*`.
@@ -474,7 +474,7 @@ declare namespace Facade {
      * the traits, and move it to `yyy`. If `xxx` is a method of this facade, it'll
      * be called as a function instead of treated as a key into the traits.
      */
-    properties(aliases?: object): { [key: string]: any }
+    properties(aliases?: object): { [key: string]: any };
     /**
      * Get the user's email from `context.traits.email` or `properties.email`,
      * falling back to `userId` if it's a valid email.
@@ -482,7 +482,7 @@ declare namespace Facade {
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    email(): unknown
+    email(): unknown;
     /**
      * Get the page fullName. This is `$category $name` if both are present, and
      * just `name` otherwiser.
@@ -490,17 +490,17 @@ declare namespace Facade {
      * This *should* be a string, but may not be if the client isn't adhering to
      * the spec.
      */
-    fullName(): unknown
+    fullName(): unknown;
     /**
      * Get an event name from this page call. If `name` is present, this will be
      * `Viewed $name Page`; otherwise, it will be `Loaded a Page`.
      */
-    event(name?: string): string
+    event(name?: string): string;
     /**
      * Convert this Page to a {@link Track} facade. The inputted `name` will be
      * converted to the Track's event name via {@link Page#event}.
      */
-    track(name?: string): Track
+    track(name?: string): Track;
   }
 
   export class Screen<T = { [key: string]: any }> extends Page<T> {}
@@ -512,23 +512,23 @@ declare namespace Facade {
      * Get the user's previous ID from previousId or from.
      * This should be a string, but may not be if the client isn't adhering to the spec.
      */
-    previousId(): unknown
+    previousId(): unknown;
     /**
      * An alias for .previousId.
      */
-    from(): unknown
+    from(): unknown;
     /**
      * An alias for .userId
      */
-    to(): unknown
+    to(): unknown;
     /**
      * Get the user's new ID from userId or to.
      * This should be a string, but may not be if the client isn't adhering to the spec.
      */
-    userId(): unknown
+    userId(): unknown;
   }
 }
 
 declare module "segmentio-facade" {
-  export = Facade
+  export = Facade;
 }
