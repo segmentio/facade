@@ -36,6 +36,7 @@
     "eslint": "^2.9.0",
     "expect.js": "^0.3.1",
     "jest": "^26.4.2",
+    "parse-domain": "^3.0.2",
     "proclaim": "^3.4.1",
     "sinon": "^1.7.3",
     "ts-jest": "^26.4.0",
