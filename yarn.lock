@@ -6010,10 +6010,6 @@ is-wsl@^2.1.1, is-wsl@^2.2.0:
   dependencies:
     is-docker "^2.0.0"
 
-is@^3.1.0:
-  version "3.2.1"
-  resolved "https://registry.npmjs.org/is/-/is-3.2.1.tgz#d0ac2ad55eb7b0bec926a5266f6c662aaa83dca5"
-
 isarray@0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/isarray/-/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
@@ -7676,12 +7672,11 @@ needle@^2.2.0:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
-new-date@^1.0.0:
+"new-date@github://segmentio/new-date":
   version "1.0.1"
-  resolved "https://registry.npmjs.org/new-date/-/new-date-1.0.1.tgz#0044981b1739161e653099c44e6e9e4ff72e02d2"
+  resolved "https://codeload.github.com/segmentio/new-date/tar.gz/3a2e293c5068940b408b74c56a67607eba06df76"
   dependencies:
     "@segment/isodate" "1.0.2"
-    is "^3.1.0"
 
 next-tick@1:
   version "1.0.0"
