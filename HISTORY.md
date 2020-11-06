@@ -1,3 +1,7 @@
+3.3.1 / 2020-11-06
+==================
+
+  * Remove third party library "type-component" in favor of native JS functions
 
 3.3.0 / 2020-09-23
 ==================
