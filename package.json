@@ -6,6 +6,7 @@
   "main": "dist/index.js",
   "types": "index.d.ts",
   "scripts": {
+    "tdd": "jest --watch",
     "test": "make test",
     "build": "rm -rf dist && yarn tsc"
   },
@@ -25,8 +26,7 @@
     "inherits": "^2.0.1",
     "is-email": "0.1.0",
     "new-date": "github://segmentio/new-date",
-    "obj-case": "0.x",
-    "type-component": "0.0.1"
+    "obj-case": "0.x"
   },
   "devDependencies": {
     "@segment/isodate": "^1.0.2",
