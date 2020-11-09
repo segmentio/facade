@@ -1,4 +1,8 @@
-3.3.1 / 2020-11-06
+3.3.4 / 2020-11-06
+==================
+
+  * Remove third party library "is-email"
+3.3.3 / 2020-11-06
 ==================
 
   * Remove third party library "type-component" in favor of native JS functions
