@@ -3,7 +3,7 @@
     "module": "commonjs",
     "target": "es5",
     "removeComments": true,
-    "declaration": true,
+    "declaration": false,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,
