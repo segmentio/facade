@@ -1,4 +1,4 @@
-declare namespace Facade {
+declare module '@segment/facade' {
   interface Options {
     clone?: boolean;
     traverse?: boolean;
@@ -527,8 +527,4 @@ declare namespace Facade {
      */
     userId(): unknown;
   }
-}
-
-declare module "segmentio-facade" {
-  export = Facade;
 }
