@@ -24,7 +24,7 @@
     "is-email": "0.1.0",
     "new-date": "^1.0.0",
     "obj-case": "0.x",
-    "trim": "0.0.1",
+    "trim": "1.0.0",
     "type-component": "0.0.1"
   },
   "devDependencies": {

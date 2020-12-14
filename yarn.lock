@@ -6689,6 +6689,11 @@ trim@0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/trim/-/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
 
+trim@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/trim/-/trim-1.0.0.tgz#fd1f30b878bdd2d8435fa0f2cc9cbb55f518be7d"
+  integrity sha512-UgtES1lYpE+f4WiGY5lyJlHchuGhTa/xMPH96g/B7gc+pEQPiL41s6ECm7Ky3hkhARG/u1SHGFcleJodAvQOKQ==
+
 trough@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/trough/-/trough-1.0.2.tgz#7f1663ec55c480139e2de5e486c6aef6cc24a535"
