@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/segmentio/facade#readme",
   "dependencies": {
-    "@ndhoule/clone": "^1.0.0",
+    "klona": "^2.0.4",
     "@segment/isodate-traverse": "^1.0.0",
     "inherits": "^2.0.1",
     "new-date": "github://segmentio/new-date",
