@@ -1232,12 +1232,6 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@ndhoule/clone@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@ndhoule/clone/-/clone-1.0.0.tgz#0f68394a95008cf360370e101924564a70927afc"
-  dependencies:
-    component-type "^1.2.1"
-
 "@rollup/plugin-babel@^5.1.0":
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.2.1.tgz#20fc8f8864dc0eaa1c5578408459606808f72924"
@@ -7101,6 +7095,11 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
+klona@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
+  integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
+
 labeled-stream-splicer@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmjs.org/labeled-stream-splicer/-/labeled-stream-splicer-2.0.1.tgz#9cffa32fd99e1612fd1d86a8db962416d5292926"
@@ -7680,9 +7679,10 @@ needle@^2.2.0:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
-"new-date@github://segmentio/new-date":
-  version "1.0.1"
-  resolved "https://codeload.github.com/segmentio/new-date/tar.gz/3a2e293c5068940b408b74c56a67607eba06df76"
+new-date@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/new-date/-/new-date-1.0.2.tgz#8d30622e41784667c3627ba4e0a1054bc3231e88"
+  integrity sha512-EjUPw3AGNS2J+jqtbYnzLj5YJXk69KcXnnmly0hGYWKCRWfkBLaqMchS7+or+u+/ibvz3We+bBakYiAfQgsC2A==
   dependencies:
     "@segment/isodate" "1.0.2"
 
@@ -10193,6 +10193,11 @@ ts-jest@^26.4.0:
     mkdirp "1.x"
     semver "7.x"
     yargs-parser "20.x"
+
+tsc@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/tsc/-/tsc-2.0.3.tgz#037fe579e3bd67a5cbdaa604b43c6c1991b04bef"
+  integrity sha512-SN+9zBUtrpUcOpaUO7GjkEHgWtf22c7FKbKCA4e858eEM7Qz86rRDpgOU2lBIDf0fLCsEg65ms899UMUIB2+Ow==
 
 tsconfig-paths@^3.9.0:
   version "3.9.0"

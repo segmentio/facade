@@ -1,3 +1,8 @@
+3.3.8 / 2021-05-17
+==================
+
+  * Replace third party library "ndhoule/clone" with lighter "lukeed/klona"
+
 3.3.6 / 2020-11-06
 ==================
 
