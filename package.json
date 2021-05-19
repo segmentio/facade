@@ -24,7 +24,7 @@
     "klona": "^2.0.4",
     "@segment/isodate-traverse": "^1.0.0",
     "inherits": "^2.0.1",
-    "new-date": "github://segmentio/new-date",
+    "new-date": "^1.0.2",
     "obj-case": "0.x"
   },
   "devDependencies": {
