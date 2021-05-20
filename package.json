@@ -21,11 +21,11 @@
   },
   "homepage": "https://github.com/segmentio/facade#readme",
   "dependencies": {
-    "@segment/isodate-traverse": "^1.0.0",
-    "inherits": "^2.0.1",
+    "@segment/isodate-traverse": "^1.1.0",
+    "inherits": "^2.0.4",
     "klona": "^2.0.4",
     "new-date": "^1.0.2",
-    "obj-case": "0.x"
+    "obj-case": "0.2.0"
   },
   "devDependencies": {
     "@segment/isodate": "^1.0.2",
