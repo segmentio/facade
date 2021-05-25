@@ -1,6 +1,6 @@
 {
   "name": "@segment/facade",
-  "version": "3.3.8",
+  "version": "3.3.9",
   "description": "Providing common fields for analytics integrations",
   "keywords": [],
   "main": "dist/index.js",
@@ -21,11 +21,11 @@
   },
   "homepage": "https://github.com/segmentio/facade#readme",
   "dependencies": {
-    "@segment/isodate-traverse": "^1.0.0",
-    "inherits": "^2.0.1",
+    "@segment/isodate-traverse": "^1.1.1",
+    "inherits": "^2.0.4",
     "klona": "^2.0.4",
-    "new-date": "^1.0.2",
-    "obj-case": "0.x"
+    "new-date": "^1.0.3",
+    "obj-case": "0.2.1"
   },
   "devDependencies": {
     "@segment/isodate": "^1.0.2",
