@@ -1289,22 +1289,17 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@segment/isodate-traverse@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@segment/isodate-traverse/-/isodate-traverse-1.1.0.tgz#4fb36f30d94c2c5a3c8a75d25c1504822a1bb9ab"
-  integrity sha1-T7NvMNlMLFo8inXSXBUEgiobuas=
+"@segment/isodate-traverse@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@segment/isodate-traverse/-/isodate-traverse-1.1.1.tgz#37e1a68b5e48a841260145f1be86d342995dfc64"
+  integrity sha512-+G6e1SgAUkcq0EDMi+SRLfT48TNlLPF3QnSgFGVs0V9F3o3fq/woQ2rHFlW20W0yy5NnCUH0QGU3Am2rZy/E3w==
   dependencies:
-    "@segment/isodate" "^1.0.0"
-    component-each "^0.2.6"
-    component-type "^1.2.1"
+    "@segment/isodate" "^1.0.3"
 
-"@segment/isodate@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@segment/isodate/-/isodate-1.0.2.tgz#71fef69e816b77593a80b4cfbf2d22443222eafe"
-
-"@segment/isodate@^1.0.0", "@segment/isodate@^1.0.2":
+"@segment/isodate@1.0.3", "@segment/isodate@^1.0.2", "@segment/isodate@^1.0.3":
   version "1.0.3"
-  resolved "https://registry.npmjs.org/@segment/isodate/-/isodate-1.0.3.tgz#f44e8202d5edd277ce822785239474b2c9411d4a"
+  resolved "https://registry.yarnpkg.com/@segment/isodate/-/isodate-1.0.3.tgz#f44e8202d5edd277ce822785239474b2c9411d4a"
+  integrity sha512-BtanDuvJqnACFkeeYje7pWULVv8RgZaqKHWwGFnL/g/TH/CcZjkIVTfGDp/MAxmilYHUkrX70SqwnYSTNEaN7A==
 
 "@segment/to-iso-string@^1.0.0":
   version "1.0.1"
@@ -3456,28 +3451,9 @@ commondir@^1.0.1:
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
   integrity sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=
 
-component-each@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.npmjs.org/component-each/-/component-each-0.2.6.tgz#991faf31ef4fcafbad04237124d381b3394941d5"
-  dependencies:
-    component-type "1.0.0"
-    to-function "2.0.6"
-
 component-emitter@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
-
-component-props@*:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/component-props/-/component-props-1.1.1.tgz#f9b7df9b9927b6e6d97c9bd272aa867670f34944"
-
-component-type@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/component-type/-/component-type-1.0.0.tgz#1ed8812e32dd65099d433570757f111ea3d3d871"
-
-component-type@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/component-type/-/component-type-1.2.1.tgz#8a47901700238e4fc32269771230226f24b415a9"
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -7685,12 +7661,12 @@ needle@^2.2.0:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
-new-date@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/new-date/-/new-date-1.0.2.tgz#8d30622e41784667c3627ba4e0a1054bc3231e88"
-  integrity sha512-EjUPw3AGNS2J+jqtbYnzLj5YJXk69KcXnnmly0hGYWKCRWfkBLaqMchS7+or+u+/ibvz3We+bBakYiAfQgsC2A==
+new-date@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/new-date/-/new-date-1.0.3.tgz#a5956086d3f5ed43d0b210d87a10219ccb7a2326"
+  integrity sha512-0fsVvQPbo2I18DT2zVHpezmeeNYV2JaJSrseiHLc17GNOxJzUdx5mvSigPu8LtIfZSij5i1wXnXFspEs2CD6hA==
   dependencies:
-    "@segment/isodate" "1.0.2"
+    "@segment/isodate" "1.0.3"
 
 next-tick@1:
   version "1.0.0"
@@ -10075,12 +10051,6 @@ to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
   integrity sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=
-
-to-function@2.0.6:
-  version "2.0.6"
-  resolved "https://registry.npmjs.org/to-function/-/to-function-2.0.6.tgz#7d56cd9c3b92fa8dbd7b22e83d51924de740ebc5"
-  dependencies:
-    component-props "*"
 
 to-object-path@^0.3.0:
   version "0.3.0"
