@@ -25,7 +25,7 @@
     "inherits": "^2.0.4",
     "klona": "^2.0.4",
     "new-date": "^1.0.3",
-    "obj-case": "0.2.0"
+    "obj-case": "0.2.1"
   },
   "devDependencies": {
     "@segment/isodate": "^1.0.2",
