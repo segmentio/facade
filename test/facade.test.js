@@ -229,6 +229,27 @@ describe("Facade", function () {
     });
   });
 
+  describe(".rawEvent()", function () {
+    it("should return the input object unmodified", function () {
+      var obj = {
+        a: "b", c: "d", x: [1, 2, 3], 
+        properties: {  iso_date_string: new Date().toISOString() }
+      };
+      var facade = new Facade(obj);
+      deepEqual(facade.rawEvent(), obj);
+    });
+
+    it("should not add .type", function () {
+      var track = new Track({});
+      deepEqual(track.rawEvent().type, undefined);
+    });
+
+    it("should not add .timestamp", function () {
+      var track = new Track({});
+      deepEqual(track.rawEvent().timestamp, undefined);
+    });
+  });
+
   describe(".context()", function () {
     it('should pull from "context" for backwards compatibility', function () {
       var options = { a: "b" };
