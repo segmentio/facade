@@ -33,6 +33,17 @@ declare module '@segment/facade' {
      *
      */
     json(): { [key: string]: any };
+
+    /**
+     * Gets the raw, unmodified object this facade wraps around.
+     * 
+     * Unlike the `json` method, which does make some subtle modifications 
+     * to datetime values and the `type` property, this method returns the input
+     * object as-is. It is not guaranteed to be the same instance, due to constraints of 
+     * how the `clone: false` option behaves.
+     */
+    rawEvent(): { [key: string]: any }
+
     /**
      * Get the options of a call. If an integration is passed, only the options for
      * that integration are included. If the integration is not enabled, then
