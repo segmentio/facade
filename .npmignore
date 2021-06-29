@@ -2,3 +2,6 @@ support
 test
 examples
 *.sock
+.circleci
+.github
+jest.config.js
