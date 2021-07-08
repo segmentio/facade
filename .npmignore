@@ -5,3 +5,8 @@ examples
 .circleci
 .github
 jest.config.js
+lib
+.eslintrc
+Makefile
+tsconfig.json
+tsconfig.tsbuildinfo
