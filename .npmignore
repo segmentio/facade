@@ -9,3 +9,4 @@ lib
 .eslintrc
 Makefile
 tsconfig.json
+tsconfig.tsbuildinfo
