@@ -527,6 +527,11 @@ describe("Facade", function () {
       deepEqual(facade.device(), { token: "token" });
     });
 
+    it("should handle device set as null", function () {
+      var facade = new Facade({ context: { device: null } }, {clone: true});
+      deepEqual(facade.device(), {});
+    });
+
     it("should leave existing device-types untouched", function () {
       var facade = new Facade({
         context: {
