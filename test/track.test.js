@@ -341,6 +341,28 @@ describe("Track", function () {
       var track = new Track({ properties: { Products: [{}] } });
       deepEqual(track.products(), [{}]);
     });
+
+    it("should return empty array", function () {
+      const track = new Track({ properties: { product: [] } });
+      deepEqual(track.products(), []);
+    });
+
+    it("should return an array of products without nulls", function () {
+      const products = [
+        null,
+        { 'product_id': '1'},
+        null,
+        { 'product_id': '2'},
+        { 'product_id': '3'}
+      ]
+      const track = new Track({ properties: { products } });
+      const expectedProducts = [
+        { 'product_id': '1'},
+        { 'product_id': '2'},
+        { 'product_id': '3'}
+      ]
+      deepEqual(track.products(), expectedProducts);
+    });
   });
 
   describe(".orderId()", function () {
