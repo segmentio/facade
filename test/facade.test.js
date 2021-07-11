@@ -248,6 +248,11 @@ describe("Facade", function () {
       var track = new Track({});
       deepEqual(track.rawEvent().timestamp, undefined);
     });
+
+    it('should omit _metadata', function() {
+      var track = new Facade.Track({ _metadata: {} });
+      assert.deepEqual(track.json()._metadata, undefined);
+    });
   });
 
   describe(".context()", function () {
