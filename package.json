@@ -1,6 +1,6 @@
 {
   "name": "@segment/facade",
-  "version": "3.4.5",
+  "version": "3.4.6",
   "description": "Providing common fields for analytics integrations",
   "keywords": [],
   "main": "dist/index.js",
