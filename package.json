@@ -1,6 +1,6 @@
 {
   "name": "@segment/facade",
-  "version": "3.4.6",
+  "version": "3.4.7",
   "description": "Providing common fields for analytics integrations",
   "keywords": [],
   "main": "dist/index.js",
@@ -23,7 +23,7 @@
   "dependencies": {
     "@segment/isodate-traverse": "^1.1.1",
     "inherits": "^2.0.4",
-    "klona": "^2.0.4",
+    "klona": "^2.0.5",
     "new-date": "^1.0.3",
     "obj-case": "0.2.1"
   },
