@@ -37,8 +37,8 @@ describe("Facade", function () {
         var obj = { timestamp: "1979", arr, now: now, classData };
         var facade = new Facade(obj, { clone: true });
         notStrictEqual(facade.obj, obj);
-        strictEqual(obj.classData, classData);
-        strictEqual(obj.arr, arr);
+        notStrictEqual(facade.classData, obj.classData);
+        notStrictEqual(facade.arr, obj.arr);
         strictEqual(obj.timestamp, "1979");
         strictEqual(obj.now, now);
       });
