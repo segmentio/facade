@@ -28,12 +28,18 @@ describe("Facade", function () {
       });
 
       it("should not mutate the original object during instantiation when clone=true (GH#77)", function () {
+        function StubbedClass(args) {
+          this.property = args.property
+        }
         var now = new Date();
-        var obj = { timestamp: "1979", birthday: "1999", now: now };
+        var arr = [1,2,[3]];
+        var classData = new StubbedClass({ property: 'property' });
+        var obj = { timestamp: "1979", arr, now: now, classData };
         var facade = new Facade(obj, { clone: true });
         notStrictEqual(facade.obj, obj);
+        strictEqual(obj.classData, classData);
+        strictEqual(obj.arr, arr);
         strictEqual(obj.timestamp, "1979");
-        strictEqual(obj.birthday, "1999");
         strictEqual(obj.now, now);
       });
 
