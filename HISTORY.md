@@ -1,3 +1,8 @@
+3.4.8 / 2022-02-14
+==================
+
+  * Removes "klona", replacing with a utility cloning function for properties.
+
 3.4.6 / 2021-07-12
 ==================
 
