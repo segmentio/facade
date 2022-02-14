@@ -28,13 +28,23 @@ describe("Facade", function () {
       });
 
       it("should not mutate the original object during instantiation when clone=true (GH#77)", function () {
+        function StubbedClass(args) {
+          this.property = args.property
+        }
+        var spy = jest.spyOn(StubbedClass, 'call');
         var now = new Date();
-        var obj = { timestamp: "1979", birthday: "1999", now: now };
+        var arr = [1,2,[3]];
+        function ClassData() {
+          return StubbedClass.call(this, { property: 'property' })
+        };
+        var obj = { timestamp: "1979", arr, now, classData: new ClassData() };
         var facade = new Facade(obj, { clone: true });
         notStrictEqual(facade.obj, obj);
+        notStrictEqual(facade.obj.classData, obj.classData);
+        notStrictEqual(facade.obj.arr, obj.arr);
+        strictEqual(facade.obj.now, obj.now);
         strictEqual(obj.timestamp, "1979");
-        strictEqual(obj.birthday, "1999");
-        strictEqual(obj.now, now);
+        expect(spy).toHaveBeenCalledTimes(1);
       });
 
       it("should store a reference to `obj` when clone=false", function () {
