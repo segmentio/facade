@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "strict": true,
     "sourceMap": true,
+    "inlineSources": true,
     "incremental": true,
     "outDir": "dist",
     "noUnusedLocals": true,
