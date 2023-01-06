@@ -27,6 +27,13 @@ describe("clone", function () {
         // reset it
         delete input.added
       });
+      
+      it('should not be vulnerable to prototype pollution', function () {
+        Object.prototype.SECRET = 'ohno'
+        deepStrictEqual(clone(input), expected)
+        // reset it
+        delete Object.prototype.SECRET
+      });
     })
     
     describe("using an array of object types", function () {
