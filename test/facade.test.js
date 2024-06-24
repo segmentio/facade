@@ -237,6 +237,11 @@ describe("Facade", function () {
       var track = new Track({});
       deepEqual(track.json().type, "track");
     });
+
+    it('should omit _metadata', function() {
+      var track = new Facade.Track({ _metadata: {} });
+      assert.deepEqual(track.json()._metadata, undefined);
+    });
   });
 
   describe(".rawEvent()", function () {
